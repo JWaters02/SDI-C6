@@ -70,6 +70,12 @@ public:
     void setDeletedAt(std::string deleted_at);
 
     void printUser();
+
+    void login();
+    void logout();
+    void registerUser();
+    void updateUser();
+    void deleteUser();
 };
 
 
