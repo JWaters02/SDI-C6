@@ -15,7 +15,7 @@ private:
     int id;
     std::string first_name;
     std::string last_name;
-    std::string age;
+    int age;
     std::string email;
     std::string username;
     std::string password;
@@ -30,7 +30,7 @@ private:
     std::string deleted_at;
 
 public:
-    User(int id, std::string first_name, std::string last_name, std::string age, std::string email, std::string username,
+    User(int id, std::string first_name, std::string last_name, int age, std::string email, std::string username,
          std::string password, std::string phone, std::string home_address, std::string home_city,
          std::string business_address, std::string business_city, std::string country, std::string created_at,
          std::string updated_at, std::string deleted_at);
@@ -38,7 +38,7 @@ public:
     int getId() const;
     std::string getFirstName() const;
     std::string getLastName() const;
-    std::string getAge() const;
+    int getAge() const;
     std::string getEmail() const;
     std::string getUsername() const;
     std::string getPassword() const;
@@ -55,7 +55,7 @@ public:
     void setId(int id);
     void setFirstName(std::string first_name);
     void setLastName(std::string last_name);
-    void setAge(std::string age);
+    void setAge(int age);
     void setEmail(std::string email);
     void setUsername(std::string username);
     void setPassword(std::string password);

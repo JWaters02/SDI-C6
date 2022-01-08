@@ -31,7 +31,7 @@ set(PROJECT_SOURCES
         Application/Login.cpp
         Application/Login.h
         Database/DBHandler.cpp
-        Database/DBHandler.h)
+        Database/DBHandler.h Users/UserUtils.h Users/UserUtils.cpp)
 
 if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
     qt_add_executable(ETM
@@ -57,7 +57,7 @@ else()
 endif()
 
 include_directories(${Boost_INCLUDE_DIR})
-target_link_libraries(ETM PRIVATE Qt${QT_VERSION_MAJOR}::Widgets -lpqxx -lpq ${Boost_LIBRARIES})
+target_link_libraries(ETM PRIVATE Qt${QT_VERSION_MAJOR}::Widgets -lpqxx -lpq -lbcrypt ${Boost_LIBRARIES})
 
 set_target_properties(ETM PROPERTIES
     MACOSX_BUNDLE_GUI_IDENTIFIER my.example.com
