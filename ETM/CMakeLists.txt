@@ -13,21 +13,25 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 find_package(QT NAMES Qt6 Qt5 COMPONENTS Widgets REQUIRED)
 find_package(Qt${QT_VERSION_MAJOR} COMPONENTS Widgets REQUIRED)
+find_package(Boost 1.70.0)
 
 set(PROJECT_SOURCES
         main.cpp
         mainwindow.cpp
         mainwindow.h
         mainwindow.ui
-        User.h
-        User.cpp
-        CargoOwner.h
-        CargoOwner.cpp
-        Drivers.h
-        Drivers.cpp
-        TransportationCompany.h
-        TransportationCompany.cpp
-)
+        Users/User.h
+        Users/User.cpp
+        Users/CargoOwner.h
+        Users/CargoOwner.cpp
+        Users/Drivers.h
+        Users/Drivers.cpp
+        Users/TransportationCompany.h
+        Users/TransportationCompany.cpp
+        Application/Login.cpp
+        Application/Login.h
+        Database/DBHandler.cpp
+        Database/DBHandler.h)
 
 if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
     qt_add_executable(ETM
@@ -52,7 +56,8 @@ else()
     endif()
 endif()
 
-target_link_libraries(ETM PRIVATE Qt${QT_VERSION_MAJOR}::Widgets)
+include_directories(${Boost_INCLUDE_DIR})
+target_link_libraries(ETM PRIVATE Qt${QT_VERSION_MAJOR}::Widgets -lpqxx -lpq ${Boost_LIBRARIES})
 
 set_target_properties(ETM PROPERTIES
     MACOSX_BUNDLE_GUI_IDENTIFIER my.example.com
