@@ -3,7 +3,7 @@
 
 #include <QMainWindow>
 #include "bcrypt/BCrypt.hpp"
-#include "Users/UserUtils.h"
+#include "Application/Login.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
@@ -23,7 +23,7 @@ public:
     MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
 
-    void setInvalidLoginFeedback(const std::string type);
+    void setInvalidLoginFeedback();
     void setInvalidSignupFeedback();
     void setInvalidDriversSignupFeedback();
 

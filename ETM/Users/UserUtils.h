@@ -33,6 +33,21 @@ struct DriverSignupInfo {
     std::string lorryType;
 };
 
+struct InfoMinLengths {
+    const int USERNAME = 5;
+    const int PASSWORD = 0;
+    const int EMAIL = 2;
+    const int FIRSTNAME = 2;
+    const int LASTNAME = 2;
+    const int AGE = 18;
+    const int PHONE = 9;
+    const int HOME_ADDRESS = 5;
+    const int HOME_CITY = 2;
+    const int BUSINESS_ADDRESS = 5;
+    const int BUSINESS_CITY = 2;
+    const int COUNTRY = 2;
+};
+
 enum SignupTypes {
     Username,
     Password,

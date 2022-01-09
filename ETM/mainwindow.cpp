@@ -16,8 +16,8 @@ MainWindow::~MainWindow() {
     delete ui;
 }
 
-void MainWindow::setInvalidLoginFeedback(const std::string type) {
-    ui->lblLoginIncorrect->setText(QString::fromStdString("Incorrect " + type + "!"));
+void MainWindow::setInvalidLoginFeedback() {
+    ui->lblLoginIncorrect->setText(QString::fromStdString("Username or password is incorrect!"));
 }
 
 void MainWindow::setInvalidSignupFeedback() {
@@ -36,29 +36,47 @@ void MainWindow::on_btnLogin_clicked() {
     submittedLoginInfo.username = ui->txtLoginUsername->text().toStdString();
     // Hash password right as it comes through so no plaintext bytes are in memory
     submittedLoginInfo.password = BCrypt::generateHash(ui->txtLoginPassword->text().toStdString());
-}
 
-void MainWindow::on_btnSignup_clicked() {
-    // TODO: Move all this checking to UserUtils
-    // Check passwords do not match
-    if (BCrypt::generateHash(ui->txtSignupPassword->text().toStdString())
-            != BCrypt::generateHash(ui->txtSignupConfirmPassword->text().toStdString())) {
-        ui->lblSignupIncorrect->setText(QString::fromStdString("Passwords do not match!"));
+    // Check if login info is valid
+    if (!Login::validateLogin(getLoginInfo())) {
+        setInvalidLoginFeedback();
     } else {
 
     }
 
-    // Check which user type is selected
-    if (ui->rbCargoOwner->isChecked()) {
-        ui->swLoginPages->setCurrentIndex(PAGES.LOGIN);
-    }
-    if (ui->rbDriver->isChecked()) {
-        ui->swLoginPages->setCurrentIndex(PAGES.SIGNUPDRIVER);
-    }
-    if (ui->rbTransportationCompany->isChecked()) {
-        ui->swLoginPages->setCurrentIndex(PAGES.SIGNUPTCOMPANY);
-    }
+}
 
+void MainWindow::on_btnSignup_clicked() {
+    submittedSignupInfo.username = ui->txtSignupUsername->text().toStdString();
+    submittedSignupInfo.password = BCrypt::generateHash(ui->txtSignupPassword->text().toStdString());
+    submittedSignupInfo.firstName = ui->txtSignupFirstName->text().toStdString();
+    submittedSignupInfo.lastName = ui->txtSignupLastName->text().toStdString();
+    submittedSignupInfo.email = ui->txtSignupEmail->text().toStdString();
+    submittedSignupInfo.phone = ui->txtSignupMobile->text().toStdString();
+    submittedSignupInfo.home_address = ui->txtSignupHomeAddress->text().toStdString();
+    submittedSignupInfo.home_city = ui->txtSignupHomeCity->text().toStdString();
+    submittedSignupInfo.business_address = ui->txtSignupBusinessAddress->text().toStdString();
+    submittedSignupInfo.business_city = ui->txtSignupBusinessCity->text().toStdString();
+    submittedSignupInfo.country = ui->txtSignupCountry->text().toStdString();
+
+    // Check passwords do not match
+    if (BCrypt::generateHash(ui->txtSignupPassword->text().toStdString()) !=
+        BCrypt::generateHash(ui->txtSignupConfirmPassword->text().toStdString())) {
+        ui->lblSignupIncorrect->setText(QString::fromStdString("Passwords do not match!"));
+    } else if (!Login::validateSignup(getSignupInfo())) {
+        setInvalidSignupFeedback();
+    } else {
+        // Check which user type is selected
+        if (ui->rbCargoOwner->isChecked()) {
+            ui->swLoginPages->setCurrentIndex(PAGES.LOGIN);
+        } else if (ui->rbDriver->isChecked()) {
+            ui->swLoginPages->setCurrentIndex(PAGES.SIGNUPDRIVER);
+        } else if (ui->rbTransportationCompany->isChecked()) {
+            ui->swLoginPages->setCurrentIndex(PAGES.SIGNUPTCOMPANY);
+        } else {
+            setInvalidSignupFeedback();
+        }
+    }
 }
 
 void MainWindow::on_btnSignupBack_clicked() {

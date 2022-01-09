@@ -10,9 +10,10 @@
 
 class DBHandler {
 private:
-    pqxx::result queryTest();
+    pqxx::result queryText(const std::string& query);
 
 public:
+    static std::string getResult(const std::string& query);
     void callTest();
 };
 
