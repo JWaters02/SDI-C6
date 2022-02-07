@@ -30,3 +30,6 @@
 *.exe
 *.out
 *.app
+
+build-ETM-Desktop-Debug/
+ETM/CMakeLists.txt.user

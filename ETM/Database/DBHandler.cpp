@@ -15,12 +15,12 @@ pqxx::result DBHandler::queryText(const std::string& query) {
 std::string DBHandler::getResult(const std::string &query) {
     std::string ret;
     try {
-        pqxx::result r = queryText(query);
-        for (auto && row : r) {
-            for (auto && column : row) {
-                ret += column.c_str();
-            }
-        }
+//        pqxx::result r = queryText(query);
+//        for (auto && row : r) {
+//            for (auto && column : row) {
+//                ret += column.c_str();
+//            }
+//        }
     } catch (pqxx::sql_error const &e) {
         std::cerr << "SQL error: " << e.what() << std::endl;
         std::cerr << "Query was: " << e.what() << std::endl;
