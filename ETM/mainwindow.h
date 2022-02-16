@@ -56,6 +56,7 @@ private slots:
 private:
     Ui::MainWindow *ui;
     const LoginPage PAGES;
+    UserTypes UserType;
     LoginInfo submittedLoginInfo;
     SignupInfo submittedSignupInfo;
     DriverSignupInfo submittedDriverSignupInfo;

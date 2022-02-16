@@ -521,7 +521,7 @@ font: 20px</string>
        <rect>
         <x>380</x>
         <y>125</y>
-        <width>121</width>
+        <width>141</width>
         <height>41</height>
        </rect>
       </property>
@@ -538,7 +538,7 @@ font-size: 20px</string>
        <rect>
         <x>380</x>
         <y>75</y>
-        <width>141</width>
+        <width>161</width>
         <height>41</height>
        </rect>
       </property>
@@ -853,7 +853,7 @@ font: 20px</string>
        <rect>
         <x>20</x>
         <y>125</y>
-        <width>171</width>
+        <width>191</width>
         <height>41</height>
        </rect>
       </property>
@@ -1170,7 +1170,7 @@ color: rgb(186, 189, 182);</string>
        <rect>
         <x>20</x>
         <y>75</y>
-        <width>151</width>
+        <width>181</width>
         <height>41</height>
        </rect>
       </property>
@@ -1218,7 +1218,7 @@ font: 20px</string>
        <rect>
         <x>20</x>
         <y>125</y>
-        <width>191</width>
+        <width>201</width>
         <height>41</height>
        </rect>
       </property>
@@ -1266,7 +1266,7 @@ font-size: 20px</string>
        <rect>
         <x>20</x>
         <y>175</y>
-        <width>181</width>
+        <width>191</width>
         <height>41</height>
        </rect>
       </property>
@@ -1330,7 +1330,7 @@ font-size: 28px</string>
        <rect>
         <x>20</x>
         <y>75</y>
-        <width>151</width>
+        <width>171</width>
         <height>41</height>
        </rect>
       </property>
@@ -1364,7 +1364,7 @@ font-size: 20px</string>
        <rect>
         <x>20</x>
         <y>125</y>
-        <width>191</width>
+        <width>201</width>
         <height>41</height>
        </rect>
       </property>
@@ -1445,7 +1445,7 @@ color: rgb(186, 189, 182);</string>
        <rect>
         <x>20</x>
         <y>175</y>
-        <width>181</width>
+        <width>191</width>
         <height>41</height>
        </rect>
       </property>
@@ -1507,6 +1507,52 @@ font: 20px</string>
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
  </widget>
+ <tabstops>
+  <tabstop>txtLoginUsername</tabstop>
+  <tabstop>txtLoginPassword</tabstop>
+  <tabstop>btnLoginSignup</tabstop>
+  <tabstop>btnLogin</tabstop>
+  <tabstop>txtSignupUsername</tabstop>
+  <tabstop>txtSignupPassword</tabstop>
+  <tabstop>txtSignupConfirmPassword</tabstop>
+  <tabstop>txtSignupEmail</tabstop>
+  <tabstop>txtSignupFirstName</tabstop>
+  <tabstop>txtSignupLastName</tabstop>
+  <tabstop>txtSignupAge</tabstop>
+  <tabstop>txtSignupMobile</tabstop>
+  <tabstop>txtSignupHomeAddress</tabstop>
+  <tabstop>txtSignupHomeCity</tabstop>
+  <tabstop>rbAdmin</tabstop>
+  <tabstop>rbCargoOwner</tabstop>
+  <tabstop>rbConsignee</tabstop>
+  <tabstop>rbDriver</tabstop>
+  <tabstop>rbForwarder</tabstop>
+  <tabstop>rbCourier</tabstop>
+  <tabstop>btnSignupBack</tabstop>
+  <tabstop>btnSignup</tabstop>
+  <tabstop>txtDriversSignupNI</tabstop>
+  <tabstop>txtDriversSignupDL</tabstop>
+  <tabstop>txtDriversSignupLorry</tabstop>
+  <tabstop>txtDriversSignupCompanyAddress</tabstop>
+  <tabstop>txtDriversSignupCompanyCity</tabstop>
+  <tabstop>btnDriversSignupBack</tabstop>
+  <tabstop>btnDriversSignup</tabstop>
+  <tabstop>txtCargoOwnerSignupCategory</tabstop>
+  <tabstop>btnCargoOwnerSignupBack</tabstop>
+  <tabstop>btnCargoOwnerSignup</tabstop>
+  <tabstop>txtForwarderSignupCompanyName</tabstop>
+  <tabstop>txtForwarderSignupCompanyTelephone</tabstop>
+  <tabstop>txtForwarderSignupCompanyAddress</tabstop>
+  <tabstop>txtForwarderSignupCompanyCity</tabstop>
+  <tabstop>btnForwarderSignupBack</tabstop>
+  <tabstop>btnForwarderSignup</tabstop>
+  <tabstop>txtCourierSignupCompanyName</tabstop>
+  <tabstop>txtCourierSignupCompanyTelephone</tabstop>
+  <tabstop>txtCourierSignupCompanyAddress</tabstop>
+  <tabstop>txtCourierSignupCompanyCity</tabstop>
+  <tabstop>btnCourierSignupBack</tabstop>
+  <tabstop>btnCourierSignup</tabstop>
+ </tabstops>
  <resources/>
  <connections/>
 </ui>

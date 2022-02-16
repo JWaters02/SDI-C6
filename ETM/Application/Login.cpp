@@ -6,21 +6,21 @@
 
 InfoMinLengths Login::MINS;
 
-bool Login::validateLogin(const LoginInfo& loginInfo) {
-    // Remember password is hashed so any length more than 0 is valid
+bool Login::isValidLogin(const LoginInfo &loginInfo) {
     if (loginInfo.username.length() > MINS.USERNAME && loginInfo.password.length() > MINS.PASSWORD) {
-        return true;
+        // If username already exist in the database
+        if (!DBHandler::getResult("SELECT * FROM Users WHERE username = '" + loginInfo.username + "'").empty()) {
+            // If hash in DB is equal to hash of current password, return true (as passwords match)
+            return BCrypt::validatePassword(loginInfo.password,
+                                            DBHandler::getResult(
+                                                    "SELECT password FROM Users WHERE password = '" +
+                                                    loginInfo.password + "'"));
+        }
     }
-    // If any details already exist in the database, return true
-    if (!DBHandler::getResult("SELECT * FROM users WHERE username = '" + loginInfo.username + "'").empty() &&
-        !DBHandler::getResult("SELECT * FROM users WHERE password = '" + loginInfo.password + "'").empty()) {
-        return true;
-    }
-
     return false;
 }
 
-bool Login::validateSignup(const SignupInfo& signupInfo) {
+bool Login::isValidSignup(const SignupInfo &signupInfo) {
     if (signupInfo.username.length() > MINS.USERNAME &&
         signupInfo.password.length() > MINS.PASSWORD &&
         signupInfo.email.length() > MINS.EMAIL &&
@@ -36,8 +36,8 @@ bool Login::validateSignup(const SignupInfo& signupInfo) {
     return false;
 }
 
-bool Login::validateDriverSignup(const DriverSignupInfo &signupInfo) {
-    if (std::to_string(signupInfo.NINumber).length() > MINS.NI_NUMBER &&
+bool Login::isValidDriverSignup(const DriverSignupInfo &signupInfo) {
+    if (signupInfo.NINumber.length() > MINS.NI_NUMBER &&
         signupInfo.drivingLicenceID.length() > MINS.DRIVING_LICENCE_ID &&
         signupInfo.lorryType.length() > MINS.LORRY_TYPE &&
         signupInfo.companyCity.length() > MINS.COMPANY_CITY &&
@@ -46,7 +46,7 @@ bool Login::validateDriverSignup(const DriverSignupInfo &signupInfo) {
     return false;
 }
 
-bool Login::validateCourierSignup(const CourierSignupInfo &signupInfo) {
+bool Login::isValidCourierSignup(const CourierSignupInfo &signupInfo) {
     if (signupInfo.companyName.length() > MINS.COMPANY_NAME &&
         signupInfo.companyPhone.length() > MINS.COMPANY_PHONE &&
         signupInfo.companyAddress.length() > MINS.COMPANY_CITY &&
@@ -55,7 +55,7 @@ bool Login::validateCourierSignup(const CourierSignupInfo &signupInfo) {
     return false;
 }
 
-bool Login::validateForwarderSignup(const ForwarderSignupInfo &signupInfo) {
+bool Login::isValidForwarderSignup(const ForwarderSignupInfo &signupInfo) {
     if (signupInfo.companyName.length() > MINS.COMPANY_NAME &&
         signupInfo.companyPhone.length() > MINS.COMPANY_PHONE &&
         signupInfo.companyAddress.length() > MINS.COMPANY_CITY &&
@@ -64,7 +64,65 @@ bool Login::validateForwarderSignup(const ForwarderSignupInfo &signupInfo) {
     return false;
 }
 
-bool Login::validateCargoOwnerSignup(const CargoOwnerSignupInfo &signupInfo) {
+bool Login::isValidCargoOwnerSignup(const CargoOwnerSignupInfo &signupInfo) {
     if (signupInfo.goodsCategory.length() > MINS.GOODS_CATEGORY) return true;
     return false;
+}
+
+void Login::storeSignupDetails(const SignupInfo &signupInfo) {
+    std::stringstream query;
+    query   << "INSERT INTO Users VALUES ('"
+            << signupInfo.firstName << "', '"
+            << signupInfo.lastName << "', "
+            << signupInfo.age << ", '"
+            << signupInfo.email << "', '"
+            << signupInfo.username << "', '"
+            << BCrypt::generateHash(signupInfo.password) << "', '"
+            << signupInfo.phone << "', '"
+            << signupInfo.homeAddress << "', '"
+            << signupInfo.homeCity << "', '"
+            << signupInfo.type << "');";
+    DBHandler::writeFields(query.str());
+}
+
+void Login::storeDriverSignupDetails(const SignupInfo& username, const DriverSignupInfo &signupInfo) {
+    std::stringstream query;
+    query   << "INSERT INTO Drivers VALUES ('"
+            << username.username << "', '"
+            << signupInfo.NINumber << "', '"
+            << signupInfo.drivingLicenceID << "', '"
+            << signupInfo.lorryType << "', '"
+            << signupInfo.companyCity << "', '"
+            << signupInfo.companyAddress << "');";
+    DBHandler::writeFields(query.str());
+}
+
+void Login::storeCourierSignupDetails(const SignupInfo& username, const CourierSignupInfo &signupInfo) {
+    std::stringstream query;
+    query   << "INSERT INTO Couriers VALUES ('"
+            << username.username << "', '"
+            << signupInfo.companyName << "', '"
+            << signupInfo.companyPhone << "', '"
+            << signupInfo.companyAddress << "', '"
+            << signupInfo.companyCity << "');";
+    DBHandler::writeFields(query.str());
+}
+
+void Login::storeForwarderSignupDetails(const SignupInfo& username, const ForwarderSignupInfo &signupInfo) {
+    std::stringstream query;
+    query   << "INSERT INTO Forwarders VALUES ('"
+            << username.username << "', '"
+            << signupInfo.companyName << "', '"
+            << signupInfo.companyPhone << "', '"
+            << signupInfo.companyAddress << "', '"
+            << signupInfo.companyCity << "');";
+    DBHandler::writeFields(query.str());
+}
+
+void Login::storeCargoOwnerSignupDetails(const SignupInfo& username, const CargoOwnerSignupInfo &signupInfo) {
+    std::stringstream query;
+    query   << "INSERT INTO CargoOwners VALUES ('"
+            << username.username << "', '"
+            << signupInfo.goodsCategory << "');";
+    DBHandler::writeFields(query.str());
 }

@@ -13,7 +13,6 @@
 
 class User {
 private:
-    int id;
     std::string first_name;
     std::string last_name;
     int age;
@@ -26,14 +25,13 @@ private:
     std::string created_at;
     std::string updated_at;
     std::string deleted_at;
-    UserTypes type;
+    std::string type;
 
 public:
-    User(int id, std::string first_name, std::string last_name, int age, std::string email, std::string username,
+    User(std::string first_name, std::string last_name, int age, std::string email, std::string username,
          std::string password, std::string phone, std::string home_address, std::string home_city,
-         std::string created_at, std::string updated_at, std::string deleted_at, UserTypes type);
+         std::string created_at, std::string updated_at, std::string deleted_at, std::string type);
 
-    int getId() const;
     std::string getFirstName() const;
     std::string getLastName() const;
     int getAge() const;
@@ -47,7 +45,6 @@ public:
     std::string getUpdatedAt() const;
     std::string getDeletedAt() const;
 
-    void setId(int id);
     void setFirstName(std::string first_name);
     void setLastName(std::string last_name);
     void setAge(int age);

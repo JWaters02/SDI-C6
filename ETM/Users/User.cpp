@@ -5,10 +5,9 @@
 #include "User.h"
 
 
-User::User(int id, std::string first_name, std::string last_name, int age, std::string email, std::string username,
+User::User(std::string first_name, std::string last_name, int age, std::string email, std::string username,
            std::string password, std::string phone, std::string home_address, std::string home_city,
-           std::string created_at, std::string updated_at, std::string deleted_at, UserTypes type) {
-    this->id = id;
+           std::string created_at, std::string updated_at, std::string deleted_at, std::string type) {
     this->first_name = first_name;
     this->last_name = last_name;
     this->age = age;
@@ -25,7 +24,6 @@ User::User(int id, std::string first_name, std::string last_name, int age, std::
 }
 
 void User::printUser() {
-    std::cout << "ID: " << this->id << std::endl;
     std::cout << "First Name: " << this->first_name << std::endl;
     std::cout << "Last Name: " << this->last_name << std::endl;
     std::cout << "Age: " << this->age << std::endl;

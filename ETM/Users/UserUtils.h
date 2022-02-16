@@ -7,6 +7,23 @@
 
 #include <iostream>
 
+//enum UserTypes {
+//    CargoOwner,
+//    Driver,
+//    Courier,
+//    Consignee,
+//    Forwarder
+//};
+
+struct UserTypes {
+    const std::string CargoOwner = "CargoOwner";
+    const std::string Forwarder = "Forwarder";
+    const std::string Driver = "Driver";
+    const std::string Consignee = "Consignee";
+    const std::string Admin = "Admin";
+    const std::string Courier = "Courier";
+};
+
 struct LoginInfo {
     std::string username;
     std::string password;
@@ -22,10 +39,13 @@ struct SignupInfo {
     std::string phone;
     std::string homeAddress;
     std::string homeCity;
+    // Types are: CargoOwner, Driver, Courier, Consignee, Forwarder
+    // Not using an enum because converting them to string is a pain in C++
+    std::string type;
 };
 
 struct DriverSignupInfo {
-    int NINumber;
+    std::string NINumber;
     std::string drivingLicenceID;
     std::string lorryType;
     std::string companyAddress;
@@ -57,7 +77,7 @@ struct InfoMinLengths {
     const int EMAIL = 2;
     const int FIRSTNAME = 2;
     const int LASTNAME = 2;
-    const int AGE = 18;
+    const int AGE = 17;
     const int PHONE = 9;
     const int HOME_ADDRESS = 5;
     const int HOME_CITY = 2;
@@ -69,14 +89,6 @@ struct InfoMinLengths {
     const int DRIVING_LICENCE_ID = 15;
     const int LORRY_TYPE = 1;
     const int GOODS_CATEGORY = 1;
-};
-
-enum UserTypes {
-    CargoOwner,
-    Driver,
-    Courier,
-    Consignee,
-    Forwarder
 };
 
 class UserUtils {

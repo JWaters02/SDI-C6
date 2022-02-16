@@ -33,3 +33,5 @@
 
 build-ETM-Desktop-Debug/
 ETM/CMakeLists.txt.user
+ETM/.idea/
+ETM/cmake-build-debug/

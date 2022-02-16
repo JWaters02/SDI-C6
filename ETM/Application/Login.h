@@ -5,6 +5,7 @@
 #ifndef ETM_LOGIN_H
 #define ETM_LOGIN_H
 
+#include "bcrypt/BCrypt.hpp"
 #include "Users/UserUtils.h"
 #include "Database/DBHandler.h"
 
@@ -13,12 +14,18 @@ private:
     static InfoMinLengths MINS;
 
 public:
-    static bool validateLogin(const LoginInfo& loginInfo);
-    static bool validateSignup(const SignupInfo& signupInfo);
-    static bool validateDriverSignup(const DriverSignupInfo& signupInfo);
-    static bool validateCourierSignup(const CourierSignupInfo& signupInfo);
-    static bool validateForwarderSignup(const ForwarderSignupInfo& signupInfo);
-    static bool validateCargoOwnerSignup(const CargoOwnerSignupInfo& signupInfo);
+    static bool isValidLogin(const LoginInfo& loginInfo);
+    static bool isValidSignup(const SignupInfo& signupInfo);
+    static bool isValidDriverSignup(const DriverSignupInfo& signupInfo);
+    static bool isValidCourierSignup(const CourierSignupInfo& signupInfo);
+    static bool isValidForwarderSignup(const ForwarderSignupInfo& signupInfo);
+    static bool isValidCargoOwnerSignup(const CargoOwnerSignupInfo& signupInfo);
+
+    static void storeSignupDetails(const SignupInfo& signupInfo);
+    static void storeDriverSignupDetails(const SignupInfo& username, const DriverSignupInfo& signupInfo);
+    static void storeCourierSignupDetails(const SignupInfo& username, const CourierSignupInfo& signupInfo);
+    static void storeForwarderSignupDetails(const SignupInfo& username, const ForwarderSignupInfo& signupInfo);
+    static void storeCargoOwnerSignupDetails(const SignupInfo& username, const CargoOwnerSignupInfo& signupInfo);
 };
 
 
