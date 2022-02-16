@@ -16,20 +16,28 @@ set(PROJECT_SOURCES
         mainwindow.cpp
         mainwindow.h
         mainwindow.ui
+        mainform.cpp
+        mainform.h
+        mainform.ui
         Users/User.h
         Users/User.cpp
         Users/CargoOwner.h
         Users/CargoOwner.cpp
         Users/Drivers.h
         Users/Drivers.cpp
-        Users/TransportationCompany.h
-        Users/TransportationCompany.cpp
         Application/Login.cpp
         Application/Login.h
         Database/DBHandler.cpp
         Database/DBHandler.h
         Users/UserUtils.h
-        Users/UserUtils.cpp)
+        Users/UserUtils.cpp
+        Users/Forwarder.cpp
+        Users/Forwarder.h
+        Users/Courier.cpp
+        Users/Courier.h
+        Users/Consignee.cpp
+        Users/Consignee.h
+)
 
 find_package(Qt5 COMPONENTS Widgets Mqtt REQUIRED)
 find_package(Boost 1.70.0)

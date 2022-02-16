@@ -5,8 +5,9 @@
 #ifndef ETM_CONSIGNEE_H
 #define ETM_CONSIGNEE_H
 
+#include "User.h"
 
-class Consignee {
+class Consignee : User {
 
 };
 

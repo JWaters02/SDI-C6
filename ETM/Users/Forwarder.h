@@ -5,9 +5,12 @@
 #ifndef ETM_FORWARDER_H
 #define ETM_FORWARDER_H
 
+#include "User.h"
 
-class Forwarder {
-
+class Forwarder : User {
+private:
+    std::string companyName;
+    std::string companyTelephone;
 };
 
 

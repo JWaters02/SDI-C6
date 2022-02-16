@@ -11,9 +11,10 @@ QT_END_NAMESPACE
 
 struct LoginPage {
     const int LOGIN = 0;
-    const int SIGNUP = 1;
+    const int SIGNUP = 1; // Cargo owner, consignee and admin only need this page
     const int SIGNUPDRIVER = 2;
-    const int SIGNUPTCOMPANY = 3;
+    const int SIGNUPFORWARDER = 3;
+    const int SIGNUPCOURIER = 4;
 };
 
 class MainWindow : public QMainWindow {
@@ -26,6 +27,8 @@ public:
     void setInvalidLoginFeedback();
     void setInvalidSignupFeedback();
     void setInvalidDriversSignupFeedback();
+    void setInvalidForwarderSignupFeedback();
+    void setInvalidCourierSignupFeedback();
 
     LoginInfo getLoginInfo() { return submittedLoginInfo; }
     SignupInfo getSignupInfo() { return submittedSignupInfo; }
@@ -38,6 +41,10 @@ private slots:
     void on_btnDriversSignup_clicked();
     void on_btnSignupBack_clicked();
     void on_btnDriversSignupBack_clicked();
+    void on_btnForwarderSignupBack_clicked();
+    void on_btnForwarderSignup_clicked();
+    void on_btnCourierSignupBack_clicked();
+    void on_btnCourierSignup_clicked();
 
 private:
     Ui::MainWindow *ui;

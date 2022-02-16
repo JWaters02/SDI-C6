@@ -5,8 +5,9 @@
 #ifndef ETM_COURIER_H
 #define ETM_COURIER_H
 
+#include "User.h"
 
-class Courier {
+class Courier : User {
 
 };
 

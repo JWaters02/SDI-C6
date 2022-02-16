@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
  <class>mainform</class>
  <widget class="QStackedWidget" name="mainform">
@@ -5,12 +6,16 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>400</width>
-    <height>300</height>
+    <width>714</width>
+    <height>551</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>StackedWidget</string>
   </property>
+  <widget class="QWidget" name="page"/>
+  <widget class="QWidget" name="page_2"/>
  </widget>
+ <resources/>
+ <connections/>
 </ui>

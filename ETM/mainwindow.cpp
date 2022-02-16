@@ -28,8 +28,12 @@ void MainWindow::setInvalidDriversSignupFeedback() {
     ui->lblDriversSignupIncorrect->setText(QString::fromStdString("Please fill all fields!"));
 }
 
-void MainWindow::on_btnLoginSignup_clicked() {
-    ui->swLoginPages->setCurrentIndex(PAGES.SIGNUP);
+void MainWindow::setInvalidForwarderSignupFeedback() {
+    ui->lblForwarderSignupIncorrect->setText(QString::fromStdString("Please fill all fields!"));
+}
+
+void MainWindow::setInvalidCourierSignupFeedback() {
+    ui->lblCourierSignupIncorrect->setText(QString::fromStdString("Please fill all fields!"));
 }
 
 void MainWindow::on_btnLogin_clicked() {
@@ -41,7 +45,7 @@ void MainWindow::on_btnLogin_clicked() {
     if (!Login::validateLogin(getLoginInfo())) {
         setInvalidLoginFeedback();
     } else {
-
+        // Go to the next page
     }
 
 }
@@ -60,8 +64,8 @@ void MainWindow::on_btnSignup_clicked() {
     submittedSignupInfo.country = ui->txtSignupCountry->text().toStdString();
 
     // Check passwords do not match
-    if (BCrypt::generateHash(ui->txtSignupPassword->text().toStdString()) !=
-        BCrypt::generateHash(ui->txtSignupConfirmPassword->text().toStdString())) {
+    if ((ui->txtSignupPassword->text().toStdString()) !=
+        (ui->txtSignupConfirmPassword->text().toStdString())) {
         ui->lblSignupIncorrect->setText(QString::fromStdString("Passwords do not match!"));
     } else if (!Login::validateSignup(getSignupInfo())) {
         setInvalidSignupFeedback();
@@ -71,12 +75,23 @@ void MainWindow::on_btnSignup_clicked() {
             ui->swLoginPages->setCurrentIndex(PAGES.LOGIN);
         } else if (ui->rbDriver->isChecked()) {
             ui->swLoginPages->setCurrentIndex(PAGES.SIGNUPDRIVER);
-        } else if (ui->rbTransportationCompany->isChecked()) {
-            ui->swLoginPages->setCurrentIndex(PAGES.SIGNUPTCOMPANY);
-        } else {
+        } else if (ui->rbForwarder->isChecked()) {
+            ui->swLoginPages->setCurrentIndex(PAGES.SIGNUPFORWARDER);
+        } else if (ui->rbCourier->isChecked()) {
+            ui->swLoginPages->setCurrentIndex(PAGES.SIGNUPCOURIER);
+        } else if (ui->rbAdmin->isChecked()) {
+            ui->swLoginPages->setCurrentIndex(PAGES.LOGIN);
+        } else if (ui->rbConsignee->isChecked()) {
+            ui->swLoginPages->setCurrentIndex(PAGES.LOGIN);
+        }
+        else {
             setInvalidSignupFeedback();
         }
     }
+}
+
+void MainWindow::on_btnLoginSignup_clicked() {
+    ui->swLoginPages->setCurrentIndex(PAGES.SIGNUP);
 }
 
 void MainWindow::on_btnSignupBack_clicked() {
@@ -91,3 +106,22 @@ void MainWindow::on_btnDriversSignupBack_clicked() {
     ui->swLoginPages->setCurrentIndex(PAGES.SIGNUP);
 }
 
+void MainWindow::on_btnForwarderSignupBack_clicked()
+{
+    ui->swLoginPages->setCurrentIndex(PAGES.SIGNUP);
+}
+
+void MainWindow::on_btnForwarderSignup_clicked()
+{
+    ui->swLoginPages->setCurrentIndex(PAGES.LOGIN);
+}
+
+void MainWindow::on_btnCourierSignupBack_clicked()
+{
+    ui->swLoginPages->setCurrentIndex(PAGES.SIGNUP);
+}
+
+void MainWindow::on_btnCourierSignup_clicked()
+{
+    ui->swLoginPages->setCurrentIndex(PAGES.LOGIN);
+}
