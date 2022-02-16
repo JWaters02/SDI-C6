@@ -11,10 +11,11 @@ QT_END_NAMESPACE
 
 struct LoginPage {
     const int LOGIN = 0;
-    const int SIGNUP = 1; // Cargo owner, consignee and admin only need this page
+    const int SIGNUP = 1; // Consignee and admin only need this page
     const int SIGNUPDRIVER = 2;
-    const int SIGNUPFORWARDER = 3;
-    const int SIGNUPCOURIER = 4;
+    const int SIGNUPCARGOOWNER = 3;
+    const int SIGNUPFORWARDER = 4;
+    const int SIGNUPCOURIER = 5;
 };
 
 class MainWindow : public QMainWindow {
@@ -27,12 +28,16 @@ public:
     void setInvalidLoginFeedback();
     void setInvalidSignupFeedback();
     void setInvalidDriversSignupFeedback();
+    void setInvalidCargoOwnerSignupFeedback();
     void setInvalidForwarderSignupFeedback();
     void setInvalidCourierSignupFeedback();
 
     LoginInfo getLoginInfo() { return submittedLoginInfo; }
     SignupInfo getSignupInfo() { return submittedSignupInfo; }
     DriverSignupInfo getDriverSignupInfo() { return submittedDriverSignupInfo; }
+    CargoOwnerSignupInfo getCargoOwnerSignupInfo() { return submittedCargoOwnerSignupInfo; }
+    CourierSignupInfo getCourierSignupInfo() { return submittedCourierSignupInfo; }
+    ForwarderSignupInfo getForwarderSignupInfo() { return submittedForwarderSignupInfo; }
 
 private slots:
     void on_btnLoginSignup_clicked();
@@ -45,6 +50,8 @@ private slots:
     void on_btnForwarderSignup_clicked();
     void on_btnCourierSignupBack_clicked();
     void on_btnCourierSignup_clicked();
+    void on_btnCargoOwnerSignupBack_clicked();
+    void on_btnCargoOwnerSignup_clicked();
 
 private:
     Ui::MainWindow *ui;
@@ -52,5 +59,8 @@ private:
     LoginInfo submittedLoginInfo;
     SignupInfo submittedSignupInfo;
     DriverSignupInfo submittedDriverSignupInfo;
+    CargoOwnerSignupInfo submittedCargoOwnerSignupInfo;
+    CourierSignupInfo submittedCourierSignupInfo;
+    ForwarderSignupInfo submittedForwarderSignupInfo;
 };
 #endif // MAINWINDOW_H

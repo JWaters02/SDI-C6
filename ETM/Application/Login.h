@@ -15,6 +15,10 @@ private:
 public:
     static bool validateLogin(const LoginInfo& loginInfo);
     static bool validateSignup(const SignupInfo& signupInfo);
+    static bool validateDriverSignup(const DriverSignupInfo& signupInfo);
+    static bool validateCourierSignup(const CourierSignupInfo& signupInfo);
+    static bool validateForwarderSignup(const ForwarderSignupInfo& signupInfo);
+    static bool validateCargoOwnerSignup(const CargoOwnerSignupInfo& signupInfo);
 };
 
 

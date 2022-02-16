@@ -9,6 +9,7 @@
 #include <vector>
 #include <iostream>
 #include <time.h>
+#include "UserUtils.h"
 
 class User {
 private:
@@ -22,18 +23,15 @@ private:
     std::string phone;
     std::string home_address;
     std::string home_city;
-    std::string business_address;
-    std::string business_city;
-    std::string country;
     std::string created_at;
     std::string updated_at;
     std::string deleted_at;
+    UserTypes type;
 
 public:
     User(int id, std::string first_name, std::string last_name, int age, std::string email, std::string username,
          std::string password, std::string phone, std::string home_address, std::string home_city,
-         std::string business_address, std::string business_city, std::string country, std::string created_at,
-         std::string updated_at, std::string deleted_at);
+         std::string created_at, std::string updated_at, std::string deleted_at, UserTypes type);
 
     int getId() const;
     std::string getFirstName() const;
@@ -45,9 +43,6 @@ public:
     std::string getPhone() const;
     std::string getHomeAddress() const;
     std::string getHomeCity() const;
-    std::string getBusinessAddress() const;
-    std::string getBusinessCity() const;
-    std::string getCountry() const;
     std::string getCreatedAt() const;
     std::string getUpdatedAt() const;
     std::string getDeletedAt() const;
@@ -62,9 +57,6 @@ public:
     void setPhone(std::string phone);
     void setHomeAddress(std::string home_address);
     void setHomeCity(std::string home_city);
-    void setBusinessAddress(std::string business_address);
-    void setBusinessCity(std::string business_city);
-    void setCountry(std::string country);
     void setCreatedAt(std::string created_at);
     void setUpdatedAt(std::string updated_at);
     void setDeletedAt(std::string deleted_at);

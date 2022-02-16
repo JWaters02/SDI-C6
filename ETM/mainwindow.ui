@@ -46,7 +46,7 @@
      </rect>
     </property>
     <property name="currentIndex">
-     <number>4</number>
+     <number>1</number>
     </property>
     <widget class="QWidget" name="LoginPage">
      <property name="enabled">
@@ -516,68 +516,6 @@ font-size: 20px</string>
 font: 20px</string>
       </property>
      </widget>
-     <widget class="QLabel" name="lblSignupCountry">
-      <property name="geometry">
-       <rect>
-        <x>380</x>
-        <y>275</y>
-        <width>121</width>
-        <height>41</height>
-       </rect>
-      </property>
-      <property name="styleSheet">
-       <string notr="true">color: rgb(186, 189, 182); 
-font-size: 20px</string>
-      </property>
-      <property name="text">
-       <string>Country</string>
-      </property>
-     </widget>
-     <widget class="QLineEdit" name="txtSignupCountry">
-      <property name="geometry">
-       <rect>
-        <x>550</x>
-        <y>280</y>
-        <width>211</width>
-        <height>31</height>
-       </rect>
-      </property>
-      <property name="styleSheet">
-       <string notr="true">color: rgb(186, 189, 182);
-font: 20px</string>
-      </property>
-     </widget>
-     <widget class="QLineEdit" name="txtSignupBusinessCity">
-      <property name="geometry">
-       <rect>
-        <x>550</x>
-        <y>230</y>
-        <width>211</width>
-        <height>31</height>
-       </rect>
-      </property>
-      <property name="styleSheet">
-       <string notr="true">color: rgb(186, 189, 182);
-font: 20px</string>
-      </property>
-     </widget>
-     <widget class="QLabel" name="lblSignupBusinessCity">
-      <property name="geometry">
-       <rect>
-        <x>380</x>
-        <y>225</y>
-        <width>121</width>
-        <height>41</height>
-       </rect>
-      </property>
-      <property name="styleSheet">
-       <string notr="true">color: rgb(186, 189, 182); 
-font-size: 20px</string>
-      </property>
-      <property name="text">
-       <string>Business City</string>
-      </property>
-     </widget>
      <widget class="QLabel" name="lblSignupHomeCity">
       <property name="geometry">
        <rect>
@@ -626,23 +564,6 @@ font-size: 20px</string>
 font: 20px</string>
       </property>
      </widget>
-     <widget class="QLabel" name="lblSignupBusinessAddress">
-      <property name="geometry">
-       <rect>
-        <x>380</x>
-        <y>175</y>
-        <width>161</width>
-        <height>41</height>
-       </rect>
-      </property>
-      <property name="styleSheet">
-       <string notr="true">color: rgb(186, 189, 182); 
-font-size: 20px</string>
-      </property>
-      <property name="text">
-       <string>Business Address</string>
-      </property>
-     </widget>
      <widget class="QLineEdit" name="txtSignupHomeCity">
       <property name="geometry">
        <rect>
@@ -657,26 +578,12 @@ font-size: 20px</string>
 font: 20px</string>
       </property>
      </widget>
-     <widget class="QLineEdit" name="txtSignupBusinessAddress">
-      <property name="geometry">
-       <rect>
-        <x>550</x>
-        <y>180</y>
-        <width>211</width>
-        <height>31</height>
-       </rect>
-      </property>
-      <property name="styleSheet">
-       <string notr="true">color: rgb(186, 189, 182);
-font: 20px</string>
-      </property>
-     </widget>
      <widget class="QLabel" name="lblSignupType">
       <property name="geometry">
        <rect>
         <x>380</x>
-        <y>320</y>
-        <width>121</width>
+        <y>170</y>
+        <width>81</width>
         <height>41</height>
        </rect>
       </property>
@@ -688,15 +595,15 @@ font-size: 20px</string>
        <string>Type</string>
       </property>
       <property name="alignment">
-       <set>Qt::AlignCenter</set>
+       <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
       </property>
      </widget>
      <widget class="QRadioButton" name="rbCargoOwner">
       <property name="geometry">
        <rect>
         <x>380</x>
-        <y>360</y>
-        <width>201</width>
+        <y>270</y>
+        <width>151</width>
         <height>31</height>
        </rect>
       </property>
@@ -717,9 +624,9 @@ color: rgb(186, 189, 182);</string>
      <widget class="QRadioButton" name="rbDriver">
       <property name="geometry">
        <rect>
-        <x>380</x>
-        <y>450</y>
-        <width>201</width>
+        <x>550</x>
+        <y>220</y>
+        <width>121</width>
         <height>31</height>
        </rect>
       </property>
@@ -743,8 +650,8 @@ color: rgb(186, 189, 182);</string>
       </property>
       <property name="geometry">
        <rect>
-        <x>380</x>
-        <y>480</y>
+        <x>550</x>
+        <y>270</y>
         <width>161</width>
         <height>31</height>
        </rect>
@@ -784,10 +691,10 @@ color: rgb(186, 189, 182);</string>
      <widget class="QLabel" name="lblSignupIncorrect">
       <property name="geometry">
        <rect>
-        <x>560</x>
-        <y>340</y>
-        <width>211</width>
-        <height>201</height>
+        <x>390</x>
+        <y>390</y>
+        <width>371</width>
+        <height>151</height>
        </rect>
       </property>
       <property name="styleSheet">
@@ -797,6 +704,9 @@ font-size: 20px</string>
       <property name="text">
        <string/>
       </property>
+      <property name="alignment">
+       <set>Qt::AlignCenter</set>
+      </property>
       <property name="wordWrap">
        <bool>true</bool>
       </property>
@@ -804,8 +714,8 @@ font-size: 20px</string>
      <widget class="QRadioButton" name="rbCourier">
       <property name="geometry">
        <rect>
-        <x>380</x>
-        <y>510</y>
+        <x>550</x>
+        <y>320</y>
         <width>141</width>
         <height>31</height>
        </rect>
@@ -828,7 +738,7 @@ color: rgb(186, 189, 182);</string>
       <property name="geometry">
        <rect>
         <x>380</x>
-        <y>420</y>
+        <y>320</y>
         <width>131</width>
         <height>31</height>
        </rect>
@@ -851,7 +761,7 @@ color: rgb(186, 189, 182);</string>
       <property name="geometry">
        <rect>
         <x>380</x>
-        <y>390</y>
+        <y>220</y>
         <width>131</width>
         <height>31</height>
        </rect>
@@ -876,7 +786,7 @@ color: rgb(186, 189, 182);</string>
       <property name="geometry">
        <rect>
         <x>240</x>
-        <y>230</y>
+        <y>330</y>
         <width>89</width>
         <height>25</height>
        </rect>
@@ -1004,7 +914,7 @@ font: 20px</string>
       <property name="geometry">
        <rect>
         <x>110</x>
-        <y>230</y>
+        <y>330</y>
         <width>89</width>
         <height>25</height>
        </rect>
@@ -1022,7 +932,172 @@ color: rgb(186, 189, 182);</string>
       <property name="geometry">
        <rect>
         <x>90</x>
+        <y>380</y>
+        <width>271</width>
+        <height>41</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">color: rgb(163, 31, 31); 
+font-size: 20px</string>
+      </property>
+      <property name="text">
+       <string/>
+      </property>
+     </widget>
+     <widget class="QLabel" name="lblDriversSignupCompanyCity">
+      <property name="geometry">
+       <rect>
+        <x>20</x>
         <y>280</y>
+        <width>141</width>
+        <height>41</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">color: rgb(186, 189, 182); 
+font-size: 20px</string>
+      </property>
+      <property name="text">
+       <string>Company City</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="lblDriversSignupCompanyAddress">
+      <property name="geometry">
+       <rect>
+        <x>20</x>
+        <y>230</y>
+        <width>191</width>
+        <height>41</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">color: rgb(186, 189, 182); 
+font-size: 20px</string>
+      </property>
+      <property name="text">
+       <string>Company Address</string>
+      </property>
+     </widget>
+     <widget class="QLineEdit" name="txtDriversSignupCompanyAddress">
+      <property name="geometry">
+       <rect>
+        <x>220</x>
+        <y>235</y>
+        <width>211</width>
+        <height>31</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">color: rgb(186, 189, 182);
+font: 20px</string>
+      </property>
+     </widget>
+     <widget class="QLineEdit" name="txtDriversSignupCompanyCity">
+      <property name="geometry">
+       <rect>
+        <x>220</x>
+        <y>285</y>
+        <width>211</width>
+        <height>31</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">color: rgb(186, 189, 182);
+font: 20px</string>
+      </property>
+     </widget>
+    </widget>
+    <widget class="QWidget" name="CargoOwnerSignup">
+     <widget class="QPushButton" name="btnCargoOwnerSignupBack">
+      <property name="geometry">
+       <rect>
+        <x>110</x>
+        <y>130</y>
+        <width>89</width>
+        <height>25</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">background-color: rgb(54, 54, 54);
+font: 16px;
+color: rgb(186, 189, 182);</string>
+      </property>
+      <property name="text">
+       <string>Back</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="lblCargoOwnerSignup">
+      <property name="geometry">
+       <rect>
+        <x>120</x>
+        <y>20</y>
+        <width>271</width>
+        <height>51</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">color: rgb(186, 189, 182); 
+font-size: 28px</string>
+      </property>
+      <property name="text">
+       <string>Cargo Owner Details</string>
+      </property>
+     </widget>
+     <widget class="QLineEdit" name="txtCargoOwnerSignupCategory">
+      <property name="geometry">
+       <rect>
+        <x>220</x>
+        <y>80</y>
+        <width>211</width>
+        <height>31</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">color: rgb(186, 189, 182);
+font: 20px</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="lblCargoOwnerSignupCategory">
+      <property name="geometry">
+       <rect>
+        <x>20</x>
+        <y>75</y>
+        <width>181</width>
+        <height>41</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">color: rgb(186, 189, 182); 
+font-size: 20px</string>
+      </property>
+      <property name="text">
+       <string>Goods Category</string>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="btnCargoOwnerSignup">
+      <property name="geometry">
+       <rect>
+        <x>240</x>
+        <y>130</y>
+        <width>89</width>
+        <height>25</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">background-color: rgb(54, 54, 54);
+font: 16px;
+color: rgb(186, 189, 182);</string>
+      </property>
+      <property name="text">
+       <string>Confirm</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="lblCargoOwnerSignupIncorrect">
+      <property name="geometry">
+       <rect>
+        <x>90</x>
+        <y>170</y>
         <width>271</width>
         <height>41</height>
        </rect>
@@ -1058,7 +1133,7 @@ font-size: 28px</string>
       <property name="geometry">
        <rect>
         <x>240</x>
-        <y>180</y>
+        <y>280</y>
         <width>89</width>
         <height>25</height>
        </rect>
@@ -1076,7 +1151,7 @@ color: rgb(186, 189, 182);</string>
       <property name="geometry">
        <rect>
         <x>110</x>
-        <y>180</y>
+        <y>280</y>
         <width>89</width>
         <height>25</height>
        </rect>
@@ -1111,7 +1186,7 @@ font-size: 20px</string>
       <property name="geometry">
        <rect>
         <x>60</x>
-        <y>230</y>
+        <y>330</y>
         <width>321</width>
         <height>41</height>
        </rect>
@@ -1169,6 +1244,68 @@ font-size: 20px</string>
 font: 20px</string>
       </property>
      </widget>
+     <widget class="QLabel" name="lblForwarderSignupCompanyCity">
+      <property name="geometry">
+       <rect>
+        <x>20</x>
+        <y>225</y>
+        <width>151</width>
+        <height>41</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">color: rgb(186, 189, 182); 
+font-size: 20px</string>
+      </property>
+      <property name="text">
+       <string>Company City</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="lblForwarderSignupCompanyAddress">
+      <property name="geometry">
+       <rect>
+        <x>20</x>
+        <y>175</y>
+        <width>181</width>
+        <height>41</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">color: rgb(186, 189, 182); 
+font-size: 20px</string>
+      </property>
+      <property name="text">
+       <string>Company Address</string>
+      </property>
+     </widget>
+     <widget class="QLineEdit" name="txtForwarderSignupCompanyAddress">
+      <property name="geometry">
+       <rect>
+        <x>220</x>
+        <y>180</y>
+        <width>211</width>
+        <height>31</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">color: rgb(186, 189, 182);
+font: 20px</string>
+      </property>
+     </widget>
+     <widget class="QLineEdit" name="txtForwarderSignupCompanyCity">
+      <property name="geometry">
+       <rect>
+        <x>220</x>
+        <y>230</y>
+        <width>211</width>
+        <height>31</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">color: rgb(186, 189, 182);
+font: 20px</string>
+      </property>
+     </widget>
     </widget>
     <widget class="QWidget" name="CourierSignup">
      <widget class="QLabel" name="lblCourierSignup">
@@ -1209,7 +1346,7 @@ font-size: 20px</string>
       <property name="geometry">
        <rect>
         <x>60</x>
-        <y>240</y>
+        <y>340</y>
         <width>321</width>
         <height>41</height>
        </rect>
@@ -1257,7 +1394,7 @@ font: 20px</string>
       <property name="geometry">
        <rect>
         <x>240</x>
-        <y>180</y>
+        <y>280</y>
         <width>89</width>
         <height>25</height>
        </rect>
@@ -1289,7 +1426,7 @@ font: 20px</string>
       <property name="geometry">
        <rect>
         <x>110</x>
-        <y>180</y>
+        <y>280</y>
         <width>89</width>
         <height>25</height>
        </rect>
@@ -1301,6 +1438,68 @@ color: rgb(186, 189, 182);</string>
       </property>
       <property name="text">
        <string>Back</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="lblCourierSignupCompanyAddress">
+      <property name="geometry">
+       <rect>
+        <x>20</x>
+        <y>175</y>
+        <width>181</width>
+        <height>41</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">color: rgb(186, 189, 182); 
+font-size: 20px</string>
+      </property>
+      <property name="text">
+       <string>Company Address</string>
+      </property>
+     </widget>
+     <widget class="QLineEdit" name="txtCourierSignupCompanyCity">
+      <property name="geometry">
+       <rect>
+        <x>220</x>
+        <y>230</y>
+        <width>211</width>
+        <height>31</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">color: rgb(186, 189, 182);
+font: 20px</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="lblCourierSignupCompanyCity">
+      <property name="geometry">
+       <rect>
+        <x>20</x>
+        <y>225</y>
+        <width>151</width>
+        <height>41</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">color: rgb(186, 189, 182); 
+font-size: 20px</string>
+      </property>
+      <property name="text">
+       <string>Company City</string>
+      </property>
+     </widget>
+     <widget class="QLineEdit" name="txtCourierSignupCompanyAddress">
+      <property name="geometry">
+       <rect>
+        <x>220</x>
+        <y>180</y>
+        <width>211</width>
+        <height>31</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">color: rgb(186, 189, 182);
+font: 20px</string>
       </property>
      </widget>
     </widget>

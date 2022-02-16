@@ -20,19 +20,37 @@ struct SignupInfo {
     std::string lastName;
     int age;
     std::string phone;
-    std::string home_address;
-    std::string home_city;
-    std::string business_address;
-    std::string business_city;
-    std::string country;
+    std::string homeAddress;
+    std::string homeCity;
 };
 
 struct DriverSignupInfo {
     int NINumber;
     std::string drivingLicenceID;
     std::string lorryType;
+    std::string companyAddress;
+    std::string companyCity;
 };
 
+struct CargoOwnerSignupInfo {
+    std::string goodsCategory;
+};
+
+struct CourierSignupInfo {
+    std::string companyName;
+    std::string companyPhone;
+    std::string companyAddress;
+    std::string companyCity;
+};
+
+struct ForwarderSignupInfo {
+    std::string companyName;
+    std::string companyPhone;
+    std::string companyAddress;
+    std::string companyCity;
+};
+
+// Remember, lengths are 1 less than the actual minimum
 struct InfoMinLengths {
     const int USERNAME = 5;
     const int PASSWORD = 0;
@@ -43,34 +61,22 @@ struct InfoMinLengths {
     const int PHONE = 9;
     const int HOME_ADDRESS = 5;
     const int HOME_CITY = 2;
-    const int BUSINESS_ADDRESS = 5;
-    const int BUSINESS_CITY = 2;
-    const int COUNTRY = 2;
-};
-
-enum SignupTypes {
-    Username,
-    Password,
-    ConfirmPassword,
-    Email,
-    FirstName,
-    LastName,
-    Age,
-    Phone,
-    HomeAddress,
-    HomeCity,
-    BusinessAddress,
-    BusinessCity,
-    Country,
-    NINumber,
-    DrivingLicenceID,
-    LorryType
+    const int COMPANY_NAME = 2;
+    const int COMPANY_PHONE = 9;
+    const int COMPANY_ADDRESS = 5;
+    const int COMPANY_CITY = 2;
+    const int NI_NUMBER = 8;
+    const int DRIVING_LICENCE_ID = 15;
+    const int LORRY_TYPE = 1;
+    const int GOODS_CATEGORY = 1;
 };
 
 enum UserTypes {
     CargoOwner,
     Driver,
-    TransportationCompany
+    Courier,
+    Consignee,
+    Forwarder
 };
 
 class UserUtils {
