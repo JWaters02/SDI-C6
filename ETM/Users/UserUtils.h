@@ -72,18 +72,18 @@ struct ForwarderSignupInfo {
 
 // Remember, lengths are 1 less than the actual minimum
 struct InfoMinLengths {
-    const int USERNAME = 5;
+    const int USERNAME = 2;
     const int PASSWORD = 0;
     const int EMAIL = 2;
     const int FIRSTNAME = 2;
     const int LASTNAME = 2;
     const int AGE = 17;
     const int PHONE = 9;
-    const int HOME_ADDRESS = 5;
+    const int HOME_ADDRESS = 2;
     const int HOME_CITY = 2;
     const int COMPANY_NAME = 2;
     const int COMPANY_PHONE = 9;
-    const int COMPANY_ADDRESS = 5;
+    const int COMPANY_ADDRESS = 2;
     const int COMPANY_CITY = 2;
     const int NI_NUMBER = 8;
     const int DRIVING_LICENCE_ID = 15;

@@ -6,21 +6,28 @@
 
 InfoMinLengths Login::MINS;
 
-bool Login::isValidLogin(const LoginInfo &loginInfo) {
+ErrorTypes Login::isValidLogin(const LoginInfo &loginInfo) {
+    if (loginInfo.username.empty()) {
+        return ErrorTypes::EMPTY_USERNAME;
+    }
     if (loginInfo.username.length() > MINS.USERNAME && loginInfo.password.length() > MINS.PASSWORD) {
         // If username already exist in the database
         if (!DBHandler::getResult("SELECT * FROM Users WHERE username = '" + loginInfo.username + "'").empty()) {
-            // If hash in DB is equal to hash of current password, return true (as passwords match)
-            return BCrypt::validatePassword(loginInfo.password,
-                                            DBHandler::getResult(
-                                                    "SELECT password FROM Users WHERE password = '" +
-                                                    loginInfo.password + "'"));
-        }
+            // If hash in DB is equal to current password, return true (as passwords match)
+            if(BCrypt::validatePassword(loginInfo.password, DBHandler::getResult(
+                                                "SELECT password FROM Users WHERE username = '" + loginInfo.username + "'"))) {
+                return ErrorTypes::SUCCESS;
+            } else return ErrorTypes::PASSWORDS_DO_NOT_MATCH;
+        } else return ErrorTypes::USERNAME_NOT_FOUND;
     }
-    return false;
+    return ErrorTypes::NOT_ALL_FIELDS_FILLED;
 }
 
-bool Login::isValidSignup(const SignupInfo &signupInfo) {
+ErrorTypes Login::isValidSignup(const SignupInfo &signupInfo) {
+    // Check if username already exists in users table (as it is pk)
+    if (!DBHandler::getResult("SELECT * FROM Users WHERE username = '" + signupInfo.username + "'").empty()) {
+        return ErrorTypes::USERNAME_ALREADY_EXISTS;
+    }
     if (signupInfo.username.length() > MINS.USERNAME &&
         signupInfo.password.length() > MINS.PASSWORD &&
         signupInfo.email.length() > MINS.EMAIL &&
@@ -32,8 +39,8 @@ bool Login::isValidSignup(const SignupInfo &signupInfo) {
         signupInfo.age > MINS.AGE &&
         signupInfo.homeAddress.length() > MINS.HOME_ADDRESS &&
         signupInfo.homeCity.length() > MINS.HOME_CITY)
-        return true;
-    return false;
+        return ErrorTypes::SUCCESS;
+    return ErrorTypes::NOT_ALL_FIELDS_FILLED;
 }
 
 bool Login::isValidDriverSignup(const DriverSignupInfo &signupInfo) {

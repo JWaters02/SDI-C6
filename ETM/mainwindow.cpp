@@ -20,12 +20,51 @@ MainWindow::~MainWindow() {
     delete ui;
 }
 
-void MainWindow::setInvalidLoginFeedback() {
-    ui->lblLoginIncorrect->setText(QString::fromStdString("Username or password is incorrect!"));
+void MainWindow::setInvalidLoginFeedback(ErrorTypes errorType) {
+    switch (errorType) {
+        case ErrorTypes::INVALID_LOGIN:
+            ui->lblLoginIncorrect->setText("Username or password is incorrect!");
+            break;
+        case ErrorTypes::USERNAME_NOT_FOUND:
+            ui->lblLoginIncorrect->setText("Username does not exist!");
+            break;
+        case ErrorTypes::EMPTY_USERNAME:
+            ui->lblLoginIncorrect->setText("Invalid username!");
+            break;
+        case ErrorTypes::NOT_ALL_FIELDS_FILLED:
+            ui->lblLoginIncorrect->setText("Please fill both fields!");
+            break;
+        case ErrorTypes::PASSWORDS_DO_NOT_MATCH:
+            ui->lblLoginIncorrect->setText("Incorrect password!");
+            break;
+        case ErrorTypes::SUCCESS:
+            ui->lblLoginIncorrect->setText("");
+            break;
+        default:
+            break;
+    }
 }
 
-void MainWindow::setInvalidSignupFeedback() {
-    ui->lblSignupIncorrect->setText(QString::fromStdString("Please fill all fields!"));
+void MainWindow::setInvalidSignupFeedback(ErrorTypes errorType) {
+    switch (errorType) {
+        case ErrorTypes::USERNAME_ALREADY_EXISTS:
+            ui->lblSignupIncorrect->setText("Username taken!");
+            break;
+        case ErrorTypes::NOT_ALL_FIELDS_FILLED:
+            ui->lblSignupIncorrect->setText("Please fill all fields with valid info!");
+            break;
+        case ErrorTypes::NO_USERTYPE_SELECTED:
+            ui->lblSignupIncorrect->setText("Please select a user type!");
+            break;
+        case ErrorTypes::PASSWORDS_DO_NOT_MATCH:
+            ui->lblSignupIncorrect->setText("Passwords do not match!");
+            break;
+        case ErrorTypes::SUCCESS:
+            ui->lblSignupIncorrect->setText("");
+            break;
+        default:
+            break;
+    }
 }
 
 void MainWindow::setInvalidDriversSignupFeedback() {
@@ -46,12 +85,11 @@ void MainWindow::setInvalidCourierSignupFeedback() {
 
 void MainWindow::on_btnLogin_clicked() {
     submittedLoginInfo.username = ui->txtLoginUsername->text().toStdString();
-    // Hash password right as it comes through so no plaintext bytes are in memory
-    submittedLoginInfo.password = BCrypt::generateHash(ui->txtLoginPassword->text().toStdString());
+    submittedLoginInfo.password = ui->txtLoginPassword->text().toStdString();
 
     // Check if login info is valid
-    if (!Login::isValidLogin(getLoginInfo())) {
-        setInvalidLoginFeedback();
+    if (Login::isValidLogin(getLoginInfo()) != ErrorTypes::SUCCESS) {
+        setInvalidLoginFeedback(Login::isValidLogin(getLoginInfo()));
     } else {
         // Go to the next page
         auto *w = new mainform;
@@ -76,32 +114,32 @@ void MainWindow::on_btnSignup_clicked() {
     if (ui->txtSignupPassword->text().toStdString() != ui->txtSignupConfirmPassword->text().toStdString()) {
         ui->lblSignupIncorrect->setText(QString::fromStdString("Passwords do not match!"));
     // Validate signup info is all valid
-    } else if (!Login::isValidSignup(getSignupInfo())) {
-        setInvalidSignupFeedback();
+    } else if (Login::isValidSignup(getSignupInfo()) != ErrorTypes::SUCCESS) {
+        setInvalidSignupFeedback(Login::isValidSignup(getSignupInfo()));
     } else {
         // Check which user type is selected
         if (ui->rbCargoOwner->isChecked()) {
             submittedSignupInfo.type = UserType.CargoOwner;
-            ui->swLoginPages->setCurrentIndex(PAGES.SIGNUPCARGOOWNER);
+            ui->swLoginPages->setCurrentIndex(PAGES.SIGNUP_CARGO_OWNER);
         } else if (ui->rbDriver->isChecked()) {
             submittedSignupInfo.type = UserType.Driver;
-            ui->swLoginPages->setCurrentIndex(PAGES.SIGNUPDRIVER);
+            ui->swLoginPages->setCurrentIndex(PAGES.SIGNUP_DRIVER);
         } else if (ui->rbForwarder->isChecked()) {
             submittedSignupInfo.type = UserType.Forwarder;
-            ui->swLoginPages->setCurrentIndex(PAGES.SIGNUPFORWARDER);
+            ui->swLoginPages->setCurrentIndex(PAGES.SIGNUP_FORWARDER);
         } else if (ui->rbCourier->isChecked()) {
             submittedSignupInfo.type = UserType.Courier;
-            ui->swLoginPages->setCurrentIndex(PAGES.SIGNUPCOURIER);
+            ui->swLoginPages->setCurrentIndex(PAGES.SIGNUP_COURIER);
         } else if (ui->rbAdmin->isChecked()) {
             submittedSignupInfo.type = UserType.Admin;
-            Login::storeSignupDetails(submittedSignupInfo);
+            Login::storeSignupDetails(getSignupInfo());
             ui->swLoginPages->setCurrentIndex(PAGES.LOGIN);
         } else if (ui->rbConsignee->isChecked()) {
             submittedSignupInfo.type = UserType.Consignee;
-            Login::storeSignupDetails(submittedSignupInfo);
+            Login::storeSignupDetails(getSignupInfo());
             ui->swLoginPages->setCurrentIndex(PAGES.LOGIN);
         } else {
-            setInvalidSignupFeedback();
+            setInvalidSignupFeedback(ErrorTypes::NO_USERTYPE_SELECTED);
         }
     }
 }
@@ -123,8 +161,8 @@ void MainWindow::on_btnDriversSignup_clicked() {
     if (!Login::isValidDriverSignup(getDriverSignupInfo())) {
         setInvalidDriversSignupFeedback();
     } else {
-        Login::storeSignupDetails(submittedSignupInfo);
-        Login::storeDriverSignupDetails(submittedSignupInfo, submittedDriverSignupInfo);
+        Login::storeSignupDetails(getSignupInfo());
+        Login::storeDriverSignupDetails(getSignupInfo(), getDriverSignupInfo());
         ui->swLoginPages->setCurrentIndex(PAGES.LOGIN);
     }
 }
@@ -146,8 +184,8 @@ void MainWindow::on_btnForwarderSignup_clicked() {
     if (!Login::isValidForwarderSignup(getForwarderSignupInfo())) {
         setInvalidForwarderSignupFeedback();
     } else {
-        Login::storeSignupDetails(submittedSignupInfo);
-        Login::storeForwarderSignupDetails(submittedSignupInfo, submittedForwarderSignupInfo);
+        Login::storeSignupDetails(getSignupInfo());
+        Login::storeForwarderSignupDetails(getSignupInfo(), getForwarderSignupInfo());
         ui->swLoginPages->setCurrentIndex(PAGES.LOGIN);
     }
 }
@@ -165,8 +203,8 @@ void MainWindow::on_btnCourierSignup_clicked() {
     if (!Login::isValidCourierSignup(getCourierSignupInfo())) {
         setInvalidCourierSignupFeedback();
     } else {
-        Login::storeSignupDetails(submittedSignupInfo);
-        Login::storeCourierSignupDetails(submittedSignupInfo, submittedCourierSignupInfo);
+        Login::storeSignupDetails(getSignupInfo());
+        Login::storeCourierSignupDetails(getSignupInfo(), getCourierSignupInfo());
         ui->swLoginPages->setCurrentIndex(PAGES.LOGIN);
     }
 }
@@ -181,8 +219,8 @@ void MainWindow::on_btnCargoOwnerSignup_clicked() {
     if (!Login::isValidCargoOwnerSignup(getCargoOwnerSignupInfo())) {
         setInvalidCargoOwnerSignupFeedback();
     } else {
-        Login::storeSignupDetails(submittedSignupInfo);
-        Login::storeCargoOwnerSignupDetails(submittedSignupInfo, submittedCargoOwnerSignupInfo);
+        Login::storeSignupDetails(getSignupInfo());
+        Login::storeCargoOwnerSignupDetails(getSignupInfo(), getCargoOwnerSignupInfo());
         ui->swLoginPages->setCurrentIndex(PAGES.LOGIN);
     }
 }

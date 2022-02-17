@@ -9,13 +9,24 @@
 #include "Users/UserUtils.h"
 #include "Database/DBHandler.h"
 
+enum class ErrorTypes {
+    INVALID_LOGIN,
+    USERNAME_ALREADY_EXISTS,
+    NOT_ALL_FIELDS_FILLED,
+    USERNAME_NOT_FOUND,
+    NO_USERTYPE_SELECTED,
+    PASSWORDS_DO_NOT_MATCH,
+    EMPTY_USERNAME,
+    SUCCESS
+};
+
 class Login {
 private:
     static InfoMinLengths MINS;
 
 public:
-    static bool isValidLogin(const LoginInfo& loginInfo);
-    static bool isValidSignup(const SignupInfo& signupInfo);
+    static ErrorTypes isValidLogin(const LoginInfo& loginInfo);
+    static ErrorTypes isValidSignup(const SignupInfo& signupInfo);
     static bool isValidDriverSignup(const DriverSignupInfo& signupInfo);
     static bool isValidCourierSignup(const CourierSignupInfo& signupInfo);
     static bool isValidForwarderSignup(const ForwarderSignupInfo& signupInfo);

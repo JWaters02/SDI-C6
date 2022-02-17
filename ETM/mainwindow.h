@@ -2,6 +2,7 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
+#include <QLabel>
 #include "bcrypt/BCrypt.hpp"
 #include "Application/Login.h"
 
@@ -12,10 +13,10 @@ QT_END_NAMESPACE
 struct LoginPage {
     const int LOGIN = 0;
     const int SIGNUP = 1; // Consignee and admin only need this page
-    const int SIGNUPDRIVER = 2;
-    const int SIGNUPCARGOOWNER = 3;
-    const int SIGNUPFORWARDER = 4;
-    const int SIGNUPCOURIER = 5;
+    const int SIGNUP_DRIVER = 2;
+    const int SIGNUP_CARGO_OWNER = 3;
+    const int SIGNUP_FORWARDER = 4;
+    const int SIGNUP_COURIER = 5;
 };
 
 class MainWindow : public QMainWindow {
@@ -24,13 +25,6 @@ class MainWindow : public QMainWindow {
 public:
     MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
-
-    void setInvalidLoginFeedback();
-    void setInvalidSignupFeedback();
-    void setInvalidDriversSignupFeedback();
-    void setInvalidCargoOwnerSignupFeedback();
-    void setInvalidForwarderSignupFeedback();
-    void setInvalidCourierSignupFeedback();
 
     LoginInfo getLoginInfo() { return submittedLoginInfo; }
     SignupInfo getSignupInfo() { return submittedSignupInfo; }
@@ -63,5 +57,12 @@ private:
     CargoOwnerSignupInfo submittedCargoOwnerSignupInfo;
     CourierSignupInfo submittedCourierSignupInfo;
     ForwarderSignupInfo submittedForwarderSignupInfo;
+
+    void setInvalidLoginFeedback(ErrorTypes errorType);
+    void setInvalidSignupFeedback(ErrorTypes errorType);
+    void setInvalidDriversSignupFeedback();
+    void setInvalidCargoOwnerSignupFeedback();
+    void setInvalidForwarderSignupFeedback();
+    void setInvalidCourierSignupFeedback();
 };
 #endif // MAINWINDOW_H
