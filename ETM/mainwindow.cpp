@@ -1,6 +1,5 @@
 #include "mainwindow.h"
 #include "./ui_mainwindow.h"
-#include "mainform.h"
 
 LoginInfo submittedLoginInfo;
 SignupInfo submittedSignupInfo;
@@ -92,8 +91,16 @@ void MainWindow::on_btnLogin_clicked() {
         setInvalidLoginFeedback(Login::isValidLogin(getLoginInfo()));
     } else {
         // Go to the next page
-        auto *w = new mainform;
+        auto *w = new HomePage;
         w->setAttribute(Qt::WA_DeleteOnClose);
+        // Query the DB to get the user's type
+        EUserTypes userType = Login::getUserType(getLoginInfo());
+        if (userType == EUserTypes::NONE) return; // TODO: Probably need to return a DB error since no user type was found
+
+        // Show the correct menu depending on type
+        w->showCorrectPage(userType);
+
+        // Close login menu and show main window
         w->show();
         this->close();
     }

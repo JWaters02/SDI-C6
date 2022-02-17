@@ -5,6 +5,7 @@
 #include <QLabel>
 #include "bcrypt/BCrypt.hpp"
 #include "Application/Login.h"
+#include "homepage.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }

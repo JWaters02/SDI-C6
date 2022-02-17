@@ -37,6 +37,8 @@ public:
     static void storeCourierSignupDetails(const SignupInfo& username, const CourierSignupInfo& signupInfo);
     static void storeForwarderSignupDetails(const SignupInfo& username, const ForwarderSignupInfo& signupInfo);
     static void storeCargoOwnerSignupDetails(const SignupInfo& username, const CargoOwnerSignupInfo& signupInfo);
+
+    static EUserTypes getUserType(const LoginInfo& loginInfo);
 };
 
 

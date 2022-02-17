@@ -16,9 +16,9 @@ set(PROJECT_SOURCES
         mainwindow.cpp
         mainwindow.h
         mainwindow.ui
-        mainform.cpp
-        mainform.h
-        mainform.ui
+        homepage.cpp
+        homepage.h
+        homepage.ui
         Users/User.h
         Users/User.cpp
         Users/CargoOwner.h

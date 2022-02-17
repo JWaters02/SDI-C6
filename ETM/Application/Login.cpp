@@ -133,3 +133,15 @@ void Login::storeCargoOwnerSignupDetails(const SignupInfo& username, const Cargo
             << signupInfo.goodsCategory << "');";
     DBHandler::writeFields(query.str());
 }
+
+EUserTypes Login::getUserType(const LoginInfo& loginInfo) {
+    std::string type = DBHandler::getResult("SELECT type FROM Users WHERE username = '" + loginInfo.username + "';");
+    UserTypes userTypes;
+    if (type == userTypes.Admin) return EUserTypes::ADMIN;
+    if (type == userTypes.Driver) return EUserTypes::DRIVER;
+    if (type == userTypes.CargoOwner) return EUserTypes::CARGO_OWNER;
+    if (type == userTypes.Forwarder) return EUserTypes::FORWARDER;
+    if (type == userTypes.Consignee) return EUserTypes::CONSIGNEE;
+    if (type == userTypes.Courier) return EUserTypes::COURIER;
+    return EUserTypes::NONE;
+}

@@ -17,22 +17,6 @@
    <string notr="true">background-color: rgb(54, 54, 54)</string>
   </property>
   <widget class="QWidget" name="centralwidget">
-   <widget class="QLabel" name="lblcurrentDateTime">
-    <property name="geometry">
-     <rect>
-      <x>10</x>
-      <y>0</y>
-      <width>281</width>
-      <height>31</height>
-     </rect>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">color: rgb(186, 189, 182);</string>
-    </property>
-    <property name="text">
-     <string>Saturday, 01-01-2022 0:00 AM</string>
-    </property>
-   </widget>
    <widget class="QStackedWidget" name="swLoginPages">
     <property name="enabled">
      <bool>true</bool>
@@ -40,13 +24,13 @@
     <property name="geometry">
      <rect>
       <x>10</x>
-      <y>30</y>
+      <y>10</y>
       <width>781</width>
-      <height>571</height>
+      <height>591</height>
      </rect>
     </property>
     <property name="currentIndex">
-     <number>1</number>
+     <number>0</number>
     </property>
     <widget class="QWidget" name="LoginPage">
      <property name="enabled">
@@ -837,7 +821,7 @@ font-size: 20px</string>
      <widget class="QLineEdit" name="txtDriversSignupNI">
       <property name="geometry">
        <rect>
-        <x>220</x>
+        <x>230</x>
         <y>80</y>
         <width>211</width>
         <height>31</height>
@@ -853,7 +837,7 @@ font: 20px</string>
        <rect>
         <x>20</x>
         <y>125</y>
-        <width>191</width>
+        <width>201</width>
         <height>41</height>
        </rect>
       </property>
@@ -868,7 +852,7 @@ font-size: 20px</string>
      <widget class="QLineEdit" name="txtDriversSignupDL">
       <property name="geometry">
        <rect>
-        <x>220</x>
+        <x>230</x>
         <y>130</y>
         <width>211</width>
         <height>31</height>
@@ -899,7 +883,7 @@ font-size: 20px</string>
      <widget class="QLineEdit" name="txtDriversSignupLorry">
       <property name="geometry">
        <rect>
-        <x>220</x>
+        <x>230</x>
         <y>180</y>
         <width>211</width>
         <height>31</height>
@@ -967,7 +951,7 @@ font-size: 20px</string>
        <rect>
         <x>20</x>
         <y>230</y>
-        <width>191</width>
+        <width>201</width>
         <height>41</height>
        </rect>
       </property>
@@ -982,7 +966,7 @@ font-size: 20px</string>
      <widget class="QLineEdit" name="txtDriversSignupCompanyAddress">
       <property name="geometry">
        <rect>
-        <x>220</x>
+        <x>230</x>
         <y>235</y>
         <width>211</width>
         <height>31</height>
@@ -996,7 +980,7 @@ font: 20px</string>
      <widget class="QLineEdit" name="txtDriversSignupCompanyCity">
       <property name="geometry">
        <rect>
-        <x>220</x>
+        <x>230</x>
         <y>285</y>
         <width>211</width>
         <height>31</height>
@@ -1047,7 +1031,7 @@ font-size: 28px</string>
      <widget class="QLineEdit" name="txtCargoOwnerSignupCategory">
       <property name="geometry">
        <rect>
-        <x>220</x>
+        <x>230</x>
         <y>80</y>
         <width>211</width>
         <height>31</height>
@@ -1063,7 +1047,7 @@ font: 20px</string>
        <rect>
         <x>20</x>
         <y>75</y>
-        <width>181</width>
+        <width>201</width>
         <height>41</height>
        </rect>
       </property>
@@ -1202,7 +1186,7 @@ font-size: 20px</string>
      <widget class="QLineEdit" name="txtForwarderSignupCompanyName">
       <property name="geometry">
        <rect>
-        <x>220</x>
+        <x>230</x>
         <y>80</y>
         <width>211</width>
         <height>31</height>
@@ -1218,7 +1202,7 @@ font: 20px</string>
        <rect>
         <x>20</x>
         <y>125</y>
-        <width>201</width>
+        <width>211</width>
         <height>41</height>
        </rect>
       </property>
@@ -1233,7 +1217,7 @@ font-size: 20px</string>
      <widget class="QLineEdit" name="txtForwarderSignupCompanyTelephone">
       <property name="geometry">
        <rect>
-        <x>220</x>
+        <x>230</x>
         <y>130</y>
         <width>211</width>
         <height>31</height>
@@ -1281,7 +1265,7 @@ font-size: 20px</string>
      <widget class="QLineEdit" name="txtForwarderSignupCompanyAddress">
       <property name="geometry">
        <rect>
-        <x>220</x>
+        <x>230</x>
         <y>180</y>
         <width>211</width>
         <height>31</height>
@@ -1295,7 +1279,7 @@ font: 20px</string>
      <widget class="QLineEdit" name="txtForwarderSignupCompanyCity">
       <property name="geometry">
        <rect>
-        <x>220</x>
+        <x>230</x>
         <y>230</y>
         <width>211</width>
         <height>31</height>
@@ -1364,7 +1348,7 @@ font-size: 20px</string>
        <rect>
         <x>20</x>
         <y>125</y>
-        <width>201</width>
+        <width>211</width>
         <height>41</height>
        </rect>
       </property>
@@ -1379,7 +1363,7 @@ font-size: 20px</string>
      <widget class="QLineEdit" name="txtCourierSignupCompanyTelephone">
       <property name="geometry">
        <rect>
-        <x>220</x>
+        <x>230</x>
         <y>130</y>
         <width>211</width>
         <height>31</height>
@@ -1411,7 +1395,7 @@ color: rgb(186, 189, 182);</string>
      <widget class="QLineEdit" name="txtCourierSignupCompanyName">
       <property name="geometry">
        <rect>
-        <x>220</x>
+        <x>230</x>
         <y>80</y>
         <width>211</width>
         <height>31</height>
@@ -1460,7 +1444,7 @@ font-size: 20px</string>
      <widget class="QLineEdit" name="txtCourierSignupCompanyCity">
       <property name="geometry">
        <rect>
-        <x>220</x>
+        <x>230</x>
         <y>230</y>
         <width>211</width>
         <height>31</height>
@@ -1491,7 +1475,7 @@ font-size: 20px</string>
      <widget class="QLineEdit" name="txtCourierSignupCompanyAddress">
       <property name="geometry">
        <rect>
-        <x>220</x>
+        <x>230</x>
         <y>180</y>
         <width>211</width>
         <height>31</height>

@@ -7,13 +7,15 @@
 
 #include <iostream>
 
-//enum UserTypes {
-//    CargoOwner,
-//    Driver,
-//    Courier,
-//    Consignee,
-//    Forwarder
-//};
+enum class EUserTypes {
+    CARGO_OWNER,
+    DRIVER,
+    COURIER,
+    CONSIGNEE,
+    FORWARDER,
+    ADMIN,
+    NONE
+};
 
 struct UserTypes {
     const std::string CargoOwner = "CargoOwner";

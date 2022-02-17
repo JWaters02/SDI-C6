@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>HomePage</class>
+ <widget class="QWidget" name="HomePage">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>1418</width>
+    <height>785</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Form</string>
+  </property>
+  <property name="styleSheet">
+   <string notr="true">background-color: rgb(54, 54, 54)</string>
+  </property>
+  <widget class="QStackedWidget" name="Home">
+   <property name="geometry">
+    <rect>
+     <x>20</x>
+     <y>10</y>
+     <width>1391</width>
+     <height>681</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background-color: rgb(54, 54, 54);</string>
+   </property>
+   <widget class="QWidget" name="AdminPage">
+    <widget class="QLabel" name="label_2">
+     <property name="geometry">
+      <rect>
+       <x>600</x>
+       <y>30</y>
+       <width>161</width>
+       <height>61</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">color: rgb(186, 189, 182); 
+font-size: 28px</string>
+     </property>
+     <property name="text">
+      <string>Admin</string>
+     </property>
+    </widget>
+   </widget>
+   <widget class="QWidget" name="CargoOwnerPage">
+    <widget class="QTabWidget" name="tbCargoOwner">
+     <property name="geometry">
+      <rect>
+       <x>0</x>
+       <y>70</y>
+       <width>1161</width>
+       <height>591</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">background-color: rgb(54, 54, 54);
+font: 16px;
+color: rgb(186, 189, 182);</string>
+     </property>
+     <property name="currentIndex">
+      <number>0</number>
+     </property>
+     <widget class="QWidget" name="tbCOHome">
+      <attribute name="title">
+       <string>Home</string>
+      </attribute>
+      <widget class="QLabel" name="label">
+       <property name="geometry">
+        <rect>
+         <x>50</x>
+         <y>90</y>
+         <width>161</width>
+         <height>61</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">color: rgb(186, 189, 182); 
+font-size: 20px</string>
+       </property>
+       <property name="text">
+        <string>TextLabel</string>
+       </property>
+      </widget>
+     </widget>
+     <widget class="QWidget" name="tbCOAuctionHouse">
+      <attribute name="title">
+       <string>Auction House</string>
+      </attribute>
+     </widget>
+     <widget class="QWidget" name="tbCOOrders">
+      <attribute name="title">
+       <string>Orders</string>
+      </attribute>
+     </widget>
+     <widget class="QWidget" name="tbProfile">
+      <attribute name="title">
+       <string>Profile</string>
+      </attribute>
+     </widget>
+    </widget>
+    <widget class="QLabel" name="label_3">
+     <property name="geometry">
+      <rect>
+       <x>610</x>
+       <y>10</y>
+       <width>231</width>
+       <height>61</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">color: rgb(186, 189, 182); 
+font-size: 28px</string>
+     </property>
+     <property name="text">
+      <string>Cargo Owner</string>
+     </property>
+    </widget>
+   </widget>
+   <widget class="QWidget" name="DriverPage"/>
+   <widget class="QWidget" name="ForwarderPage"/>
+   <widget class="QWidget" name="ConsigneePage"/>
+   <widget class="QWidget" name="CourierPage"/>
+  </widget>
+  <widget class="QPushButton" name="btnCOLogout">
+   <property name="geometry">
+    <rect>
+     <x>20</x>
+     <y>720</y>
+     <width>91</width>
+     <height>31</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background-color: rgb(54, 54, 54);
+font: 16px;
+color: rgb(186, 189, 182);</string>
+   </property>
+   <property name="text">
+    <string>Logout</string>
+   </property>
+  </widget>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>
