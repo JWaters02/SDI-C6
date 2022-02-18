@@ -27,6 +27,7 @@ public:
     MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
 
+    std::string getUsername() { return submittedLoginInfo.username; }
     LoginInfo getLoginInfo() { return submittedLoginInfo; }
     SignupInfo getSignupInfo() { return submittedSignupInfo; }
     DriverSignupInfo getDriverSignupInfo() { return submittedDriverSignupInfo; }

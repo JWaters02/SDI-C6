@@ -32,16 +32,26 @@ std::string DBHandler::getResult(const std::string &query) {
     return ret;
 }
 
-void DBHandler::callTest() {
-    pqxx::result r = queryText("SELECT * FROM Users");
-    for (auto row: r) {
-        std::cout
-                << row["first_name"].c_str()
-                << "'s age is "
-                << row[1].as<int>()
-                << "."
-                << std::endl;
+std::vector<std::vector<std::string>> DBHandler::getResult2DVector(const std::string &query) {
+    std::vector<std::vector<std::string>> ret;
+    try {
+        pqxx::result r = queryText(query);
+        for (auto && row : r) {
+            std::vector<std::string> rowVector;
+            for (auto && column : row) {
+                rowVector.emplace_back(column.c_str());
+            }
+            ret.push_back(rowVector);
+        }
+    } catch (pqxx::sql_error const &e) {
+        std::cerr << "SQL error: " << e.what() << std::endl;
+        std::cerr << "Query was: " << e.what() << std::endl;
+        return {};
+    } catch (const std::exception &e) {
+        std::cerr << e.what() << std::endl;
+        return {};
     }
+    return ret;
 }
 
 void DBHandler::writeFields(const std::string& query) {

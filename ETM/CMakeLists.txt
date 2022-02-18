@@ -37,7 +37,7 @@ set(PROJECT_SOURCES
         Users/Courier.h
         Users/Consignee.cpp
         Users/Consignee.h
-)
+        Application/Order.cpp Application/Order.h)
 
 find_package(Qt5 COMPONENTS Widgets Mqtt REQUIRED)
 find_package(Boost 1.70.0)

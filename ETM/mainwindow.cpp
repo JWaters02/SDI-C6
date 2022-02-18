@@ -100,6 +100,9 @@ void MainWindow::on_btnLogin_clicked() {
         // Show the correct menu depending on type
         w->showCorrectPage(userType);
 
+        // Store username in DB before we delete this object
+        Login::storeUsername(getLoginInfo().username);
+
         // Close login menu and show main window
         w->show();
         this->close();

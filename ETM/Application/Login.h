@@ -32,6 +32,7 @@ public:
     static bool isValidForwarderSignup(const ForwarderSignupInfo& signupInfo);
     static bool isValidCargoOwnerSignup(const CargoOwnerSignupInfo& signupInfo);
 
+    static void storeUsername(const std::string& username);
     static void storeSignupDetails(const SignupInfo& signupInfo);
     static void storeDriverSignupDetails(const SignupInfo& username, const DriverSignupInfo& signupInfo);
     static void storeCourierSignupDetails(const SignupInfo& username, const CourierSignupInfo& signupInfo);
@@ -39,6 +40,7 @@ public:
     static void storeCargoOwnerSignupDetails(const SignupInfo& username, const CargoOwnerSignupInfo& signupInfo);
 
     static EUserTypes getUserType(const LoginInfo& loginInfo);
+    static std::string getUsername();
 };
 
 

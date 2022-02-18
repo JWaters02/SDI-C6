@@ -11,12 +11,11 @@
 class DBHandler {
 private:
     static pqxx::result queryText(const std::string& query);
-    const std::string dbConnection = "dbname=etm user=postgres password=postgres hostaddr=127.0.0.1 port=5432";
 
 public:
     static std::string getResult(const std::string& query);
+    static std::vector<std::vector<std::string>> getResult2DVector(const std::string& query);
     static void writeFields(const std::string& query);
-    static void callTest();
 };
 
 
