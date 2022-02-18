@@ -84,7 +84,7 @@ void HomePage::on_lwConsigneeOrders_itemClicked(QListWidgetItem *item)
             ui->lblConsigneeOrderInfo->setText(QString::fromStdString(
                     "ID: " + orderInfo.id + " | Name: " + orderInfo.name +
                     " | Date: " + orderInfo.date + " | Time: " + orderInfo.time +
-                    " | Status: " + orderInfo.status + " | Price: " + std::to_string(orderInfo.price)));
+                    " | Status: " + orderInfo.status + " | Total Price: " + std::to_string(orderInfo.price)));
             break;
         }
     }
@@ -100,7 +100,7 @@ void HomePage::on_lwConsigneePastOrders_itemClicked(QListWidgetItem *item)
             ui->lblConsigneePastOrderInfo->setText(QString::fromStdString(
                     "ID: " + orderInfo.id + " | Name: " + orderInfo.name +
                     " | Date: " + orderInfo.date + " | Time: " + orderInfo.time +
-                    " | Status: " + orderInfo.status + " | Price: " + std::to_string(orderInfo.price)));
+                    " | Status: " + orderInfo.status + " | Total Price: " + std::to_string(orderInfo.price)));
             break;
         }
     }
