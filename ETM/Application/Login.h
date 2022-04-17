@@ -5,7 +5,7 @@
 #ifndef ETM_LOGIN_H
 #define ETM_LOGIN_H
 
-#include "bcrypt/BCrypt.hpp"
+#include "lib/libbcrypt/include/bcrypt/BCrypt.hpp"
 #include "Users/UserUtils.h"
 #include "Database/DBHandler.h"
 

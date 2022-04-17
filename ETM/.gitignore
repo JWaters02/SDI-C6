@@ -72,3 +72,12 @@ Thumbs.db
 *.dll
 *.exe
 
+cmake-build-debug/
+CMakeFiles/
+Testing/
+ETM_autogen/
+.cmake/
+.idea/
+cmake_install.cmake
+CPackConfig.cmake
+CPackSourceConfig.cmake

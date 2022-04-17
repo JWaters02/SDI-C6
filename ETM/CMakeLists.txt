@@ -37,12 +37,21 @@ set(PROJECT_SOURCES
         Users/Courier.h
         Users/Consignee.cpp
         Users/Consignee.h
-        Application/Order.cpp Application/Order.h)
+        Application/Order.cpp 
+        Application/Order.h)
 
-find_package(Qt5 COMPONENTS Widgets Mqtt REQUIRED)
-find_package(Boost 1.70.0)
+find_package(Qt5 COMPONENTS Widgets REQUIRED)
+#find_package(Boost 1.70.0)
 
+include_directories(${PROJECT_SOURCE_DIR}/lib/libpqxx)
+include_directories(${PROJECT_SOURCE_DIR}/lib/libbcrypt)
+
+add_subdirectory("lib/libpqxx")
+add_subdirectory("lib/libbcrypt")
 add_executable(ETM ${PROJECT_SOURCES})
 
-include_directories(${Boost_INCLUDE_DIR})
-target_link_libraries(ETM PRIVATE Qt5::Widgets Qt5::Mqtt -lpqxx -lpq -lbcrypt ${Boost_LIBRARIES})
+target_link_libraries(ETM PRIVATE Qt5::Widgets pqxx bcrypt)
+
+#include_directories(${Boost_INCLUDE_DIR})
+#target_link_libraries(ETM PRIVATE Qt5::Widgets ${Boost_LIBRARIES})
+

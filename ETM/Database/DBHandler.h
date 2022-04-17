@@ -7,6 +7,7 @@
 
 #include <pqxx/pqxx>
 #include <iostream>
+#include <vector>
 
 class DBHandler {
 private:
