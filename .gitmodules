@@ -1,6 +1,0 @@
-[submodule "lib/libpqxx"]
-	path = lib/libpqxx
-	url = https://github.com/jtv/libpqxx.git
-[submodule "lib/libbcrypt"]
-	path = lib/libbcrypt
-	url = https://github.com/trusch/libbcrypt.git
