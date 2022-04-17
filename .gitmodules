@@ -1,0 +1,8 @@
+[submodule "ETM/lib/libpqxx"]
+	path = ETM/lib/libpqxx
+	url = https://github.com/jtv/libpqxx.git
+	branch = db-driven
+[submodule "ETM/lib/libbcrypt"]
+	path = ETM/lib/libbcrypt
+	url = https://github.com/trusch/libbcrypt.git
+	branch = db-driven
