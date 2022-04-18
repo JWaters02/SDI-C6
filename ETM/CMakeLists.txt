@@ -38,15 +38,18 @@ set(PROJECT_SOURCES
         Users/Consignee.cpp
         Users/Consignee.h
         Application/Order.cpp 
-        Application/Order.h)
+        Application/Order.h
+        Application/RegistrationCheck.cpp
+        Application/RegistrationCheck.h
+        Application/Secrets.h)
 
 find_package(Qt5 COMPONENTS Widgets REQUIRED)
 #find_package(Boost 1.70.0)
 
 include_directories(${PROJECT_SOURCE_DIR}/lib/libpqxx)
-include_directories(${PROJECT_SOURCE_DIR}/lib/libbcrypt)
-include_directories(${PROJECT_SOURCE_DIR}/lib/curlcpp)
-include_directories(${PROJECT_SOURCE_DIR}/lib/json)
+include_directories(${PROJECT_SOURCE_DIR}/lib/libbcrypt/include/bcrypt)
+include_directories(${PROJECT_SOURCE_DIR}/lib/curlcpp/include)
+include_directories(${PROJECT_SOURCE_DIR}/lib/json/single_include/nlohmann)
 
 add_subdirectory("lib/libpqxx")
 add_subdirectory("lib/libbcrypt")

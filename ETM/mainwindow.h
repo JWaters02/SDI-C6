@@ -3,7 +3,7 @@
 
 #include <QMainWindow>
 #include <QLabel>
-#include "lib/libbcrypt/include/bcrypt/BCrypt.hpp"
+#include "BCrypt.hpp"
 #include "Application/Login.h"
 #include "homepage.h"
 

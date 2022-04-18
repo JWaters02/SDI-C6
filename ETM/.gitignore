@@ -81,3 +81,4 @@ ETM_autogen/
 cmake_install.cmake
 CPackConfig.cmake
 CPackSourceConfig.cmake
+Application/Secrets.h

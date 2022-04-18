@@ -17,7 +17,7 @@
 //Build documentation
 BUILD_DOC:BOOL=OFF
 
-//Build all test cases
+//Build Tests
 BUILD_TEST:BOOL=ON
 
 //The directory containing a CMake configuration file for Boost.
@@ -331,6 +331,22 @@ CPACK_SOURCE_TZ:BOOL=ON
 //Enable to build ZIP source packages
 CPACK_SOURCE_ZIP:BOOL=OFF
 
+//Use pkg-config to find libcurl. When off, find_package() will
+// be used
+CURLCPP_USE_PKGCONFIG:BOOL=OFF
+
+//The directory containing a CMake configuration file for CURL.
+CURL_DIR:PATH=CURL_DIR-NOTFOUND
+
+//Path to a file.
+CURL_INCLUDE_DIR:PATH=/usr/include/x86_64-linux-gnu
+
+//Path to a library.
+CURL_LIBRARY_DEBUG:FILEPATH=CURL_LIBRARY_DEBUG-NOTFOUND
+
+//Path to a library.
+CURL_LIBRARY_RELEASE:FILEPATH=/usr/lib/x86_64-linux-gnu/libcurl.so
+
 //Value Computed by CMake
 ETM_BINARY_DIR:STATIC=/home/bobby/Documents/SDI/SDI-C6/ETM
 
@@ -339,6 +355,33 @@ ETM_IS_TOP_LEVEL:STATIC=ON
 
 //Value Computed by CMake
 ETM_SOURCE_DIR:STATIC=/home/bobby/Documents/SDI/SDI-C6/ETM
+
+//Build the unit tests when BUILD_TESTING is enabled.
+JSON_BuildTests:BOOL=OFF
+
+//Enable CI build targets.
+JSON_CI:BOOL=OFF
+
+//Use extended diagnostic messages.
+JSON_Diagnostics:BOOL=OFF
+
+//Enable implicit conversions.
+JSON_ImplicitConversions:BOOL=ON
+
+//Install CMake targets during install step.
+JSON_Install:BOOL=OFF
+
+//Use non-amalgamated version of the library.
+JSON_MultipleHeaders:BOOL=OFF
+
+//Include as system headers (skip for clang-tidy).
+JSON_SystemInclude:BOOL=OFF
+
+//Arguments to supply to pkg-config
+PKG_CONFIG_ARGN:STRING=
+
+//pkg-config executable
+PKG_CONFIG_EXECUTABLE:FILEPATH=/usr/bin/pkg-config
 
 //The Set the PostgreSQL_INCLUDE_DIR cmake cache entry to the top-level
 // directory containing the PostgreSQL include directories. E.g
@@ -380,6 +423,15 @@ bcrypt_IS_TOP_LEVEL:STATIC=OFF
 bcrypt_SOURCE_DIR:STATIC=/home/bobby/Documents/SDI/SDI-C6/ETM/lib/libbcrypt
 
 //Value Computed by CMake
+curlcpp_BINARY_DIR:STATIC=/home/bobby/Documents/SDI/SDI-C6/ETM/lib/curlcpp
+
+//Value Computed by CMake
+curlcpp_IS_TOP_LEVEL:STATIC=OFF
+
+//Value Computed by CMake
+curlcpp_SOURCE_DIR:STATIC=/home/bobby/Documents/SDI/SDI-C6/ETM/lib/curlcpp
+
+//Value Computed by CMake
 libpqxx_BINARY_DIR:STATIC=/home/bobby/Documents/SDI/SDI-C6/ETM/lib/libpqxx
 
 //Value Computed by CMake
@@ -387,6 +439,18 @@ libpqxx_IS_TOP_LEVEL:STATIC=OFF
 
 //Value Computed by CMake
 libpqxx_SOURCE_DIR:STATIC=/home/bobby/Documents/SDI/SDI-C6/ETM/lib/libpqxx
+
+//Value Computed by CMake
+nlohmann_json_BINARY_DIR:STATIC=/home/bobby/Documents/SDI/SDI-C6/ETM/lib/json
+
+//Value Computed by CMake
+nlohmann_json_IS_TOP_LEVEL:STATIC=OFF
+
+//Value Computed by CMake
+nlohmann_json_SOURCE_DIR:STATIC=/home/bobby/Documents/SDI/SDI-C6/ETM/lib/json
+
+//Path to a library.
+pkgcfg_lib_PC_CURL_curl:FILEPATH=/usr/lib/x86_64-linux-gnu/libcurl.so
 
 //Dependencies for the target
 pqxx_LIB_DEPENDS:STATIC=general;/usr/lib/x86_64-linux-gnu/libpq.so;
@@ -551,7 +615,7 @@ CMAKE_MODULE_LINKER_FLAGS_RELWITHDEBINFO-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: CMAKE_NM
 CMAKE_NM-ADVANCED:INTERNAL=1
 //number of local generators
-CMAKE_NUMBER_OF_MAKEFILES:INTERNAL=6
+CMAKE_NUMBER_OF_MAKEFILES:INTERNAL=10
 //ADVANCED property for variable: CMAKE_OBJCOPY
 CMAKE_OBJCOPY-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: CMAKE_OBJDUMP
@@ -606,8 +670,85 @@ CPACK_SOURCE_TXZ-ADVANCED:INTERNAL=1
 CPACK_SOURCE_TZ-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: CPACK_SOURCE_ZIP
 CPACK_SOURCE_ZIP-ADVANCED:INTERNAL=1
+CURLPP_CFLAGS:INTERNAL=
+CURLPP_CFLAGS_I:INTERNAL=
+CURLPP_CFLAGS_OTHER:INTERNAL=
+CURLPP_FOUND:INTERNAL=
+CURLPP_INCLUDEDIR:INTERNAL=
+CURLPP_LIBDIR:INTERNAL=
+CURLPP_LIBS:INTERNAL=
+CURLPP_LIBS_L:INTERNAL=
+CURLPP_LIBS_OTHER:INTERNAL=
+CURLPP_LIBS_PATHS:INTERNAL=
+CURLPP_MODULE_NAME:INTERNAL=
+CURLPP_PREFIX:INTERNAL=
+CURLPP_STATIC_CFLAGS:INTERNAL=
+CURLPP_STATIC_CFLAGS_I:INTERNAL=
+CURLPP_STATIC_CFLAGS_OTHER:INTERNAL=
+CURLPP_STATIC_LIBDIR:INTERNAL=
+CURLPP_STATIC_LIBS:INTERNAL=
+CURLPP_STATIC_LIBS_L:INTERNAL=
+CURLPP_STATIC_LIBS_OTHER:INTERNAL=
+CURLPP_STATIC_LIBS_PATHS:INTERNAL=
+CURLPP_VERSION:INTERNAL=
+CURLPP_curlpp_INCLUDEDIR:INTERNAL=
+CURLPP_curlpp_LIBDIR:INTERNAL=
+CURLPP_curlpp_PREFIX:INTERNAL=
+CURLPP_curlpp_VERSION:INTERNAL=
+//ADVANCED property for variable: CURL_DIR
+CURL_DIR-ADVANCED:INTERNAL=1
+//ADVANCED property for variable: CURL_INCLUDE_DIR
+CURL_INCLUDE_DIR-ADVANCED:INTERNAL=1
+//ADVANCED property for variable: CURL_LIBRARY_DEBUG
+CURL_LIBRARY_DEBUG-ADVANCED:INTERNAL=1
+//ADVANCED property for variable: CURL_LIBRARY_RELEASE
+CURL_LIBRARY_RELEASE-ADVANCED:INTERNAL=1
+//Details about finding CURL
+FIND_PACKAGE_MESSAGE_DETAILS_CURL:INTERNAL=[/usr/lib/x86_64-linux-gnu/libcurl.so][/usr/include/x86_64-linux-gnu][c ][v7.68.0(7.28.0)]
+//Details about finding PkgConfig
+FIND_PACKAGE_MESSAGE_DETAILS_PkgConfig:INTERNAL=[/usr/bin/pkg-config][v0.29.1()]
 //Details about finding PostgreSQL
 FIND_PACKAGE_MESSAGE_DETAILS_PostgreSQL:INTERNAL=[/usr/lib/x86_64-linux-gnu/libpq.so][/usr/include/postgresql][c ][v12.9()]
+NLOHMANN_JSON_CONFIG_INSTALL_DIR:INTERNAL=lib/cmake/nlohmann_json
+PC_CURL_CFLAGS:INTERNAL=-I/usr/include/x86_64-linux-gnu
+PC_CURL_CFLAGS_I:INTERNAL=
+PC_CURL_CFLAGS_OTHER:INTERNAL=
+PC_CURL_FOUND:INTERNAL=1
+PC_CURL_INCLUDEDIR:INTERNAL=/usr/include/x86_64-linux-gnu
+PC_CURL_INCLUDE_DIRS:INTERNAL=/usr/include/x86_64-linux-gnu
+PC_CURL_LDFLAGS:INTERNAL=-L/usr/lib/x86_64-linux-gnu;-lcurl
+PC_CURL_LDFLAGS_OTHER:INTERNAL=
+PC_CURL_LIBDIR:INTERNAL=/usr/lib/x86_64-linux-gnu
+PC_CURL_LIBRARIES:INTERNAL=curl
+PC_CURL_LIBRARY_DIRS:INTERNAL=/usr/lib/x86_64-linux-gnu
+PC_CURL_LIBS:INTERNAL=
+PC_CURL_LIBS_L:INTERNAL=
+PC_CURL_LIBS_OTHER:INTERNAL=
+PC_CURL_LIBS_PATHS:INTERNAL=
+PC_CURL_MODULE_NAME:INTERNAL=libcurl
+PC_CURL_PREFIX:INTERNAL=/usr
+PC_CURL_STATIC_CFLAGS:INTERNAL=-I/usr/include/x86_64-linux-gnu
+PC_CURL_STATIC_CFLAGS_I:INTERNAL=
+PC_CURL_STATIC_CFLAGS_OTHER:INTERNAL=
+PC_CURL_STATIC_INCLUDE_DIRS:INTERNAL=/usr/include/x86_64-linux-gnu
+PC_CURL_STATIC_LDFLAGS:INTERNAL=-L/usr/lib/x86_64-linux-gnu;-L/usr/lib/x86_64-linux-gnu/mit-krb5;-lcurl;-lnghttp2;-lidn2;-lrtmp;-lssh;-lpsl;-lssl;-lcrypto;-lssl;-lcrypto;-Wl,-Bsymbolic-functions;-Wl,-z,relro;-lgssapi_krb5;-lkrb5;-lk5crypto;-lcom_err;-llber;-lldap;-llber;-lbrotlidec;-lz
+PC_CURL_STATIC_LDFLAGS_OTHER:INTERNAL=-Wl,-Bsymbolic-functions;-Wl,-z,relro
+PC_CURL_STATIC_LIBDIR:INTERNAL=
+PC_CURL_STATIC_LIBRARIES:INTERNAL=curl;nghttp2;idn2;rtmp;ssh;psl;ssl;crypto;ssl;crypto;gssapi_krb5;krb5;k5crypto;com_err;lber;ldap;lber;brotlidec;z
+PC_CURL_STATIC_LIBRARY_DIRS:INTERNAL=/usr/lib/x86_64-linux-gnu;/usr/lib/x86_64-linux-gnu/mit-krb5
+PC_CURL_STATIC_LIBS:INTERNAL=
+PC_CURL_STATIC_LIBS_L:INTERNAL=
+PC_CURL_STATIC_LIBS_OTHER:INTERNAL=
+PC_CURL_STATIC_LIBS_PATHS:INTERNAL=
+PC_CURL_VERSION:INTERNAL=7.68.0
+PC_CURL_libcurl_INCLUDEDIR:INTERNAL=
+PC_CURL_libcurl_LIBDIR:INTERNAL=
+PC_CURL_libcurl_PREFIX:INTERNAL=
+PC_CURL_libcurl_VERSION:INTERNAL=
+//ADVANCED property for variable: PKG_CONFIG_ARGN
+PKG_CONFIG_ARGN-ADVANCED:INTERNAL=1
+//ADVANCED property for variable: PKG_CONFIG_EXECUTABLE
+PKG_CONFIG_EXECUTABLE-ADVANCED:INTERNAL=1
 //Result of TRY_COMPILE
 PQXX_HAVE_CHARCONV_FLOAT:INTERNAL=FALSE
 //Result of TRY_COMPILE
@@ -664,6 +805,11 @@ _Boost_NAMESPACE_LAST:INTERNAL=boost
 _Boost_USE_MULTITHREADED_LAST:INTERNAL=TRUE
 //CMAKE_INSTALL_PREFIX during last run
 _GNUInstallDirs_LAST_CMAKE_INSTALL_PREFIX:INTERNAL=/usr/local
+__pkg_config_arguments_PC_CURL:INTERNAL=QUIET;libcurl
+__pkg_config_checked_PC_CURL:INTERNAL=1
 //Result of TRY_COMPILE
 need_fslib:INTERNAL=TRUE
+//ADVANCED property for variable: pkgcfg_lib_PC_CURL_curl
+pkgcfg_lib_PC_CURL_curl-ADVANCED:INTERNAL=1
+prefix_result:INTERNAL=SSL;IPv6;UnixSockets;libz;brotli;AsynchDNS;IDN;GSS-API;PSL;SPNEGO;Kerberos;NTLM;NTLM_WB;TLS-SRP;HTTP2;HTTPS-proxy
 
