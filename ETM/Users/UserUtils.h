@@ -50,6 +50,7 @@ struct DriverSignupInfo {
     std::string NINumber;
     std::string drivingLicenceID;
     std::string lorryType;
+    std::string lorryReg;
     std::string companyAddress;
     std::string companyCity;
 };
@@ -90,6 +91,7 @@ struct InfoMinLengths {
     const int NI_NUMBER = 8;
     const int DRIVING_LICENCE_ID = 15;
     const int LORRY_TYPE = 1;
+    const int LORRY_REG = 7;
     const int GOODS_CATEGORY = 1;
 };
 

@@ -47,9 +47,12 @@ bool Login::isValidDriverSignup(const DriverSignupInfo &signupInfo) {
     if (signupInfo.NINumber.length() > MINS.NI_NUMBER &&
         signupInfo.drivingLicenceID.length() > MINS.DRIVING_LICENCE_ID &&
         signupInfo.lorryType.length() > MINS.LORRY_TYPE &&
+        signupInfo.lorryReg.length() > MINS.LORRY_REG &&
         signupInfo.companyCity.length() > MINS.COMPANY_CITY &&
-        signupInfo.companyAddress.length() > MINS.COMPANY_ADDRESS)
-        return true;
+        signupInfo.companyAddress.length() > MINS.COMPANY_ADDRESS) {
+        RegistrationCheck check = RegistrationCheck(signupInfo.lorryReg);
+        if (check.getResponse()) return true;
+    }
     return false;
 }
 

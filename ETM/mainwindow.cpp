@@ -165,6 +165,7 @@ void MainWindow::on_btnSignupBack_clicked() {
 void MainWindow::on_btnDriversSignup_clicked() {
     submittedDriverSignupInfo.NINumber = ui->txtDriversSignupNI->text().toInt();
     submittedDriverSignupInfo.lorryType = ui->txtDriversSignupLorry->text().toStdString();
+    submittedDriverSignupInfo.lorryReg = ui->txtDriversSignupLorryReg->text().toStdString();
     submittedDriverSignupInfo.companyCity = ui->txtDriversSignupCompanyCity->text().toStdString();
     submittedDriverSignupInfo.companyAddress = ui->txtDriversSignupCompanyAddress->text().toStdString();
 

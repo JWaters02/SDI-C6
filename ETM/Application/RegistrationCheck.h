@@ -1,7 +1,3 @@
-//
-// Created by root on 4/17/22.
-//
-
 #ifndef ETM_REGISTRATIONCHECK_H
 #define ETM_REGISTRATIONCHECK_H
 
@@ -19,8 +15,8 @@ private:
     bool isValid = false;
 
 public:
-    RegistrationCheck(std::string _registrationNumber);
-    bool getResponse();
+    explicit RegistrationCheck(std::string _registrationNumber);
+    [[nodiscard]] bool getResponse() const;
 };
 
 

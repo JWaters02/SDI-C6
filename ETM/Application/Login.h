@@ -8,6 +8,7 @@
 #include "BCrypt.hpp"
 #include "Users/UserUtils.h"
 #include "Database/DBHandler.h"
+#include "RegistrationCheck.h"
 
 enum class ErrorTypes {
     INVALID_LOGIN,

@@ -1,7 +1,9 @@
 #include "RegistrationCheck.h"
 
+#include <utility>
+
 RegistrationCheck::RegistrationCheck(std::string _registrationNumber) {
-    this->registrationNumber = _registrationNumber;
+    this->registrationNumber = std::move(_registrationNumber);
     sendRequest();
 }
 
@@ -33,6 +35,6 @@ void RegistrationCheck::sendRequest() {
     }
 }
 
-bool RegistrationCheck::getResponse() {
+bool RegistrationCheck::getResponse() const {
     return this->isValid;
 }
