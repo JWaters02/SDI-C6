@@ -6,3 +6,9 @@
 	path = ETM/lib/libbcrypt
 	url = https://github.com/trusch/libbcrypt.git
 	branch = db-driven
+[submodule "ETM/lib/curlcpp"]
+	path = ETM/lib/curlcpp
+	url = https://github.com/JosephP91/curlcpp.git
+[submodule "ETM/lib/json"]
+	path = ETM/lib/json
+	url = https://github.com/nlohmann/json.git

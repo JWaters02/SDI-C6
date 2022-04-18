@@ -45,12 +45,16 @@ find_package(Qt5 COMPONENTS Widgets REQUIRED)
 
 include_directories(${PROJECT_SOURCE_DIR}/lib/libpqxx)
 include_directories(${PROJECT_SOURCE_DIR}/lib/libbcrypt)
+include_directories(${PROJECT_SOURCE_DIR}/lib/curlcpp)
+include_directories(${PROJECT_SOURCE_DIR}/lib/json)
 
 add_subdirectory("lib/libpqxx")
 add_subdirectory("lib/libbcrypt")
+add_subdirectory("lib/curlcpp")
+add_subdirectory("lib/json")
 add_executable(ETM ${PROJECT_SOURCES})
 
-target_link_libraries(ETM PRIVATE Qt5::Widgets pqxx bcrypt)
+target_link_libraries(ETM PRIVATE Qt5::Widgets pqxx bcrypt curlcpp json)
 
 #include_directories(${Boost_INCLUDE_DIR})
 #target_link_libraries(ETM PRIVATE Qt5::Widgets ${Boost_LIBRARIES})
