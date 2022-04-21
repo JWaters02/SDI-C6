@@ -2,10 +2,10 @@
 #define ETM_REGISTRATIONCHECK_H
 
 #include "Secrets.h"
-#include "json.hpp"
-#include "curl_easy.h"
-#include "curl_ios.h"
-#include "curl_header.h"
+#include "curl/curl.h"
+#include "curl/easy.h"
+
+#include <iostream>
 
 class RegistrationCheck {
 private:

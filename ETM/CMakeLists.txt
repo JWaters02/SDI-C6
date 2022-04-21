@@ -11,6 +11,8 @@ set(CMAKE_AUTORCC ON)
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
+set (Boost_USE_STATIC_LIBS OFF)
+
 set(PROJECT_SOURCES
         main.cpp
         mainwindow.cpp
@@ -41,24 +43,25 @@ set(PROJECT_SOURCES
         Application/Order.h
         Application/RegistrationCheck.cpp
         Application/RegistrationCheck.h
-        Application/Secrets.h)
+        Application/Secrets.h
+        Tests/TestRunner.cpp
+        Tests/RegistrationTests.cpp)
 
 find_package(Qt5 COMPONENTS Widgets REQUIRED)
-#find_package(Boost 1.70.0)
+find_package(Boost 1.71.0)
+find_package(CURL REQUIRED)
 
 include_directories(${PROJECT_SOURCE_DIR}/lib/libpqxx)
 include_directories(${PROJECT_SOURCE_DIR}/lib/libbcrypt/include/bcrypt)
 include_directories(${PROJECT_SOURCE_DIR}/lib/curlcpp/include)
-include_directories(${PROJECT_SOURCE_DIR}/lib/json/single_include/nlohmann)
+include_directories(${Boost_INCLUDE_DIR})
+include_directories(${CURL_INCLUDE_DIR})
+#include_directories(${PROJECT_SOURCE_DIR}/lib/json/single_include/nlohmann)
 
 add_subdirectory("lib/libpqxx")
 add_subdirectory("lib/libbcrypt")
 add_subdirectory("lib/curlcpp")
-add_subdirectory("lib/json")
+#add_subdirectory("lib/json")
 add_executable(ETM ${PROJECT_SOURCES})
 
-target_link_libraries(ETM PRIVATE Qt5::Widgets pqxx bcrypt curlcpp json)
-
-#include_directories(${Boost_INCLUDE_DIR})
-#target_link_libraries(ETM PRIVATE Qt5::Widgets ${Boost_LIBRARIES})
-
+target_link_libraries(ETM PRIVATE Qt5::Widgets pqxx bcrypt curlcpp ${Boost_LIBRARIES} ${CURL_LIBRARIES})

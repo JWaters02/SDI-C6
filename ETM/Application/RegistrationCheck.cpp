@@ -8,30 +8,28 @@ RegistrationCheck::RegistrationCheck(std::string _registrationNumber) {
 }
 
 void RegistrationCheck::sendRequest() {
-    std::ostringstream ret;
-    curl::curl_ios<std::ostringstream> writer(ret);
+    CURL* curl = curl_easy_init();
+    const std::string jsonInfo = R"({"registrationNumber": ")" + this->registrationNumber + R"("})";
 
-    curl::curl_header header;
-    curl::curl_easy easy(writer);
+    struct curl_slist* headers = nullptr;
+    headers = curl_slist_append(headers, "Content-Type: application/json");
+    headers = curl_slist_append(headers, "Accept: application/json");
+    headers = curl_slist_append(headers, ("x-api-key: " + Secrets::getAPIKey()).c_str());
 
-    std::string jsonInfo = R"({"registration": ")" + this->registrationNumber + R"("})";
-    header.add(jsonInfo);
-    header.add("Content-type: application/json");
-    header.add("Accept: application/json");
-    header.add("x-api-key: " + Secrets::getAPIKey());
-    header.add("X-Correlation-Id: " + Secrets::getCorrelationId());
+    curl_easy_setopt(curl, CURLOPT_URL, "https://driver-vehicle-licensing.api.gov.uk/vehicle-enquiry/v1/vehicles");
+    curl_easy_setopt(curl, CURLOPT_POSTFIELDS, jsonInfo.c_str());
+    curl_easy_setopt(curl, CURLOPT_HTTPHEADER, headers);
+    curl_easy_setopt(curl, CURLOPT_CUSTOMREQUEST, "POST");
 
-    easy.add<CURLOPT_HTTPHEADER>(header.get());
-    easy.add<CURLOPT_URL>("https://driver-vehicle-licensing.api.gov.uk/vehicle-enquiry/v1/vehicles");
-    easy.add<CURLOPT_CUSTOMREQUEST>("POST");
-    easy.add<CURLOPT_VERBOSE>(0L);
-
-    try {
-        easy.perform();
-        auto responseCode = easy.get_info<CURLINFO_RESPONSE_CODE>();
-        this->isValid = (responseCode.get() == 200);
-    } catch (curl::curl_easy_exception &error) {
-        std::cerr<<error.what()<<std::endl;
+    CURLcode res = curl_easy_perform(curl);
+    if (res != CURLE_OK) {
+        std::cout << "curl_easy_perform() failed: " << curl_easy_strerror(res) << std::endl;
+    } else {
+        long responseCode;
+        curl_easy_getinfo(curl, CURLINFO_RESPONSE_CODE, &responseCode);
+        if (responseCode == 200) {
+            this->isValid = true;
+        }
     }
 }
 
