@@ -40,6 +40,7 @@ private:
     std::vector<OrderInfo> pastOrderInfo;
     std::vector<OrderInfo> allCurrentOrderInfo;
     std::vector<OrderInfo> fTakenOrdersInfo;
+    std::string selectedOrderID;
 
     void loadCurrentOrders();
     void loadPastOrders();

@@ -102,6 +102,7 @@ void Login::storeDriverSignupDetails(const SignupInfo& username, const DriverSig
             << signupInfo.NINumber << "', '"
             << signupInfo.drivingLicenceID << "', '"
             << signupInfo.lorryType << "', '"
+            << signupInfo.lorryReg << "', '"
             << signupInfo.companyCity << "', '"
             << signupInfo.companyAddress << "');";
     DBHandler::writeFields(query.str());

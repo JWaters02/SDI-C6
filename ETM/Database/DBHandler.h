@@ -8,6 +8,7 @@
 #include <pqxx/pqxx>
 #include <iostream>
 #include <vector>
+#include "Application/Secrets.h"
 
 class DBHandler {
 private:

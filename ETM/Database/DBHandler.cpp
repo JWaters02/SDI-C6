@@ -5,7 +5,7 @@
 #include "DBHandler.h"
 
 pqxx::result DBHandler::queryText(const std::string& query) {
-    pqxx::connection c("dbname=etm user=postgres password=password hostaddr=127.0.0.1 port=5432");
+    pqxx::connection c(Secrets::getDBCredentials());
     pqxx::work txn{c};
     pqxx::result r{txn.exec(query)};
     txn.commit();
@@ -76,7 +76,7 @@ std::vector<std::vector<std::string>> DBHandler::getResult2DVector(const std::st
 
 void DBHandler::writeFields(const std::string& query) {
     try {
-        pqxx::connection c("dbname=etm user=postgres password=password hostaddr=127.0.0.1 port=5432");
+        pqxx::connection c(Secrets::getDBCredentials());
         pqxx::work txn{c};
         txn.exec(query);
         txn.commit();

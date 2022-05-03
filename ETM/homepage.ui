@@ -119,7 +119,7 @@ font: 16px;
 color: rgb(186, 189, 182);</string>
      </property>
      <property name="currentIndex">
-      <number>1</number>
+      <number>0</number>
      </property>
      <widget class="QWidget" name="tbFBids">
       <attribute name="title">
@@ -364,7 +364,7 @@ font-size: 20px</string>
         <rect>
          <x>160</x>
          <y>10</y>
-         <width>81</width>
+         <width>111</width>
          <height>31</height>
         </rect>
        </property>
@@ -373,7 +373,7 @@ font-size: 20px</string>
 font-size: 20px</string>
        </property>
        <property name="text">
-        <string>Orders</string>
+        <string>All Orders</string>
        </property>
       </widget>
       <widget class="QListWidget" name="lwFOrders">

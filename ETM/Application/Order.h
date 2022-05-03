@@ -9,6 +9,7 @@
 #include <ctime>
 #include <QString>
 #include "Database/DBHandler.h"
+#include "Users/UserUtils.h"
 
 /*
 CREATE TABLE IF NOT EXISTS OrderGoods (
@@ -63,8 +64,9 @@ public:
     static std::vector<OrderInfo> getPastOrders(const std::string& username);
     static std::vector<OrderInfo> getCurrentOrders(const std::string& username);
     static std::vector<OrderInfo> getAllCurrentOrders();
-    static std::vector<OrderInfo> getFTakenOrders();
+    static std::vector<OrderInfo> getTakenOrders(const EUserTypes& userType, const std::string& username);
     static void makeOrder(const std::string& username, const std::string& itemName, const int& quantity, const double& unitPrice);
+    static void takeOrder(const EUserTypes& userType, const std::string& username, const std::string& orderID);
 };
 
 
