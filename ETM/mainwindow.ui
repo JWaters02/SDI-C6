@@ -30,7 +30,7 @@
      </rect>
     </property>
     <property name="currentIndex">
-     <number>2</number>
+     <number>1</number>
     </property>
     <widget class="QWidget" name="LoginPage">
      <property name="enabled">
@@ -74,7 +74,7 @@ font: 20px</string>
        <string/>
       </property>
       <property name="maxLength">
-       <number>20</number>
+       <number>100</number>
       </property>
       <property name="echoMode">
        <enum>QLineEdit::Password</enum>
@@ -221,6 +221,9 @@ font: 20px</string>
       <property name="inputMask">
        <string/>
       </property>
+      <property name="maxLength">
+       <number>100</number>
+      </property>
       <property name="echoMode">
        <enum>QLineEdit::Password</enum>
       </property>
@@ -237,6 +240,9 @@ font: 20px</string>
       <property name="styleSheet">
        <string notr="true">color: rgb(186, 189, 182);
 font: 20px</string>
+      </property>
+      <property name="maxLength">
+       <number>20</number>
       </property>
      </widget>
      <widget class="QLabel" name="lblSignupUsername">
@@ -324,6 +330,9 @@ font: 20px</string>
       <property name="inputMask">
        <string/>
       </property>
+      <property name="maxLength">
+       <number>100</number>
+      </property>
       <property name="echoMode">
        <enum>QLineEdit::Password</enum>
       </property>
@@ -375,6 +384,9 @@ font-size: 20px</string>
        <string notr="true">color: rgb(186, 189, 182);
 font: 20px</string>
       </property>
+      <property name="maxLength">
+       <number>40</number>
+      </property>
      </widget>
      <widget class="QLabel" name="lblSignupFirstName">
       <property name="geometry">
@@ -405,6 +417,9 @@ font-size: 20px</string>
       <property name="styleSheet">
        <string notr="true">color: rgb(186, 189, 182);
 font: 20px</string>
+      </property>
+      <property name="maxLength">
+       <number>40</number>
       </property>
      </widget>
      <widget class="QLabel" name="lblSignupLastName">
@@ -437,6 +452,9 @@ font-size: 20px</string>
        <string notr="true">color: rgb(186, 189, 182);
 font: 20px</string>
       </property>
+      <property name="maxLength">
+       <number>40</number>
+      </property>
      </widget>
      <widget class="QLabel" name="lblSignupAge">
       <property name="geometry">
@@ -468,6 +486,9 @@ font-size: 20px</string>
        <string notr="true">color: rgb(186, 189, 182);
 font: 20px</string>
       </property>
+      <property name="maxLength">
+       <number>3</number>
+      </property>
      </widget>
      <widget class="QLabel" name="lblSignupMobile">
       <property name="geometry">
@@ -498,6 +519,9 @@ font-size: 20px</string>
       <property name="styleSheet">
        <string notr="true">color: rgb(186, 189, 182);
 font: 20px</string>
+      </property>
+      <property name="maxLength">
+       <number>20</number>
       </property>
      </widget>
      <widget class="QLabel" name="lblSignupHomeCity">
@@ -547,6 +571,9 @@ font-size: 20px</string>
        <string notr="true">color: rgb(186, 189, 182);
 font: 20px</string>
       </property>
+      <property name="maxLength">
+       <number>100</number>
+      </property>
      </widget>
      <widget class="QLineEdit" name="txtSignupHomeCity">
       <property name="geometry">
@@ -560,6 +587,9 @@ font: 20px</string>
       <property name="styleSheet">
        <string notr="true">color: rgb(186, 189, 182);
 font: 20px</string>
+      </property>
+      <property name="maxLength">
+       <number>40</number>
       </property>
      </widget>
      <widget class="QLabel" name="lblSignupType">
@@ -831,6 +861,9 @@ font-size: 20px</string>
        <string notr="true">color: rgb(186, 189, 182);
 font: 20px</string>
       </property>
+      <property name="maxLength">
+       <number>10</number>
+      </property>
      </widget>
      <widget class="QLabel" name="lblDriversSignupDL">
       <property name="geometry">
@@ -862,6 +895,9 @@ font-size: 20px</string>
        <string notr="true">color: rgb(186, 189, 182);
 font: 20px</string>
       </property>
+      <property name="maxLength">
+       <number>17</number>
+      </property>
      </widget>
      <widget class="QLabel" name="lblDriversSignupLorry">
       <property name="geometry">
@@ -892,6 +928,9 @@ font-size: 20px</string>
       <property name="styleSheet">
        <string notr="true">color: rgb(186, 189, 182);
 font: 20px</string>
+      </property>
+      <property name="maxLength">
+       <number>40</number>
       </property>
      </widget>
      <widget class="QPushButton" name="btnDriversSignupBack">
@@ -976,6 +1015,9 @@ font-size: 20px</string>
        <string notr="true">color: rgb(186, 189, 182);
 font: 20px</string>
       </property>
+      <property name="maxLength">
+       <number>60</number>
+      </property>
      </widget>
      <widget class="QLineEdit" name="txtDriversSignupCompanyCity">
       <property name="geometry">
@@ -989,6 +1031,9 @@ font: 20px</string>
       <property name="styleSheet">
        <string notr="true">color: rgb(186, 189, 182);
 font: 20px</string>
+      </property>
+      <property name="maxLength">
+       <number>40</number>
       </property>
      </widget>
      <widget class="QLabel" name="lblDriversSignupLorryReg">
@@ -1074,6 +1119,9 @@ font-size: 28px</string>
       <property name="styleSheet">
        <string notr="true">color: rgb(186, 189, 182);
 font: 20px</string>
+      </property>
+      <property name="maxLength">
+       <number>40</number>
       </property>
      </widget>
      <widget class="QLabel" name="lblCargoOwnerSignupCategory">
@@ -1230,6 +1278,9 @@ font-size: 20px</string>
        <string notr="true">color: rgb(186, 189, 182);
 font: 20px</string>
       </property>
+      <property name="maxLength">
+       <number>40</number>
+      </property>
      </widget>
      <widget class="QLabel" name="lblForwarderCompanyTelephone">
       <property name="geometry">
@@ -1260,6 +1311,9 @@ font-size: 20px</string>
       <property name="styleSheet">
        <string notr="true">color: rgb(186, 189, 182);
 font: 20px</string>
+      </property>
+      <property name="maxLength">
+       <number>15</number>
       </property>
      </widget>
      <widget class="QLabel" name="lblForwarderSignupCompanyCity">
@@ -1309,6 +1363,9 @@ font-size: 20px</string>
        <string notr="true">color: rgb(186, 189, 182);
 font: 20px</string>
       </property>
+      <property name="maxLength">
+       <number>60</number>
+      </property>
      </widget>
      <widget class="QLineEdit" name="txtForwarderSignupCompanyCity">
       <property name="geometry">
@@ -1322,6 +1379,9 @@ font: 20px</string>
       <property name="styleSheet">
        <string notr="true">color: rgb(186, 189, 182);
 font: 20px</string>
+      </property>
+      <property name="maxLength">
+       <number>40</number>
       </property>
      </widget>
     </widget>
@@ -1407,6 +1467,9 @@ font-size: 20px</string>
        <string notr="true">color: rgb(186, 189, 182);
 font: 20px</string>
       </property>
+      <property name="maxLength">
+       <number>15</number>
+      </property>
      </widget>
      <widget class="QPushButton" name="btnCourierSignup">
       <property name="geometry">
@@ -1438,6 +1501,9 @@ color: rgb(186, 189, 182);</string>
       <property name="styleSheet">
        <string notr="true">color: rgb(186, 189, 182);
 font: 20px</string>
+      </property>
+      <property name="maxLength">
+       <number>40</number>
       </property>
      </widget>
      <widget class="QPushButton" name="btnCourierSignupBack">
@@ -1488,6 +1554,9 @@ font-size: 20px</string>
        <string notr="true">color: rgb(186, 189, 182);
 font: 20px</string>
       </property>
+      <property name="maxLength">
+       <number>40</number>
+      </property>
      </widget>
      <widget class="QLabel" name="lblCourierSignupCompanyCity">
       <property name="geometry">
@@ -1518,6 +1587,9 @@ font-size: 20px</string>
       <property name="styleSheet">
        <string notr="true">color: rgb(186, 189, 182);
 font: 20px</string>
+      </property>
+      <property name="maxLength">
+       <number>60</number>
       </property>
      </widget>
     </widget>

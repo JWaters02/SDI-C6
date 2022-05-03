@@ -32,6 +32,26 @@ std::string DBHandler::getResult(const std::string &query) {
     return ret;
 }
 
+std::vector<std::string> DBHandler::getResultVector(const std::string& query) {
+    std::vector<std::string> ret;
+    try {
+        pqxx::result r = queryText(query);
+        for (auto && row : r) {
+            for (auto && field: row) {
+                ret.push_back(field.c_str());
+            }
+        }
+    } catch (pqxx::sql_error const &e) {
+        std::cerr << "SQL error: " << e.what() << std::endl;
+        std::cerr << "Query was: " << e.what() << std::endl;
+        return {};
+    } catch (const std::exception &e) {
+        std::cerr << e.what() << std::endl;
+        return {};
+    }
+    return ret;
+}
+
 std::vector<std::vector<std::string>> DBHandler::getResult2DVector(const std::string &query) {
     std::vector<std::vector<std::string>> ret;
     try {

@@ -7,7 +7,7 @@
 std::vector<OrderInfo> Order::getPastOrders(const std::string& username) {
     // Call to DB to get orders given username where status is delivered or cancelled
     std::stringstream query;
-    query   << "SELECT * FROM Orders WHERE username = '"
+    query   << "SELECT * FROM OrderGoods WHERE username = '"
             << username
             << "' AND (orderStatus = 'Delivered' OR orderStatus = 'Cancelled')";
     std::vector<std::vector<std::string>> pastOrders = DBHandler::getResult2DVector(query.str());
@@ -17,11 +17,18 @@ std::vector<OrderInfo> Order::getPastOrders(const std::string& username) {
 std::vector<OrderInfo> Order::getCurrentOrders(const std::string& username) {
     // Call to DB to get orders given username where status is pending
     std::stringstream query;
-    query   << "SELECT * FROM Orders WHERE username = '"
+    query   << "SELECT * FROM OrderGoods WHERE username = '"
             << username
             << "' AND orderStatus = 'Pending'";
     std::vector<std::vector<std::string>> currentOrders = DBHandler::getResult2DVector(query.str());
     return parseOrderInfo(currentOrders);
+}
+
+std::vector<OrderInfo> Order::getAllCurrentOrders() {
+    std::stringstream query;
+    query   << "SELECT * FROM OrderGoods WHERE orderStatus = 'Pending'";
+    std::vector<std::vector<std::string>> allCurrentOrders = DBHandler::getResult2DVector(query.str());
+    return parseOrderInfo(allCurrentOrders);
 }
 
 std::vector<OrderInfo> Order::parseOrderInfo(const std::vector<std::vector<std::string>>& orderInfo) {
@@ -29,15 +36,57 @@ std::vector<OrderInfo> Order::parseOrderInfo(const std::vector<std::vector<std::
     std::vector<OrderInfo> parsedOrderInfo;
     for (const auto& order : orderInfo) {
         OrderInfo parsedOrder;
-        parsedOrder.id = std::to_string(std::stoi(order[0]));
-        parsedOrder.date = order[1];
-        parsedOrder.time = order[2];
-        parsedOrder.status = order[3];
-        parsedOrder.price = std::stod(order[4]);
-        parsedOrder.name = order[6];
+        parsedOrder.id = order[0];
+        parsedOrder.username = order[1];
+        parsedOrder.date = order[2];
+        parsedOrder.time = order[3];
+        parsedOrder.status = order[4];
+        parsedOrder.itemName = order[5];
+        parsedOrder.unitPrice = std::stod(order[6]);
+        parsedOrder.quantity = std::stoi(order[7]);
         parsedOrderInfo.push_back(parsedOrder);
     }
     return parsedOrderInfo;
+}
+
+void Order::makeOrder(const std::string& username, const std::string& itemName, const int& quantity, const double& unitPrice) {
+    // Get existing order IDs
+    std::vector<std::string> IDs = getOrderIDs();
+    // Loop through IDs to find the first that isn't used
+    int previous = 0;
+    for (std::string id : IDs) {
+        if (std::stoi(id) > previous) previous = std::stoi(id);
+    }
+    std::string unused = std::to_string(previous + 1);
+
+    const std::string status = "Pending";
+
+    std::stringstream query;
+    query   << "INSERT INTO OrderGoods VALUES ('"
+            << unused
+            << "', '"
+            << username
+            << "', '"
+            << currentDate()
+            << "', '"
+            << currentTime()
+            << "', '"
+            << status
+            << "', '"
+            << itemName
+            << "', "
+            << std::to_string(unitPrice)
+            << ", "
+            << std::to_string(quantity)
+            << ");";
+    DBHandler::writeFields(query.str());
+}
+
+std::vector<std::string> Order::getOrderIDs() {
+    std::stringstream query;
+    query   << "SELECT orderID FROM OrderGoods;";
+    std::vector<std::string> IDs = DBHandler::getResultVector(query.str());
+    return IDs;
 }
 
 std::string Order::currentDate() {

@@ -10,6 +10,21 @@
 #include <QString>
 #include "Database/DBHandler.h"
 
+/*
+CREATE TABLE IF NOT EXISTS OrderGoods (
+      orderID varchar(4) NOT NULL,
+      username varchar(20) NOT NULL,
+      orderDate date NOT NULL,
+      orderTime time NOT NULL,
+      orderStatus varchar(20) NOT NULL,
+      orderItemName varchar(40) NOT NULL,
+      orderUnitPrice double precision NOT NULL,
+      orderQuantity integer NOT NULL,
+      FOREIGN KEY (username) REFERENCES Users(username),
+      CONSTRAINT order_pk PRIMARY KEY (orderID)
+);
+*/
+
 enum EOrderStatuses {
     PENDING,
     DELIVERED,
@@ -22,35 +37,15 @@ struct OrderStatuses {
     std::string Cancelled = "Cancelled";
 };
 
-enum EItemCategories {
-
-};
-
-struct ItemCategories {
-    // Separate to enum because
-    // converting enum to string is a pain in C++
-    std::string Dry = "Dry";
-    std::string Wet = "Wet";
-    std::string Frozen = "Frozen";
-};
-
 struct OrderInfo {
     std::string id;
+    std::string username;
     std::string date;
     std::string time;
     std::string status;
-    int price;
-    std::string name;
-};
-
-struct ItemInfo {
-    std::string id;
-    EItemCategories category;
-    std::string name;
-    double weight;
-    double volume;
-    double price;
+    double unitPrice;
     int quantity;
+    std::string itemName;
 };
 
 struct CommissionInfo {
@@ -60,12 +55,16 @@ struct CommissionInfo {
 class Order {
 private:
     static std::vector<OrderInfo> parseOrderInfo(const std::vector<std::vector<std::string>>& orderInfo);
+    static std::vector<std::string> getOrderIDs();
     static std::string currentDate();
     static std::string currentTime();
 
 public:
     static std::vector<OrderInfo> getPastOrders(const std::string& username);
     static std::vector<OrderInfo> getCurrentOrders(const std::string& username);
+    static std::vector<OrderInfo> getAllCurrentOrders();
+    static std::vector<OrderInfo> getFTakenOrders();
+    static void makeOrder(const std::string& username, const std::string& itemName, const int& quantity, const double& unitPrice);
 };
 
 

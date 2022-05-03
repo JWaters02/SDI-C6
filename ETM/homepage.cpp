@@ -6,18 +6,17 @@
 
 HomePage::HomePage(QWidget *parent) :
     QWidget(parent),
-    ui(new Ui::HomePage)
-{
+    ui(new Ui::HomePage) {
     ui->setupUi(this);
     setUsername();
 
     // Load current and past orders from DB into list views
     HomePage::loadCurrentOrders();
     HomePage::loadPastOrders();
+    HomePage::loadAllCurrentOrders();
 }
 
-HomePage::~HomePage()
-{
+HomePage::~HomePage() {
     delete ui;
 }
 
@@ -45,7 +44,7 @@ void HomePage::loadCurrentOrders() {
     currentOrderInfo = Order::getCurrentOrders(username);
     for (const OrderInfo& orderInfo : currentOrderInfo) {
         QString orderInfoString = QString::fromStdString(
-                "ID: " + orderInfo.id + " | Name: " + orderInfo.name + " | Date: " + orderInfo.date);
+                "ID: " + orderInfo.id + " | Name: " + orderInfo.itemName + " | Date: " + orderInfo.date);
         ui->lwConsigneeOrders->addItem(orderInfoString);
     }
 }
@@ -54,13 +53,32 @@ void HomePage::loadPastOrders() {
     pastOrderInfo = Order::getPastOrders(username);
     for (const OrderInfo& orderInfo : pastOrderInfo) {
         QString orderInfoString = QString::fromStdString(
-                "ID: " + orderInfo.id + " | Name: " + orderInfo.name + " | Date: " + orderInfo.date);
+                "ID: " + orderInfo.id + " | Name: " + orderInfo.itemName + " | Date: " + orderInfo.date);
         ui->lwConsigneePastOrders->addItem(orderInfoString);
     }
 }
 
-void HomePage::on_btnCOLogout_clicked()
-{
+void HomePage::loadAllCurrentOrders() {
+    allCurrentOrderInfo = Order::getAllCurrentOrders();
+    for (const OrderInfo& orderInfo : allCurrentOrderInfo) {
+        QString orderInfoString = QString::fromStdString(
+                "ID: " + orderInfo.id + " | User: " + orderInfo.username +
+                    " | Name: " + orderInfo.itemName);
+        ui->lwFOrders->addItem(orderInfoString);
+    }
+}
+
+void HomePage::loadFTakenOrders() {
+    fTakenOrdersInfo = Order::getFTakenOrders();
+    for (const OrderInfo& orderInfo : allCurrentOrderInfo) {
+        QString orderInfoString = QString::fromStdString(
+                "ID: " + orderInfo.id + " | User: " + orderInfo.username +
+                    " | Name: " + orderInfo.itemName);
+        ui->lwFTakenOrders->addItem(orderInfoString);
+    }
+}
+
+void HomePage::on_btnCOLogout_clicked() {
     // Go back to the login page
     auto *w = new MainWindow;
     w->setAttribute(Qt::WA_DeleteOnClose);
@@ -68,47 +86,93 @@ void HomePage::on_btnCOLogout_clicked()
     this->close();
 }
 
-void HomePage::on_btnConsigneeOrdersAddItem_clicked()
-{
-    new QListWidgetItem(tr("Item X"), ui->lwConsigneeOrders);
-    new QListWidgetItem(tr("Item Y"), ui->lwConsigneeOrders);
-}
-
-void HomePage::on_lwConsigneeOrders_itemClicked(QListWidgetItem *item)
-{
+void HomePage::on_lwConsigneeOrders_itemClicked(QListWidgetItem *item) {
     // Get the order ID from the clicked item
     QString orderID = item->text().split(" ")[1];
     for (const OrderInfo& orderInfo : currentOrderInfo) {
         if (orderInfo.id == orderID.toStdString()) {
-            // Output the order info to the lblConsigneeOrderInfo
             ui->lblConsigneeOrderInfo->setText(QString::fromStdString(
-                    "ID: " + orderInfo.id + " | Name: " + orderInfo.name +
+                    "ID: " + orderInfo.id + " | Name: " + orderInfo.itemName +
                     " | Date: " + orderInfo.date + " | Time: " + orderInfo.time +
-                    " | Status: " + orderInfo.status + " | Total Price: " + std::to_string(orderInfo.price)));
+                    " | Status: " + orderInfo.status + " | Total Price: " +
+                    to_string_with_precision(orderInfo.unitPrice * orderInfo.quantity)));
             break;
         }
     }
 }
 
-void HomePage::on_lwConsigneePastOrders_itemClicked(QListWidgetItem *item)
-{
+void HomePage::on_lwConsigneePastOrders_itemClicked(QListWidgetItem *item) {
     // Get the order ID from the clicked item
     QString orderID = item->text().split(" ")[1];
     for (const OrderInfo& orderInfo : pastOrderInfo) {
         if (orderInfo.id == orderID.toStdString()) {
-            // Output the order info to the lblConsigneeOrderInfo
             ui->lblConsigneePastOrderInfo->setText(QString::fromStdString(
-                    "ID: " + orderInfo.id + " | Name: " + orderInfo.name +
+                    "ID: " + orderInfo.id + " | Name: " + orderInfo.itemName +
                     " | Date: " + orderInfo.date + " | Time: " + orderInfo.time +
-                    " | Status: " + orderInfo.status + " | Total Price: " + std::to_string(orderInfo.price)));
+                    " | Status: " + orderInfo.status + " | Total Price: "  +
+                    to_string_with_precision(orderInfo.unitPrice * orderInfo.quantity)));
             break;
         }
     }
 }
 
-void HomePage::on_btnConsigneeOrdersNewOrder_clicked()
-{
-
+void HomePage::on_btnConsigneeOrdersNewOrder_clicked() {
+    if (ui->txtConsigneeOrderItemName->text().isEmpty()) {
+        ui->lblConsigneeOrderItemInfo->setText("Invalid item name!");
+    } else {
+        Order::makeOrder(this->username, ui->txtConsigneeOrderItemName->text().toStdString(),
+                         ui->sbxConsigneeOrderQuantity->value(), ui->dsbxConsigneeOrderPrice->value());
+        ui->lblConsigneeOrderItemInfo->setText("Placed order!");
+    }
 }
 
+void HomePage::on_btnConsigneeOrdersRefresh_clicked() {
+    ui->lblConsigneeOrderItemInfo->clear();
+    ui->lwConsigneeOrders->clear();
+    ui->lwConsigneePastOrders->clear();
+    loadPastOrders();
+    loadCurrentOrders();
+}
+
+
+void HomePage::on_btnFOrdersRefresh_clicked() {
+    ui->lblFOrderInfo->clear();
+    ui->lblFTakenOrderInfo->clear();
+    ui->lwFTakenOrders->clear();
+    ui->lwFOrders->clear();
+    loadAllCurrentOrders();
+}
+
+void HomePage::on_lwFOrders_itemClicked(QListWidgetItem *item) {
+    // Get the order ID from the clicked item
+    QString orderID = item->text().split(" ")[1];
+    for (const OrderInfo& orderInfo : allCurrentOrderInfo) {
+        if (orderInfo.id == orderID.toStdString()) {
+            ui->lblFOrderInfo->setText(QString::fromStdString(
+                    "ID: " + orderInfo.id + " | User: " + orderInfo.username +
+                    " | Name: " + orderInfo.itemName +
+                    " | Date: " + orderInfo.date + " | Time: " + orderInfo.time +
+                    " | Status: " + orderInfo.status + " | Total Price: "  +
+                    to_string_with_precision(orderInfo.unitPrice * orderInfo.quantity)));
+            break;
+        }
+    }
+}
+
+void HomePage::on_btnFOrdersTakeOrder_clicked() {
+    // Take the clicked order in current orders and put it into taken orders
+    if (ui->lwFOrders->selectedItems().empty()) {
+        ui->lblFTakenOrderInfo->setText("No selected order item!");
+    } else if (ui->lwFOrders->selectedItems().length() > 1) {
+        ui->lblFTakenOrderInfo->setText("Please only select 1 order item!");
+    } else {
+        ui->lwFTakenOrders->addItem(ui->lwFOrders->selectedItems().first());
+        ui->lblFTakenOrderInfo->setText("Taken item!");
+    }
+}
+
+
+void HomePage::on_lwFTakenOrders_itemClicked(QListWidgetItem *item) {
+
+}
 
