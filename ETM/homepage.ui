@@ -434,6 +434,42 @@ font-size: 16px</string>
         <bool>true</bool>
        </property>
       </widget>
+      <widget class="QPushButton" name="btnCORefreshRunningAuction">
+       <property name="geometry">
+        <rect>
+         <x>30</x>
+         <y>380</y>
+         <width>91</width>
+         <height>31</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">background-color: rgb(54, 54, 54);
+font: 16px;
+color: rgb(186, 189, 182);</string>
+       </property>
+       <property name="text">
+        <string>Refresh</string>
+       </property>
+      </widget>
+      <widget class="QPushButton" name="btnCOEndRunningAuction">
+       <property name="geometry">
+        <rect>
+         <x>850</x>
+         <y>380</y>
+         <width>91</width>
+         <height>31</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">background-color: rgb(54, 54, 54);
+font: 16px;
+color: rgb(186, 189, 182);</string>
+       </property>
+       <property name="text">
+        <string>End</string>
+       </property>
+      </widget>
      </widget>
      <widget class="QWidget" name="tbFOrders_4">
       <attribute name="title">

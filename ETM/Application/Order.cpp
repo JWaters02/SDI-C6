@@ -102,9 +102,7 @@ void Order::makeOrder(const std::string& username, const std::string& itemName, 
 }
 
 void Order::takeOrder(const EUserTypes& userType, const std::string& username, const std::string& orderID) {
-    std::string type = "";
-
-
+    std::string type = getType(userType);
     std::stringstream query;
     query   << "UPDATE OrderGoods SET "
             << type

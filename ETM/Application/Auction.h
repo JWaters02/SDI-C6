@@ -13,6 +13,7 @@ CREATE TABLE IF NOT EXISTS COAuction (
       orderID varchar(4) NOT NULL,
       username varchar(20) NOT NULL,
       auctionStartPrice double precision NOT NULL,
+      auctionBidPrice double precision DEFAULT 0.0,
       auctionCommission double precision NOT NULL,
       auctionStartDate date NOT NULL,
       auctionStartTime time NOT NULL,
@@ -52,13 +53,16 @@ struct COAuctionInfo {
 class Auction {
 private:
     static std::vector<COAuctionInfo> parseAuctionInfo(const std::vector<std::vector<std::string>>& auctionInfo);
+    static std::string getTable(const EUserTypes& userType);
     static std::string currentDate();
     static std::string currentTime();
 
 public:
-    static std::vector<COAuctionInfo> getCORunningAuctions(const std::string& username);
+    static std::vector<COAuctionInfo> getRunningAuctions(const EUserTypes& userType, const std::string& username);
     static void makeCOAuction(const std::string& username, const std::string& orderId, const double& startPrice, const double& commission, const int& length);
-    static std::vector<std::string> getCOAuctionIDs();
+    static std::vector<std::string> getAuctionIDs(const EUserTypes& userType);
+    static bool hasBidder(const std::string& auctionID);
+    static void endAuction(const EUserTypes& userType, const std::string& auctionID);
 };
 
 

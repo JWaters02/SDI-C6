@@ -41,6 +41,8 @@ private slots:
     void on_btnCOBidsCopyOrderPrice_clicked();
     void on_lwCOTakenOrdersBids_itemClicked(QListWidgetItem *item);
     void on_btnCOBidsCreate_clicked();
+    void on_btnCOEndRunningAuction_clicked();
+    void on_lwCORunningAuctions_itemClicked(QListWidgetItem *item);
 
 private:
     Ui::HomePage *ui;
@@ -53,6 +55,7 @@ private:
     std::vector<COAuctionInfo> coAuctionInfo;
     std::string selectedOrderID;
     double selectedOrderPrice;
+    std::string selectedRunningAuctionID;
 
     void loadConsigneeCurrentOrders();
     void loadConsigneePastOrders();

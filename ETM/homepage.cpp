@@ -106,15 +106,15 @@ void HomePage::loadCOTakenOrders() {
 }
 
 void HomePage::loadCOAuctions() {
-    coAuctionInfo = Auction::getCORunningAuctions(this->username);
+    coAuctionInfo = Auction::getRunningAuctions(EUserTypes::CARGO_OWNER, this->username);
     for (const COAuctionInfo& auctionInfo : coAuctionInfo) {
         QString auctionInfoString = QString::fromStdString(
-                    "A-ID: " + auctionInfo.auctionId +
-                    " | O-ID: " + auctionInfo.orderId +
+                    "Auction ID: " + auctionInfo.auctionId +
+                    " | Order ID: " + auctionInfo.orderId +
                     " | Bidder: " + auctionInfo.bidder +
-                    " | Bid Price: " + std::to_string(auctionInfo.bidPrice) +
-                    " | Commission: " + std::to_string(auctionInfo.commission) +
-                    " | Income: " + std::to_string(auctionInfo.bidPrice + auctionInfo.commission));
+                    " | Bid Price: £" + to_string_with_precision(auctionInfo.bidPrice) +
+                    " | Commission: £" + to_string_with_precision(auctionInfo.commission) +
+                    " | Income: £" + to_string_with_precision(auctionInfo.bidPrice + auctionInfo.commission));
         ui->lwCORunningAuctions->addItem(auctionInfoString);
     }
 }
@@ -210,7 +210,6 @@ void HomePage::on_btnFOrdersTakeOrder_clicked() {
     }
 }
 
-
 void HomePage::on_lwFTakenOrders_itemClicked(QListWidgetItem *item) {
     // Get the order ID from the clicked item
     QString orderID = item->text().split(" ")[1];
@@ -228,7 +227,6 @@ void HomePage::on_lwFTakenOrders_itemClicked(QListWidgetItem *item) {
     }
 }
 
-
 void HomePage::on_btnCOOrdersRefresh_clicked() {
     ui->lwCOOrders->clear();
     ui->lwCOTakenOrders->clear();
@@ -239,7 +237,6 @@ void HomePage::on_btnCOOrdersRefresh_clicked() {
     loadCOFOrders();
 }
 
-
 void HomePage::on_btnCOOrdersTakeOrder_clicked() {
     // Take the clicked order in current orders and put it into taken orders
     if (ui->lwCOOrders->selectedItems().empty()) {
@@ -249,14 +246,11 @@ void HomePage::on_btnCOOrdersTakeOrder_clicked() {
     } else {
         // Change the cargoOwner in the table to current
         Order::takeOrder(EUserTypes::CARGO_OWNER, this->username, this->selectedOrderID);
-        std::cout << this->username << std::endl;
-
         ui->lblCOTakenOrderInfo->setText("Taken item!");
         ui->lwCOTakenOrders->clear();
         loadCOTakenOrders();
     }
 }
-
 
 void HomePage::on_lwCOTakenOrders_itemClicked(QListWidgetItem *item) {
     QString orderID = item->text().split(" ")[1];
@@ -274,7 +268,6 @@ void HomePage::on_lwCOTakenOrders_itemClicked(QListWidgetItem *item) {
     }
 }
 
-
 void HomePage::on_lwCOOrders_itemClicked(QListWidgetItem *item) {
     QString orderID = item->text().split(" ")[1];
     for (const OrderInfo& orderInfo : COFOrderInfo) {
@@ -291,14 +284,13 @@ void HomePage::on_lwCOOrders_itemClicked(QListWidgetItem *item) {
     }
 }
 
-
 void HomePage::on_btnCOBidsRefresh_clicked() {
     ui->lwCOTakenOrdersBids->clear();
     ui->lwCOTakenOrders->clear();
     ui->lblCOTakenOrderInfoBids->clear();
+    ui->lblCOCreateAuctionInfo->clear();
     loadCOTakenOrders();
 }
-
 
 void HomePage::on_btnCOBidsCopyOrderPrice_clicked() {
     if (ui->lwCOTakenOrdersBids->selectedItems().empty()) {
@@ -308,7 +300,6 @@ void HomePage::on_btnCOBidsCopyOrderPrice_clicked() {
         ui->lblCOTakenOrderInfoBids->setText("Copied price across!");
     }
 }
-
 
 void HomePage::on_lwCOTakenOrdersBids_itemClicked(QListWidgetItem *item) {
     QString orderID = item->text().split(" ")[1];
@@ -328,7 +319,6 @@ void HomePage::on_lwCOTakenOrdersBids_itemClicked(QListWidgetItem *item) {
     }
 }
 
-
 void HomePage::on_btnCOBidsCreate_clicked() {
     // Check that an order is selected
     if (ui->lwCOTakenOrdersBids->selectedItems().empty()) {
@@ -336,10 +326,11 @@ void HomePage::on_btnCOBidsCreate_clicked() {
     } else {
         // Check that starting price is not less than selectedOrderPrice
         if (ui->dsbxCOBidsStartingPrice->value() < this->selectedOrderPrice) {
-            ui->lblCOCreateAuctionInfo->setText("Your starting price must be more than or equal to the order total price");
+            ui->lblCOCreateAuctionInfo->setText("Your starting price must be more than or equal to the order total price!");
         } else {
             // Check if auction for orderID is already running
-            std::vector<std::string> runningAuctionOrders = Auction::getCOAuctionIDs();
+            // TODO: Maybe this needs to check for username as well?
+            std::vector<std::string> runningAuctionOrders = Auction::getAuctionIDs(EUserTypes::CARGO_OWNER);
             // TODO: Possible optimisation: use std::find() instead
             if (std::count(runningAuctionOrders.begin(), runningAuctionOrders.end(), this->selectedOrderID)) {
                 ui->lblCOCreateAuctionInfo->setText("Order is already in an auction by you or another cargo owner!");
@@ -355,5 +346,29 @@ void HomePage::on_btnCOBidsCreate_clicked() {
             }
         }
     }
+}
+
+void HomePage::on_btnCOEndRunningAuction_clicked() {
+    // Check that an auction is selected
+    if (ui->lwCORunningAuctions->selectedItems().empty()) {
+        ui->lblCOCreateAuctionInfo->setText("Please select an auction to end!");
+    } else {
+        // Check that an auction has a bidder
+        if (!Auction::hasBidder(this->selectedRunningAuctionID)) {
+            ui->lblCOCreateAuctionInfo->setText("Auction does not have a bidder yet! Please wait longer!");
+        } else {
+            // Send order ID to bidder
+            Order::takeOrder(EUserTypes::DRIVER, this->username, this->selectedOrderID);
+            Auction::endAuction(EUserTypes::CARGO_OWNER, this->selectedRunningAuctionID);
+            ui->lblCOCreateAuctionInfo->setText("Ended auction and sent order to the bidder!");
+            ui->lwCORunningAuctions->clear();
+            loadCOAuctions();
+        }
+    }
+}
+
+void HomePage::on_lwCORunningAuctions_itemClicked(QListWidgetItem *item) {
+    this->selectedRunningAuctionID = item->text().split(" ")[2].toStdString();
+    ui->lblCOCreateAuctionInfo->clear();
 }
 

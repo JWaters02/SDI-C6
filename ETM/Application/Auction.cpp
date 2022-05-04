@@ -1,14 +1,5 @@
 #include "Auction.h"
 
-std::vector<COAuctionInfo> Auction::getCORunningAuctions(const std::string& username) {
-    std::stringstream query;
-    query   << "SELECT * FROM COAuction WHERE username = '"
-            << username
-            << "' AND auctionStatus = 'Running'";
-    std::vector<std::vector<std::string>> runningAuctions = DBHandler::getResult2DVector(query.str());
-    return parseAuctionInfo(runningAuctions);
-}
-
 std::vector<COAuctionInfo> Auction::parseAuctionInfo(const std::vector<std::vector<std::string>>& auctionInfo) {
     std::vector<COAuctionInfo> parsedAuctionInfo;
     for (const auto& auction : auctionInfo) {
@@ -29,16 +20,29 @@ std::vector<COAuctionInfo> Auction::parseAuctionInfo(const std::vector<std::vect
     return parsedAuctionInfo;
 }
 
-std::vector<std::string> Auction::getCOAuctionIDs() {
+
+std::vector<COAuctionInfo> Auction::getRunningAuctions(const EUserTypes& userType, const std::string& username) {
     std::stringstream query;
-    query   << "SELECT auctionID FROM COAuction";
+    query   << "SELECT * FROM "
+            << getTable(userType)
+            << " WHERE username = '"
+            << username
+            << "' AND auctionStatus = 'Running'";
+    std::vector<std::vector<std::string>> runningAuctions = DBHandler::getResult2DVector(query.str());
+    return parseAuctionInfo(runningAuctions);
+}
+
+std::vector<std::string> Auction::getAuctionIDs(const EUserTypes& userType) {
+    std::stringstream query;
+    query   << "SELECT auctionID FROM "
+            << getTable(userType);
     std::vector<std::string> IDs = DBHandler::getResultVector(query.str());
     return IDs;
 }
 
 void Auction::makeCOAuction(const std::string& username, const std::string& orderId, const double& startPrice, const double& commission, const int& length) {
     // Get existing auctionIDs
-    std::vector<std::string> IDs = getCOAuctionIDs();
+    std::vector<std::string> IDs = getAuctionIDs(EUserTypes::CARGO_OWNER);
     // Loop through IDs to find the first that isn't used
     int previous = 0;
     for (std::string id : IDs) {
@@ -58,6 +62,8 @@ void Auction::makeCOAuction(const std::string& username, const std::string& orde
             << "', '"
             << std::to_string(startPrice)
             << "', '"
+            << std::to_string(startPrice)
+            << "', '"
             << std::to_string(commission)
             << "', '"
             << currentDate()
@@ -69,6 +75,35 @@ void Auction::makeCOAuction(const std::string& username, const std::string& orde
             << status
             << "');";
     DBHandler::writeFields(query.str());
+}
+
+void Auction::endAuction(const EUserTypes& userType, const std::string& auctionID) {
+    std::stringstream query;
+    query   << "UPDATE "
+            << getTable(userType)
+            << " SET auctionStatus = 'Finished' WHERE auctionID = '"
+            << auctionID
+            << "';";
+    DBHandler::writeFields(query.str());
+}
+
+bool Auction::hasBidder(const std::string& auctionID) {
+    std::stringstream query;
+    query   << "SELECT auctionBidder FROM COAuction WHERE auctionID = '"
+            << auctionID
+            << "';";
+    std::string ret = DBHandler::getResult(query.str());
+    if (ret != "NONE") return true;
+    return false;
+}
+
+std::string Auction::getTable(const EUserTypes& userType) {
+    if (userType == EUserTypes::CARGO_OWNER) {
+        return "COAuction";
+    } else if (userType == EUserTypes::DRIVER) {
+        return "DriverAuction";
+    }
+    return "";
 }
 
 std::string Auction::currentDate() {
