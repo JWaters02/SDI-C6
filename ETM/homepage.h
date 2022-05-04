@@ -40,6 +40,7 @@ private slots:
     void on_btnCOBidsRefresh_clicked();
     void on_btnCOBidsCopyOrderPrice_clicked();
     void on_lwCOTakenOrdersBids_itemClicked(QListWidgetItem *item);
+    void on_btnCOBidsCreate_clicked();
 
 private:
     Ui::HomePage *ui;

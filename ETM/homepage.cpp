@@ -217,6 +217,7 @@ void HomePage::on_lwFTakenOrders_itemClicked(QListWidgetItem *item) {
 void HomePage::on_btnCOOrdersRefresh_clicked() {
     ui->lwCOOrders->clear();
     ui->lwCOTakenOrders->clear();
+    ui->lwCOTakenOrdersBids->clear();
     ui->lblCOTakenOrderInfo->clear();
     ui->lblCOOrderInfo->clear();
     loadCOTakenOrders();
@@ -278,6 +279,7 @@ void HomePage::on_lwCOOrders_itemClicked(QListWidgetItem *item) {
 
 void HomePage::on_btnCOBidsRefresh_clicked() {
     ui->lwCOTakenOrdersBids->clear();
+    ui->lwCOTakenOrders->clear();
     ui->lblCOTakenOrderInfoBids->clear();
     loadCOTakenOrders();
 }
@@ -308,5 +310,10 @@ void HomePage::on_lwCOTakenOrdersBids_itemClicked(QListWidgetItem *item) {
             break;
         }
     }
+}
+
+
+void HomePage::on_btnCOBidsCreate_clicked() {
+
 }
 
