@@ -96,7 +96,6 @@ struct InfoMinLengths {
 };
 
 class UserUtils {
-public:
 
 };
 

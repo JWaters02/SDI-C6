@@ -6,13 +6,13 @@
 #include <sstream>
 #include "Users/UserUtils.h"
 #include "Application/Order.h"
+#include "Application/Auction.h"
 
 namespace Ui {
 class HomePage;
 }
 
-class HomePage : public QWidget
-{
+class HomePage : public QWidget {
     Q_OBJECT
 
 public:
@@ -50,6 +50,7 @@ private:
     std::vector<OrderInfo> fTakenOrdersInfo;
     std::vector<OrderInfo> COTakenOrderInfo;
     std::vector<OrderInfo> COFOrderInfo;
+    std::vector<COAuctionInfo> coAuctionInfo;
     std::string selectedOrderID;
     double selectedOrderPrice;
 
@@ -59,6 +60,7 @@ private:
     void loadFTakenOrders();
     void loadCOFOrders();
     void loadCOTakenOrders();
+    void loadCOAuctions();
 
     template <typename T>
     std::string to_string_with_precision(const T in, const int n = 2) {

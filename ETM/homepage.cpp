@@ -29,6 +29,7 @@ void HomePage::showCorrectPage(EUserTypes userType) {
     } else if (userType == EUserTypes::CARGO_OWNER) {
         HomePage::loadCOTakenOrders();
         HomePage::loadCOFOrders();
+        HomePage::loadCOAuctions();
         ui->Home->setCurrentIndex(1);
     } else if (userType == EUserTypes::DRIVER) {
         ui->Home->setCurrentIndex(2);
@@ -71,7 +72,7 @@ void HomePage::loadAllCurrentOrders() {
     allCurrentOrderInfo = Order::getAllCurrentOrders();
     for (const OrderInfo& orderInfo : allCurrentOrderInfo) {
         QString orderInfoString = QString::fromStdString(
-                "ID: " + orderInfo.id + " | User: " + orderInfo.username + " | Name: " + orderInfo.itemName);
+                "ID: " + orderInfo.id + " | Buyer: " + orderInfo.username + " | Name: " + orderInfo.itemName);
         ui->lwFOrders->addItem(orderInfoString);
     }
 }
@@ -80,7 +81,7 @@ void HomePage::loadFTakenOrders() {
     fTakenOrdersInfo = Order::getTakenOrders(EUserTypes::FORWARDER, this->username);
     for (const OrderInfo& orderInfo : fTakenOrdersInfo) {
         QString orderInfoString = QString::fromStdString(
-                "ID: " + orderInfo.id + " | User: " + orderInfo.username + " | Name: " + orderInfo.itemName);
+                "ID: " + orderInfo.id + " | Buyer: " + orderInfo.username + " | Name: " + orderInfo.itemName);
         ui->lwFTakenOrders->addItem(orderInfoString);
     }
 }
@@ -89,7 +90,7 @@ void HomePage::loadCOFOrders() {
     COFOrderInfo = Order::getAllTakenOrders(EUserTypes::FORWARDER);
     for (const OrderInfo& orderInfo : COFOrderInfo) {
         QString orderInfoString = QString::fromStdString(
-                "ID: " + orderInfo.id + " | User: " + orderInfo.username + " | Name: " + orderInfo.itemName);
+                "ID: " + orderInfo.id + " | Buyer: " + orderInfo.username + " | Name: " + orderInfo.itemName);
         ui->lwCOOrders->addItem(orderInfoString);
     }
 }
@@ -98,9 +99,23 @@ void HomePage::loadCOTakenOrders() {
     COTakenOrderInfo = Order::getTakenOrders(EUserTypes::CARGO_OWNER, this->username);
     for (const OrderInfo& orderInfo : COTakenOrderInfo) {
         QString orderInfoString = QString::fromStdString(
-                "ID: " + orderInfo.id + " | User: " + orderInfo.username + " | Name: " + orderInfo.itemName);
+                "ID: " + orderInfo.id + " | Buyer: " + orderInfo.username + " | Name: " + orderInfo.itemName);
         ui->lwCOTakenOrders->addItem(orderInfoString);
         ui->lwCOTakenOrdersBids->addItem(orderInfoString);
+    }
+}
+
+void HomePage::loadCOAuctions() {
+    coAuctionInfo = Auction::getCORunningAuctions(this->username);
+    for (const COAuctionInfo& auctionInfo : coAuctionInfo) {
+        QString auctionInfoString = QString::fromStdString(
+                    "A-ID: " + auctionInfo.auctionId +
+                    " | O-ID: " + auctionInfo.orderId +
+                    " | Bidder: " + auctionInfo.bidder +
+                    " | Bid Price: " + std::to_string(auctionInfo.bidPrice) +
+                    " | Commission: " + std::to_string(auctionInfo.commission) +
+                    " | Income: " + std::to_string(auctionInfo.bidPrice + auctionInfo.commission));
+        ui->lwCORunningAuctions->addItem(auctionInfoString);
     }
 }
 
@@ -306,7 +321,8 @@ void HomePage::on_lwCOTakenOrdersBids_itemClicked(QListWidgetItem *item) {
                     " | Status: " + orderInfo.status + " | Total Price: "  +
                     to_string_with_precision(orderInfo.unitPrice * orderInfo.quantity) +
                     " | Taken Order"));
-            this->selectedOrderPrice = orderInfo.unitPrice;
+            this->selectedOrderPrice = orderInfo.unitPrice * orderInfo.quantity;
+            this->selectedOrderID = orderInfo.id;
             break;
         }
     }
@@ -314,6 +330,30 @@ void HomePage::on_lwCOTakenOrdersBids_itemClicked(QListWidgetItem *item) {
 
 
 void HomePage::on_btnCOBidsCreate_clicked() {
+    // Check that an order is selected
+    if (ui->lwCOTakenOrdersBids->selectedItems().empty()) {
+        ui->lblCOCreateAuctionInfo->setText("Select an order to create an auction on!");
+    } else {
+        // Check that starting price is not less than selectedOrderPrice
+        if (ui->dsbxCOBidsStartingPrice->value() < this->selectedOrderPrice) {
+            ui->lblCOCreateAuctionInfo->setText("Your starting price must be more than or equal to the order total price");
+        } else {
+            // Check if auction for orderID is already running
+            std::vector<std::string> runningAuctionOrders = Auction::getCOAuctionIDs();
+            // TODO: Possible optimisation: use std::find() instead
+            if (std::count(runningAuctionOrders.begin(), runningAuctionOrders.end(), this->selectedOrderID)) {
+                ui->lblCOCreateAuctionInfo->setText("Order is already in an auction by you or another cargo owner!");
+            } else {
+                // Create the auction in the DB
+                Auction::makeCOAuction(this->username, this->selectedOrderID, ui->dsbxCOBidsStartingPrice->value(),
+                                     ui->dsbxCOBidsCommissionPrice->value(), ui->sbxCOBidsLength->value());
+                ui->lblCOCreateAuctionInfo->setText("Created auction!");
 
+                // Refresh the running auctions
+                ui->lwCORunningAuctions->clear();
+                loadCOAuctions();
+            }
+        }
+    }
 }
 

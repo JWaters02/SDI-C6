@@ -49,10 +49,6 @@ struct OrderInfo {
     std::string itemName;
 };
 
-struct CommissionInfo {
-    double commissionPercentage;
-};
-
 class Order {
 private:
     static std::vector<OrderInfo> parseOrderInfo(const std::vector<std::vector<std::string>>& orderInfo);
