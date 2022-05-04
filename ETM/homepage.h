@@ -33,6 +33,13 @@ private slots:
     void on_lwFOrders_itemClicked(QListWidgetItem *item);
     void on_btnFOrdersTakeOrder_clicked();
     void on_lwFTakenOrders_itemClicked(QListWidgetItem *item);
+    void on_btnCOOrdersRefresh_clicked();
+    void on_btnCOOrdersTakeOrder_clicked();
+    void on_lwCOTakenOrders_itemClicked(QListWidgetItem *item);
+    void on_lwCOOrders_itemClicked(QListWidgetItem *item);
+    void on_btnCOBidsRefresh_clicked();
+    void on_btnCOBidsCopyOrderPrice_clicked();
+    void on_lwCOTakenOrdersBids_itemClicked(QListWidgetItem *item);
 
 private:
     Ui::HomePage *ui;
@@ -40,12 +47,17 @@ private:
     std::vector<OrderInfo> pastOrderInfo;
     std::vector<OrderInfo> allCurrentOrderInfo;
     std::vector<OrderInfo> fTakenOrdersInfo;
+    std::vector<OrderInfo> COTakenOrderInfo;
+    std::vector<OrderInfo> COFOrderInfo;
     std::string selectedOrderID;
+    double selectedOrderPrice;
 
-    void loadCurrentOrders();
-    void loadPastOrders();
+    void loadConsigneeCurrentOrders();
+    void loadConsigneePastOrders();
     void loadAllCurrentOrders();
     void loadFTakenOrders();
+    void loadCOFOrders();
+    void loadCOTakenOrders();
 
     template <typename T>
     std::string to_string_with_precision(const T in, const int n = 2) {

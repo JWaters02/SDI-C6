@@ -1,7 +1,3 @@
-//
-// Created by root on 18/02/2022.
-//
-
 #include "Order.h"
 
 std::vector<OrderInfo> Order::getPastOrders(const std::string& username) {
@@ -9,7 +5,7 @@ std::vector<OrderInfo> Order::getPastOrders(const std::string& username) {
     std::stringstream query;
     query   << "SELECT * FROM OrderGoods WHERE username = '"
             << username
-            << "' AND (orderStatus = 'Delivered' OR orderStatus = 'Cancelled');";
+            << "' AND (orderStatus = 'Delivered' OR orderStatus = 'Cancelled')";
     std::vector<std::vector<std::string>> pastOrders = DBHandler::getResult2DVector(query.str());
     return parseOrderInfo(pastOrders);
 }
@@ -19,42 +15,43 @@ std::vector<OrderInfo> Order::getCurrentOrders(const std::string& username) {
     std::stringstream query;
     query   << "SELECT * FROM OrderGoods WHERE username = '"
             << username
-            << "' AND orderStatus = 'Pending';";
+            << "' AND orderStatus = 'Pending'";
     std::vector<std::vector<std::string>> currentOrders = DBHandler::getResult2DVector(query.str());
     return parseOrderInfo(currentOrders);
 }
 
 std::vector<OrderInfo> Order::getAllCurrentOrders() {
     std::stringstream query;
-    query   << "SELECT * FROM OrderGoods WHERE orderStatus = 'Pending';";
+    query   << "SELECT * FROM OrderGoods WHERE orderStatus = 'Pending'";
     std::vector<std::vector<std::string>> allCurrentOrders = DBHandler::getResult2DVector(query.str());
     return parseOrderInfo(allCurrentOrders);
 }
 
 std::vector<OrderInfo> Order::getTakenOrders(const EUserTypes& userType, const std::string& username) {
-    std::string type = "";
-    if (userType == EUserTypes::CARGO_OWNER) {
-        type = "orderCargoOwnerName";
-    } else if (userType == EUserTypes::DRIVER) {
-        type = "orderDriverName";
-    } else if (userType == EUserTypes::FORWARDER) {
-        type = "orderForwarderName";
-    } else if (userType == EUserTypes::COURIER) {
-        type = "orderCourierName";
-    }
+    std::string type = getType(userType);
 
     std::stringstream query;
     query   << "SELECT * FROM OrderGoods WHERE "
             << type
             << " = '"
             << username
-            << "' AND orderStatus = 'Pending';";
+            << "' AND orderStatus = 'Pending'";
+    std::vector<std::vector<std::string>> takenOrders = DBHandler::getResult2DVector(query.str());
+    return parseOrderInfo(takenOrders);
+}
+
+std::vector<OrderInfo> Order::getAllTakenOrders(const EUserTypes& userType) {
+    std::string type = getType(userType);
+
+    std::stringstream query;
+    query   << "SELECT * FROM OrderGoods WHERE "
+            << type
+            << " != 'NONE' AND orderStatus = 'Pending'";
     std::vector<std::vector<std::string>> allTakenOrders = DBHandler::getResult2DVector(query.str());
     return parseOrderInfo(allTakenOrders);
 }
 
 std::vector<OrderInfo> Order::parseOrderInfo(const std::vector<std::vector<std::string>>& orderInfo) {
-    // Parse orderInfo into OrderInfo
     std::vector<OrderInfo> parsedOrderInfo;
     for (const auto& order : orderInfo) {
         OrderInfo parsedOrder;
@@ -106,15 +103,7 @@ void Order::makeOrder(const std::string& username, const std::string& itemName, 
 
 void Order::takeOrder(const EUserTypes& userType, const std::string& username, const std::string& orderID) {
     std::string type = "";
-    if (userType == EUserTypes::CARGO_OWNER) {
-        type = "orderCargoOwnerName";
-    } else if (userType == EUserTypes::DRIVER) {
-        type = "orderDriverName";
-    } else if (userType == EUserTypes::FORWARDER) {
-        type = "orderForwarderName";
-    } else if (userType == EUserTypes::COURIER) {
-        type = "orderCourierName";
-    }
+
 
     std::stringstream query;
     query   << "UPDATE OrderGoods SET "
@@ -129,9 +118,22 @@ void Order::takeOrder(const EUserTypes& userType, const std::string& username, c
 
 std::vector<std::string> Order::getOrderIDs() {
     std::stringstream query;
-    query   << "SELECT orderID FROM OrderGoods;";
+    query   << "SELECT orderID FROM OrderGoods";
     std::vector<std::string> IDs = DBHandler::getResultVector(query.str());
     return IDs;
+}
+
+std::string Order::getType(const EUserTypes& userType) {
+    if (userType == EUserTypes::CARGO_OWNER) {
+        return "orderCargoOwnerName";
+    } else if (userType == EUserTypes::DRIVER) {
+        return "orderDriverName";
+    } else if (userType == EUserTypes::FORWARDER) {
+        return "orderForwarderName";
+    } else if (userType == EUserTypes::COURIER) {
+        return "orderCourierName";
+    }
+    return "";
 }
 
 std::string Order::currentDate() {

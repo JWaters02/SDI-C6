@@ -41,7 +41,9 @@ set(PROJECT_SOURCES
         Application/Order.h
         Application/RegistrationCheck.cpp
         Application/RegistrationCheck.h
-        Application/Secrets.h)
+        Application/Secrets.h
+        Application/Auction.cpp
+        Application/Auction.h)
 
 #set(TESTING_SOURCES
 #        Tests/TestRunner.cpp

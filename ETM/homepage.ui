@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1418</width>
+    <width>1174</width>
     <height>785</height>
    </rect>
   </property>
@@ -21,7 +21,7 @@
     <rect>
      <x>20</x>
      <y>10</y>
-     <width>1391</width>
+     <width>1131</width>
      <height>701</height>
     </rect>
    </property>
@@ -29,7 +29,7 @@
     <string notr="true">background-color: rgb(54, 54, 54);</string>
    </property>
    <property name="currentIndex">
-    <number>3</number>
+    <number>1</number>
    </property>
    <widget class="QWidget" name="AdminPage">
     <widget class="QLabel" name="label_2">
@@ -51,39 +51,6 @@ font-size: 28px</string>
     </widget>
    </widget>
    <widget class="QWidget" name="CargoOwnerPage">
-    <widget class="QTabWidget" name="tbCargoOwner">
-     <property name="geometry">
-      <rect>
-       <x>0</x>
-       <y>80</y>
-       <width>1161</width>
-       <height>591</height>
-      </rect>
-     </property>
-     <property name="styleSheet">
-      <string notr="true">background-color: rgb(54, 54, 54);
-font: 16px;
-color: rgb(186, 189, 182);</string>
-     </property>
-     <property name="currentIndex">
-      <number>0</number>
-     </property>
-     <widget class="QWidget" name="tbCOBids">
-      <attribute name="title">
-       <string>Auctions</string>
-      </attribute>
-     </widget>
-     <widget class="QWidget" name="tbCOOrders">
-      <attribute name="title">
-       <string>Orders</string>
-      </attribute>
-     </widget>
-     <widget class="QWidget" name="tbProfile">
-      <attribute name="title">
-       <string>Profile</string>
-      </attribute>
-     </widget>
-    </widget>
     <widget class="QLabel" name="label_3">
      <property name="geometry">
       <rect>
@@ -101,8 +68,996 @@ font-size: 28px</string>
       <string>Cargo Owner</string>
      </property>
     </widget>
+    <widget class="QTabWidget" name="tbCO">
+     <property name="geometry">
+      <rect>
+       <x>0</x>
+       <y>90</y>
+       <width>981</width>
+       <height>601</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">background-color: rgb(54, 54, 54);
+font: 16px;
+color: rgb(186, 189, 182);</string>
+     </property>
+     <property name="currentIndex">
+      <number>0</number>
+     </property>
+     <widget class="QWidget" name="tbCOBids">
+      <attribute name="title">
+       <string>Auctions</string>
+      </attribute>
+      <widget class="QLabel" name="label_25">
+       <property name="geometry">
+        <rect>
+         <x>140</x>
+         <y>10</y>
+         <width>141</width>
+         <height>31</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">color: rgb(186, 189, 182); 
+font-size: 20px</string>
+       </property>
+       <property name="text">
+        <string>Create Auction</string>
+       </property>
+      </widget>
+      <widget class="QLabel" name="lblCOCreateAuctionInfo">
+       <property name="geometry">
+        <rect>
+         <x>30</x>
+         <y>460</y>
+         <width>401</width>
+         <height>61</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">color: rgb(186, 189, 182); 
+font-size: 16px</string>
+       </property>
+       <property name="text">
+        <string/>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignCenter</set>
+       </property>
+       <property name="wordWrap">
+        <bool>true</bool>
+       </property>
+      </widget>
+      <widget class="QListWidget" name="lwCOTakenOrdersBids">
+       <property name="geometry">
+        <rect>
+         <x>540</x>
+         <y>50</y>
+         <width>401</width>
+         <height>391</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">color: rgb(186, 189, 182); 
+font-size: 18px</string>
+       </property>
+      </widget>
+      <widget class="QLabel" name="label_44">
+       <property name="geometry">
+        <rect>
+         <x>670</x>
+         <y>10</y>
+         <width>141</width>
+         <height>31</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">color: rgb(186, 189, 182); 
+font-size: 20px</string>
+       </property>
+       <property name="text">
+        <string>Taken Orders</string>
+       </property>
+      </widget>
+      <widget class="QPushButton" name="btnCOBidsRefresh">
+       <property name="geometry">
+        <rect>
+         <x>440</x>
+         <y>50</y>
+         <width>91</width>
+         <height>31</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">background-color: rgb(54, 54, 54);
+font: 16px;
+color: rgb(186, 189, 182);</string>
+       </property>
+       <property name="text">
+        <string>Refresh</string>
+       </property>
+      </widget>
+      <widget class="QLabel" name="lblCOTakenOrderInfoBids">
+       <property name="geometry">
+        <rect>
+         <x>540</x>
+         <y>460</y>
+         <width>401</width>
+         <height>61</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">color: rgb(186, 189, 182); 
+font-size: 16px</string>
+       </property>
+       <property name="text">
+        <string/>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignCenter</set>
+       </property>
+       <property name="wordWrap">
+        <bool>true</bool>
+       </property>
+      </widget>
+      <widget class="QFrame" name="seperator_4">
+       <property name="geometry">
+        <rect>
+         <x>30</x>
+         <y>50</y>
+         <width>401</width>
+         <height>391</height>
+        </rect>
+       </property>
+       <property name="frameShape">
+        <enum>QFrame::StyledPanel</enum>
+       </property>
+       <property name="frameShadow">
+        <enum>QFrame::Raised</enum>
+       </property>
+       <widget class="QLabel" name="label_26">
+        <property name="geometry">
+         <rect>
+          <x>40</x>
+          <y>70</y>
+          <width>141</width>
+          <height>31</height>
+         </rect>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">color: rgb(186, 189, 182); 
+font-size: 20px</string>
+        </property>
+        <property name="text">
+         <string> Starting price:</string>
+        </property>
+       </widget>
+       <widget class="QLabel" name="label_32">
+        <property name="geometry">
+         <rect>
+          <x>130</x>
+          <y>20</y>
+          <width>101</width>
+          <height>31</height>
+         </rect>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">color: rgb(186, 189, 182); 
+font-size: 20px</string>
+        </property>
+        <property name="text">
+         <string>Extra Fees</string>
+        </property>
+       </widget>
+       <widget class="QLabel" name="label_34">
+        <property name="geometry">
+         <rect>
+          <x>190</x>
+          <y>70</y>
+          <width>16</width>
+          <height>31</height>
+         </rect>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">color: rgb(186, 189, 182); 
+font-size: 20px</string>
+        </property>
+        <property name="text">
+         <string>£</string>
+        </property>
+       </widget>
+       <widget class="QDoubleSpinBox" name="dsbxCOBidsStartingPrice">
+        <property name="geometry">
+         <rect>
+          <x>210</x>
+          <y>70</y>
+          <width>121</width>
+          <height>31</height>
+         </rect>
+        </property>
+        <property name="maximum">
+         <double>9999.000000000000000</double>
+        </property>
+        <property name="value">
+         <double>100.000000000000000</double>
+        </property>
+       </widget>
+       <widget class="QLabel" name="label_27">
+        <property name="geometry">
+         <rect>
+          <x>60</x>
+          <y>110</y>
+          <width>121</width>
+          <height>31</height>
+         </rect>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">color: rgb(186, 189, 182); 
+font-size: 20px</string>
+        </property>
+        <property name="text">
+         <string>Commission:</string>
+        </property>
+       </widget>
+       <widget class="QLabel" name="label_35">
+        <property name="geometry">
+         <rect>
+          <x>190</x>
+          <y>110</y>
+          <width>16</width>
+          <height>31</height>
+         </rect>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">color: rgb(186, 189, 182); 
+font-size: 20px</string>
+        </property>
+        <property name="text">
+         <string>£</string>
+        </property>
+       </widget>
+       <widget class="QDoubleSpinBox" name="dsbxCOBidsCommissionPrice">
+        <property name="geometry">
+         <rect>
+          <x>210</x>
+          <y>110</y>
+          <width>121</width>
+          <height>31</height>
+         </rect>
+        </property>
+        <property name="maximum">
+         <double>9999.000000000000000</double>
+        </property>
+        <property name="value">
+         <double>10.000000000000000</double>
+        </property>
+       </widget>
+       <widget class="QPushButton" name="btnCOBidsCreate">
+        <property name="geometry">
+         <rect>
+          <x>140</x>
+          <y>200</y>
+          <width>91</width>
+          <height>31</height>
+         </rect>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">background-color: rgb(54, 54, 54);
+font: 16px;
+color: rgb(186, 189, 182);</string>
+        </property>
+        <property name="text">
+         <string>Create</string>
+        </property>
+       </widget>
+       <widget class="QSpinBox" name="sbxCOBidsLength">
+        <property name="geometry">
+         <rect>
+          <x>210</x>
+          <y>150</y>
+          <width>121</width>
+          <height>31</height>
+         </rect>
+        </property>
+        <property name="minimum">
+         <number>6</number>
+        </property>
+        <property name="maximum">
+         <number>24</number>
+        </property>
+       </widget>
+       <widget class="QLabel" name="label_46">
+        <property name="geometry">
+         <rect>
+          <x>20</x>
+          <y>150</y>
+          <width>191</width>
+          <height>31</height>
+         </rect>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">color: rgb(186, 189, 182); 
+font-size: 20px</string>
+        </property>
+        <property name="text">
+         <string>Auction length (hrs):</string>
+        </property>
+       </widget>
+      </widget>
+      <widget class="QPushButton" name="btnCOBidsCopyOrderPrice">
+       <property name="geometry">
+        <rect>
+         <x>440</x>
+         <y>120</y>
+         <width>91</width>
+         <height>31</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">background-color: rgb(54, 54, 54);
+font: 16px;
+color: rgb(186, 189, 182);</string>
+       </property>
+       <property name="text">
+        <string>Copy Price</string>
+       </property>
+      </widget>
+     </widget>
+     <widget class="QWidget" name="tbFOrders_4">
+      <attribute name="title">
+       <string>Orders</string>
+      </attribute>
+      <widget class="QLabel" name="label_55">
+       <property name="geometry">
+        <rect>
+         <x>140</x>
+         <y>10</y>
+         <width>191</width>
+         <height>31</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">color: rgb(186, 189, 182); 
+font-size: 20px</string>
+       </property>
+       <property name="text">
+        <string>All Forwarder Orders</string>
+       </property>
+      </widget>
+      <widget class="QListWidget" name="lwCOOrders">
+       <property name="geometry">
+        <rect>
+         <x>30</x>
+         <y>50</y>
+         <width>401</width>
+         <height>391</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">color: rgb(186, 189, 182); 
+font-size: 18px</string>
+       </property>
+      </widget>
+      <widget class="QLabel" name="lblCOOrderInfo">
+       <property name="geometry">
+        <rect>
+         <x>30</x>
+         <y>450</y>
+         <width>401</width>
+         <height>61</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">color: rgb(186, 189, 182); 
+font-size: 16px</string>
+       </property>
+       <property name="text">
+        <string/>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignCenter</set>
+       </property>
+       <property name="wordWrap">
+        <bool>true</bool>
+       </property>
+      </widget>
+      <widget class="QPushButton" name="btnCOOrdersRefresh">
+       <property name="geometry">
+        <rect>
+         <x>440</x>
+         <y>50</y>
+         <width>91</width>
+         <height>31</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">background-color: rgb(54, 54, 54);
+font: 16px;
+color: rgb(186, 189, 182);</string>
+       </property>
+       <property name="text">
+        <string>Refresh</string>
+       </property>
+      </widget>
+      <widget class="QPushButton" name="btnCOOrdersTakeOrder">
+       <property name="geometry">
+        <rect>
+         <x>440</x>
+         <y>410</y>
+         <width>91</width>
+         <height>31</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">background-color: rgb(54, 54, 54);
+font: 16px;
+color: rgb(186, 189, 182);</string>
+       </property>
+       <property name="text">
+        <string>Take</string>
+       </property>
+      </widget>
+      <widget class="QListWidget" name="lwCOTakenOrders">
+       <property name="geometry">
+        <rect>
+         <x>540</x>
+         <y>50</y>
+         <width>401</width>
+         <height>391</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">color: rgb(186, 189, 182); 
+font-size: 18px</string>
+       </property>
+      </widget>
+      <widget class="QLabel" name="lblCOTakenOrderInfo">
+       <property name="geometry">
+        <rect>
+         <x>540</x>
+         <y>450</y>
+         <width>401</width>
+         <height>61</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">color: rgb(186, 189, 182); 
+font-size: 16px</string>
+       </property>
+       <property name="text">
+        <string/>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignCenter</set>
+       </property>
+       <property name="wordWrap">
+        <bool>true</bool>
+       </property>
+      </widget>
+      <widget class="QLabel" name="label_47">
+       <property name="geometry">
+        <rect>
+         <x>680</x>
+         <y>10</y>
+         <width>141</width>
+         <height>31</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">color: rgb(186, 189, 182); 
+font-size: 20px</string>
+       </property>
+       <property name="text">
+        <string>Taken Orders</string>
+       </property>
+      </widget>
+     </widget>
+     <widget class="QWidget" name="tbFProfile_4">
+      <attribute name="title">
+       <string>Profile</string>
+      </attribute>
+     </widget>
+    </widget>
    </widget>
-   <widget class="QWidget" name="DriverPage"/>
+   <widget class="QWidget" name="DriverPage">
+    <widget class="QLabel" name="label_18">
+     <property name="geometry">
+      <rect>
+       <x>0</x>
+       <y>10</y>
+       <width>231</width>
+       <height>61</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">color: rgb(186, 189, 182); 
+font-size: 28px</string>
+     </property>
+     <property name="text">
+      <string>Driver</string>
+     </property>
+    </widget>
+    <widget class="QTabWidget" name="tbDriver">
+     <property name="geometry">
+      <rect>
+       <x>0</x>
+       <y>90</y>
+       <width>981</width>
+       <height>601</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">background-color: rgb(54, 54, 54);
+font: 16px;
+color: rgb(186, 189, 182);</string>
+     </property>
+     <property name="currentIndex">
+      <number>0</number>
+     </property>
+     <widget class="QWidget" name="tbDriverBids">
+      <attribute name="title">
+       <string>Auctions</string>
+      </attribute>
+      <widget class="QLabel" name="label_36">
+       <property name="geometry">
+        <rect>
+         <x>140</x>
+         <y>10</y>
+         <width>141</width>
+         <height>31</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">color: rgb(186, 189, 182); 
+font-size: 20px</string>
+       </property>
+       <property name="text">
+        <string>Create Auction</string>
+       </property>
+      </widget>
+      <widget class="QLabel" name="lblDriverCreateAuctionInfo">
+       <property name="geometry">
+        <rect>
+         <x>30</x>
+         <y>500</y>
+         <width>401</width>
+         <height>61</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">color: rgb(186, 189, 182); 
+font-size: 16px</string>
+       </property>
+       <property name="text">
+        <string/>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignCenter</set>
+       </property>
+       <property name="wordWrap">
+        <bool>true</bool>
+       </property>
+      </widget>
+      <widget class="QPushButton" name="btnDriverBidsRefresh">
+       <property name="geometry">
+        <rect>
+         <x>440</x>
+         <y>50</y>
+         <width>91</width>
+         <height>31</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">background-color: rgb(54, 54, 54);
+font: 16px;
+color: rgb(186, 189, 182);</string>
+       </property>
+       <property name="text">
+        <string>Refresh</string>
+       </property>
+      </widget>
+      <widget class="QFrame" name="seperator_6">
+       <property name="geometry">
+        <rect>
+         <x>30</x>
+         <y>50</y>
+         <width>401</width>
+         <height>391</height>
+        </rect>
+       </property>
+       <property name="frameShape">
+        <enum>QFrame::StyledPanel</enum>
+       </property>
+       <property name="frameShadow">
+        <enum>QFrame::Raised</enum>
+       </property>
+       <widget class="QLabel" name="label_37">
+        <property name="geometry">
+         <rect>
+          <x>80</x>
+          <y>150</y>
+          <width>101</width>
+          <height>31</height>
+         </rect>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">color: rgb(186, 189, 182); 
+font-size: 20px</string>
+        </property>
+        <property name="text">
+         <string> Cost/mile:</string>
+        </property>
+       </widget>
+       <widget class="QLabel" name="label_38">
+        <property name="geometry">
+         <rect>
+          <x>10</x>
+          <y>110</y>
+          <width>171</width>
+          <height>31</height>
+         </rect>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">color: rgb(186, 189, 182); 
+font-size: 20px</string>
+        </property>
+        <property name="text">
+         <string> Commission price:</string>
+        </property>
+       </widget>
+       <widget class="QLabel" name="label_40">
+        <property name="geometry">
+         <rect>
+          <x>130</x>
+          <y>20</y>
+          <width>101</width>
+          <height>31</height>
+         </rect>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">color: rgb(186, 189, 182); 
+font-size: 20px</string>
+        </property>
+        <property name="text">
+         <string>Extra Fees</string>
+        </property>
+       </widget>
+       <widget class="QLabel" name="label_41">
+        <property name="geometry">
+         <rect>
+          <x>190</x>
+          <y>150</y>
+          <width>16</width>
+          <height>31</height>
+         </rect>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">color: rgb(186, 189, 182); 
+font-size: 20px</string>
+        </property>
+        <property name="text">
+         <string>£</string>
+        </property>
+       </widget>
+       <widget class="QLabel" name="label_42">
+        <property name="geometry">
+         <rect>
+          <x>190</x>
+          <y>110</y>
+          <width>16</width>
+          <height>31</height>
+         </rect>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">color: rgb(186, 189, 182); 
+font-size: 20px</string>
+        </property>
+        <property name="text">
+         <string>£</string>
+        </property>
+       </widget>
+       <widget class="QLabel" name="label_43">
+        <property name="geometry">
+         <rect>
+          <x>50</x>
+          <y>190</y>
+          <width>161</width>
+          <height>31</height>
+         </rect>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">color: rgb(186, 189, 182); 
+font-size: 20px</string>
+        </property>
+        <property name="text">
+         <string> Distance (miles):</string>
+        </property>
+       </widget>
+       <widget class="QDoubleSpinBox" name="dsbxDriverBidsCommissionPrice">
+        <property name="geometry">
+         <rect>
+          <x>210</x>
+          <y>110</y>
+          <width>121</width>
+          <height>31</height>
+         </rect>
+        </property>
+        <property name="maximum">
+         <double>9999.000000000000000</double>
+        </property>
+        <property name="value">
+         <double>10.000000000000000</double>
+        </property>
+       </widget>
+       <widget class="QDoubleSpinBox" name="dsbxDriverBidsDistance">
+        <property name="geometry">
+         <rect>
+          <x>210</x>
+          <y>190</y>
+          <width>121</width>
+          <height>31</height>
+         </rect>
+        </property>
+        <property name="maximum">
+         <double>10000.000000000000000</double>
+        </property>
+        <property name="value">
+         <double>2.000000000000000</double>
+        </property>
+       </widget>
+       <widget class="QDoubleSpinBox" name="dsbxDriverBidsCostPMile">
+        <property name="geometry">
+         <rect>
+          <x>210</x>
+          <y>150</y>
+          <width>121</width>
+          <height>31</height>
+         </rect>
+        </property>
+        <property name="minimum">
+         <double>0.000000000000000</double>
+        </property>
+        <property name="maximum">
+         <double>9999.000000000000000</double>
+        </property>
+        <property name="value">
+         <double>1.000000000000000</double>
+        </property>
+       </widget>
+       <widget class="QLabel" name="label_31">
+        <property name="geometry">
+         <rect>
+          <x>40</x>
+          <y>70</y>
+          <width>141</width>
+          <height>31</height>
+         </rect>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">color: rgb(186, 189, 182); 
+font-size: 20px</string>
+        </property>
+        <property name="text">
+         <string> Starting price:</string>
+        </property>
+       </widget>
+       <widget class="QDoubleSpinBox" name="dsbxDriverBidsStartingPrice">
+        <property name="geometry">
+         <rect>
+          <x>210</x>
+          <y>70</y>
+          <width>121</width>
+          <height>31</height>
+         </rect>
+        </property>
+        <property name="maximum">
+         <double>9999.000000000000000</double>
+        </property>
+        <property name="value">
+         <double>100.000000000000000</double>
+        </property>
+       </widget>
+       <widget class="QLabel" name="label_39">
+        <property name="geometry">
+         <rect>
+          <x>190</x>
+          <y>70</y>
+          <width>16</width>
+          <height>31</height>
+         </rect>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">color: rgb(186, 189, 182); 
+font-size: 20px</string>
+        </property>
+        <property name="text">
+         <string>£</string>
+        </property>
+       </widget>
+       <widget class="QPushButton" name="btnDriverBidsCreate">
+        <property name="geometry">
+         <rect>
+          <x>130</x>
+          <y>350</y>
+          <width>91</width>
+          <height>31</height>
+         </rect>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">background-color: rgb(54, 54, 54);
+font: 16px;
+color: rgb(186, 189, 182);</string>
+        </property>
+        <property name="text">
+         <string>Create</string>
+        </property>
+       </widget>
+       <widget class="QLabel" name="label_45">
+        <property name="geometry">
+         <rect>
+          <x>20</x>
+          <y>230</y>
+          <width>191</width>
+          <height>31</height>
+         </rect>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">color: rgb(186, 189, 182); 
+font-size: 20px</string>
+        </property>
+        <property name="text">
+         <string>Auction length (hrs):</string>
+        </property>
+       </widget>
+       <widget class="QSpinBox" name="sbxDriverBidsLength">
+        <property name="geometry">
+         <rect>
+          <x>210</x>
+          <y>230</y>
+          <width>121</width>
+          <height>31</height>
+         </rect>
+        </property>
+        <property name="minimum">
+         <number>6</number>
+        </property>
+        <property name="maximum">
+         <number>24</number>
+        </property>
+       </widget>
+      </widget>
+      <widget class="QSpinBox" name="sbxDriverBidsAmountBid">
+       <property name="geometry">
+        <rect>
+         <x>680</x>
+         <y>460</y>
+         <width>91</width>
+         <height>31</height>
+        </rect>
+       </property>
+       <property name="minimum">
+        <number>10</number>
+       </property>
+       <property name="maximum">
+        <number>2000</number>
+       </property>
+      </widget>
+      <widget class="QPushButton" name="btnDriverBidsBid">
+       <property name="geometry">
+        <rect>
+         <x>850</x>
+         <y>460</y>
+         <width>91</width>
+         <height>31</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">background-color: rgb(54, 54, 54);
+font: 16px;
+color: rgb(186, 189, 182);</string>
+       </property>
+       <property name="text">
+        <string>Bid</string>
+       </property>
+      </widget>
+      <widget class="QLabel" name="label_20">
+       <property name="geometry">
+        <rect>
+         <x>650</x>
+         <y>10</y>
+         <width>171</width>
+         <height>31</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">color: rgb(186, 189, 182); 
+font-size: 20px</string>
+       </property>
+       <property name="text">
+        <string>On-going auctions</string>
+       </property>
+      </widget>
+      <widget class="QListWidget" name="lwDriverBidsAuctionsOngoing">
+       <property name="geometry">
+        <rect>
+         <x>540</x>
+         <y>50</y>
+         <width>401</width>
+         <height>391</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">color: rgb(186, 189, 182); 
+font-size: 18px</string>
+       </property>
+      </widget>
+      <widget class="QLabel" name="label_19">
+       <property name="geometry">
+        <rect>
+         <x>540</x>
+         <y>460</y>
+         <width>141</width>
+         <height>31</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">color: rgb(186, 189, 182); 
+font-size: 20px</string>
+       </property>
+       <property name="text">
+        <string>Bid increase: £</string>
+       </property>
+      </widget>
+      <widget class="QLabel" name="lblDriverBidInfo">
+       <property name="geometry">
+        <rect>
+         <x>540</x>
+         <y>500</y>
+         <width>401</width>
+         <height>61</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">color: rgb(186, 189, 182); 
+font-size: 16px</string>
+       </property>
+       <property name="text">
+        <string/>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignCenter</set>
+       </property>
+       <property name="wordWrap">
+        <bool>true</bool>
+       </property>
+      </widget>
+      <widget class="QPushButton" name="btnDriverBidsCopyOrderPrice">
+       <property name="geometry">
+        <rect>
+         <x>440</x>
+         <y>120</y>
+         <width>91</width>
+         <height>31</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">background-color: rgb(54, 54, 54);
+font: 16px;
+color: rgb(186, 189, 182);</string>
+       </property>
+       <property name="text">
+        <string>Copy Price</string>
+       </property>
+      </widget>
+     </widget>
+     <widget class="QWidget" name="tbDriverProfile">
+      <attribute name="title">
+       <string>Profile</string>
+      </attribute>
+     </widget>
+    </widget>
+   </widget>
    <widget class="QWidget" name="ForwarderPage">
     <widget class="QTabWidget" name="tbForwarder">
      <property name="geometry">
@@ -121,245 +1076,11 @@ color: rgb(186, 189, 182);</string>
      <property name="currentIndex">
       <number>0</number>
      </property>
-     <widget class="QWidget" name="tbFBids">
-      <attribute name="title">
-       <string>Auctions</string>
-      </attribute>
-      <widget class="QPushButton" name="btnFBidsCreate">
-       <property name="geometry">
-        <rect>
-         <x>100</x>
-         <y>190</y>
-         <width>91</width>
-         <height>31</height>
-        </rect>
-       </property>
-       <property name="styleSheet">
-        <string notr="true">background-color: rgb(54, 54, 54);
-font: 16px;
-color: rgb(186, 189, 182);</string>
-       </property>
-       <property name="text">
-        <string>Create</string>
-       </property>
-      </widget>
-      <widget class="QLabel" name="label_5">
-       <property name="geometry">
-        <rect>
-         <x>80</x>
-         <y>10</y>
-         <width>141</width>
-         <height>31</height>
-        </rect>
-       </property>
-       <property name="styleSheet">
-        <string notr="true">color: rgb(186, 189, 182); 
-font-size: 20px</string>
-       </property>
-       <property name="text">
-        <string>Create auction</string>
-       </property>
-      </widget>
-      <widget class="QSpinBox" name="spnFBidsStartingPrice">
-       <property name="geometry">
-        <rect>
-         <x>180</x>
-         <y>60</y>
-         <width>121</width>
-         <height>31</height>
-        </rect>
-       </property>
-       <property name="minimum">
-        <number>10</number>
-       </property>
-       <property name="maximum">
-        <number>2000</number>
-       </property>
-      </widget>
-      <widget class="QLabel" name="label_6">
-       <property name="geometry">
-        <rect>
-         <x>20</x>
-         <y>60</y>
-         <width>151</width>
-         <height>31</height>
-        </rect>
-       </property>
-       <property name="styleSheet">
-        <string notr="true">color: rgb(186, 189, 182); 
-font-size: 20px</string>
-       </property>
-       <property name="text">
-        <string>Starting price:   £</string>
-       </property>
-      </widget>
-      <widget class="QLabel" name="label_7">
-       <property name="geometry">
-        <rect>
-         <x>50</x>
-         <y>100</y>
-         <width>121</width>
-         <height>31</height>
-        </rect>
-       </property>
-       <property name="styleSheet">
-        <string notr="true">color: rgb(186, 189, 182); 
-font-size: 20px</string>
-       </property>
-       <property name="text">
-        <string> Cost/mile:   £</string>
-       </property>
-      </widget>
-      <widget class="QSpinBox" name="spnFBidsCostPMile">
-       <property name="geometry">
-        <rect>
-         <x>180</x>
-         <y>100</y>
-         <width>121</width>
-         <height>31</height>
-        </rect>
-       </property>
-       <property name="minimum">
-        <number>1</number>
-       </property>
-       <property name="maximum">
-        <number>2000</number>
-       </property>
-       <property name="value">
-        <number>1</number>
-       </property>
-      </widget>
-      <widget class="QLabel" name="label_8">
-       <property name="geometry">
-        <rect>
-         <x>20</x>
-         <y>140</y>
-         <width>151</width>
-         <height>31</height>
-        </rect>
-       </property>
-       <property name="styleSheet">
-        <string notr="true">color: rgb(186, 189, 182); 
-font-size: 20px</string>
-       </property>
-       <property name="text">
-        <string>Courier name:</string>
-       </property>
-      </widget>
-      <widget class="QComboBox" name="cbFBidsCourierName">
-       <property name="geometry">
-        <rect>
-         <x>180</x>
-         <y>144</y>
-         <width>121</width>
-         <height>31</height>
-        </rect>
-       </property>
-      </widget>
-      <widget class="QLabel" name="label_9">
-       <property name="geometry">
-        <rect>
-         <x>550</x>
-         <y>10</y>
-         <width>171</width>
-         <height>31</height>
-        </rect>
-       </property>
-       <property name="styleSheet">
-        <string notr="true">color: rgb(186, 189, 182); 
-font-size: 20px</string>
-       </property>
-       <property name="text">
-        <string>On-going auctions</string>
-       </property>
-      </widget>
-      <widget class="QListWidget" name="lwFBidsAuctionsOngoing">
-       <property name="geometry">
-        <rect>
-         <x>450</x>
-         <y>50</y>
-         <width>361</width>
-         <height>391</height>
-        </rect>
-       </property>
-       <property name="styleSheet">
-        <string notr="true">color: rgb(186, 189, 182); 
-font-size: 18px</string>
-       </property>
-      </widget>
-      <widget class="QPushButton" name="btnFBidsBid">
-       <property name="geometry">
-        <rect>
-         <x>720</x>
-         <y>460</y>
-         <width>91</width>
-         <height>31</height>
-        </rect>
-       </property>
-       <property name="styleSheet">
-        <string notr="true">background-color: rgb(54, 54, 54);
-font: 16px;
-color: rgb(186, 189, 182);</string>
-       </property>
-       <property name="text">
-        <string>Bid</string>
-       </property>
-      </widget>
-      <widget class="QLabel" name="label_10">
-       <property name="geometry">
-        <rect>
-         <x>450</x>
-         <y>460</y>
-         <width>101</width>
-         <height>31</height>
-        </rect>
-       </property>
-       <property name="styleSheet">
-        <string notr="true">color: rgb(186, 189, 182); 
-font-size: 20px</string>
-       </property>
-       <property name="text">
-        <string>Amount: £</string>
-       </property>
-      </widget>
-      <widget class="QSpinBox" name="spnFBidsAmountBid">
-       <property name="geometry">
-        <rect>
-         <x>550</x>
-         <y>460</y>
-         <width>121</width>
-         <height>31</height>
-        </rect>
-       </property>
-       <property name="minimum">
-        <number>10</number>
-       </property>
-       <property name="maximum">
-        <number>2000</number>
-       </property>
-      </widget>
-      <widget class="QFrame" name="seperator">
-       <property name="geometry">
-        <rect>
-         <x>350</x>
-         <y>20</y>
-         <width>20</width>
-         <height>521</height>
-        </rect>
-       </property>
-       <property name="frameShape">
-        <enum>QFrame::StyledPanel</enum>
-       </property>
-       <property name="frameShadow">
-        <enum>QFrame::Raised</enum>
-       </property>
-      </widget>
-     </widget>
      <widget class="QWidget" name="tbFOrders">
       <attribute name="title">
        <string>Orders</string>
       </attribute>
-      <widget class="QLabel" name="lblConsigneeOrders_6">
+      <widget class="QLabel" name="label_56">
        <property name="geometry">
         <rect>
          <x>160</x>
@@ -486,7 +1207,7 @@ font-size: 16px</string>
         <bool>true</bool>
        </property>
       </widget>
-      <widget class="QLabel" name="lblConsigneePastOrders_2">
+      <widget class="QLabel" name="label_57">
        <property name="geometry">
         <rect>
          <x>680</x>
@@ -529,7 +1250,7 @@ font-size: 28px</string>
     </widget>
    </widget>
    <widget class="QWidget" name="ConsigneePage">
-    <widget class="QLabel" name="lblConsignee">
+    <widget class="QLabel" name="label_54">
      <property name="geometry">
       <rect>
        <x>0</x>
@@ -551,8 +1272,8 @@ font-size: 28px</string>
       <rect>
        <x>0</x>
        <y>90</y>
-       <width>1251</width>
-       <height>581</height>
+       <width>1131</width>
+       <height>561</height>
       </rect>
      </property>
      <property name="styleSheet">
@@ -563,7 +1284,7 @@ color: rgb(186, 189, 182);</string>
      <property name="currentIndex">
       <number>0</number>
      </property>
-     <widget class="QWidget" name="tbConsigneeOrders_2">
+     <widget class="QWidget" name="tbConsigneeOrders">
       <attribute name="title">
        <string>Orders</string>
       </attribute>
@@ -572,8 +1293,8 @@ color: rgb(186, 189, 182);</string>
         <rect>
          <x>0</x>
          <y>0</y>
-         <width>1251</width>
-         <height>551</height>
+         <width>1131</width>
+         <height>531</height>
         </rect>
        </property>
        <property name="frameShape">
@@ -582,10 +1303,10 @@ color: rgb(186, 189, 182);</string>
        <property name="frameShadow">
         <enum>QFrame::Raised</enum>
        </property>
-       <widget class="QLabel" name="lblConsigneePastOrders">
+       <widget class="QLabel" name="label_50">
         <property name="geometry">
          <rect>
-          <x>960</x>
+          <x>840</x>
           <y>10</y>
           <width>141</width>
           <height>41</height>
@@ -602,7 +1323,7 @@ font-size: 20px</string>
        <widget class="QListWidget" name="lwConsigneePastOrders">
         <property name="geometry">
          <rect>
-          <x>830</x>
+          <x>720</x>
           <y>50</y>
           <width>381</width>
           <height>391</height>
@@ -613,10 +1334,10 @@ font-size: 20px</string>
 font-size: 18px</string>
         </property>
        </widget>
-       <widget class="QLabel" name="lblConsigneeOrders">
+       <widget class="QLabel" name="label_48">
         <property name="geometry">
          <rect>
-          <x>180</x>
+          <x>170</x>
           <y>10</y>
           <width>81</width>
           <height>31</height>
@@ -633,7 +1354,7 @@ font-size: 20px</string>
        <widget class="QListWidget" name="lwConsigneeOrders">
         <property name="geometry">
          <rect>
-          <x>40</x>
+          <x>30</x>
           <y>50</y>
           <width>371</width>
           <height>391</height>
@@ -644,26 +1365,10 @@ font-size: 20px</string>
 font-size: 18px</string>
         </property>
        </widget>
-       <widget class="QFrame" name="frConsigneeSeperator">
-        <property name="geometry">
-         <rect>
-          <x>790</x>
-          <y>50</y>
-          <width>20</width>
-          <height>391</height>
-         </rect>
-        </property>
-        <property name="frameShape">
-         <enum>QFrame::StyledPanel</enum>
-        </property>
-        <property name="frameShadow">
-         <enum>QFrame::Raised</enum>
-        </property>
-       </widget>
        <widget class="QPushButton" name="btnConsigneeOrdersNewOrder">
         <property name="geometry">
          <rect>
-          <x>520</x>
+          <x>460</x>
           <y>190</y>
           <width>91</width>
           <height>31</height>
@@ -681,7 +1386,7 @@ color: rgb(186, 189, 182);</string>
        <widget class="QLabel" name="lblConsigneeOrderInfo">
         <property name="geometry">
          <rect>
-          <x>40</x>
+          <x>30</x>
           <y>450</y>
           <width>371</width>
           <height>61</height>
@@ -704,7 +1409,7 @@ font-size: 16px</string>
        <widget class="QLabel" name="lblConsigneePastOrderInfo">
         <property name="geometry">
          <rect>
-          <x>830</x>
+          <x>720</x>
           <y>450</y>
           <width>381</width>
           <height>61</height>
@@ -724,27 +1429,11 @@ font-size: 16px</string>
          <bool>true</bool>
         </property>
        </widget>
-       <widget class="QFrame" name="frConsigneeSeperator_2">
+       <widget class="QLabel" name="label_49">
         <property name="geometry">
          <rect>
-          <x>430</x>
-          <y>50</y>
-          <width>20</width>
-          <height>391</height>
-         </rect>
-        </property>
-        <property name="frameShape">
-         <enum>QFrame::StyledPanel</enum>
-        </property>
-        <property name="frameShadow">
-         <enum>QFrame::Raised</enum>
-        </property>
-       </widget>
-       <widget class="QLabel" name="lblConsigneeOrders_2">
-        <property name="geometry">
-         <rect>
-          <x>570</x>
-          <y>10</y>
+          <x>480</x>
+          <y>20</y>
           <width>161</width>
           <height>31</height>
          </rect>
@@ -757,10 +1446,10 @@ font-size: 20px</string>
          <string>New Order</string>
         </property>
        </widget>
-       <widget class="QLabel" name="lblConsigneeOrders_3">
+       <widget class="QLabel" name="label_51">
         <property name="geometry">
          <rect>
-          <x>470</x>
+          <x>410</x>
           <y>60</y>
           <width>111</width>
           <height>31</height>
@@ -774,10 +1463,10 @@ font-size: 18px</string>
          <string>Item Name:</string>
         </property>
        </widget>
-       <widget class="QLabel" name="lblConsigneeOrders_4">
+       <widget class="QLabel" name="label_52">
         <property name="geometry">
          <rect>
-          <x>470</x>
+          <x>410</x>
           <y>100</y>
           <width>111</width>
           <height>31</height>
@@ -791,10 +1480,10 @@ font-size: 18px</string>
          <string>Quantity:</string>
         </property>
        </widget>
-       <widget class="QLabel" name="lblConsigneeOrders_5">
+       <widget class="QLabel" name="label_53">
         <property name="geometry">
          <rect>
-          <x>470</x>
+          <x>410</x>
           <y>140</y>
           <width>111</width>
           <height>31</height>
@@ -811,7 +1500,7 @@ font-size: 18px</string>
        <widget class="QLineEdit" name="txtConsigneeOrderItemName">
         <property name="geometry">
          <rect>
-          <x>590</x>
+          <x>530</x>
           <y>64</y>
           <width>181</width>
           <height>21</height>
@@ -821,7 +1510,7 @@ font-size: 18px</string>
        <widget class="QSpinBox" name="sbxConsigneeOrderQuantity">
         <property name="geometry">
          <rect>
-          <x>590</x>
+          <x>530</x>
           <y>100</y>
           <width>111</width>
           <height>26</height>
@@ -840,7 +1529,7 @@ font-size: 18px</string>
        <widget class="QDoubleSpinBox" name="dsbxConsigneeOrderPrice">
         <property name="geometry">
          <rect>
-          <x>590</x>
+          <x>530</x>
           <y>140</y>
           <width>111</width>
           <height>26</height>
@@ -859,9 +1548,9 @@ font-size: 18px</string>
        <widget class="QLabel" name="lblConsigneeOrderItemInfo">
         <property name="geometry">
          <rect>
-          <x>460</x>
+          <x>410</x>
           <y>240</y>
-          <width>321</width>
+          <width>301</width>
           <height>61</height>
          </rect>
         </property>
@@ -882,7 +1571,7 @@ font-size: 16px</string>
        <widget class="QPushButton" name="btnConsigneeOrdersRefresh">
         <property name="geometry">
          <rect>
-          <x>640</x>
+          <x>580</x>
           <y>190</y>
           <width>91</width>
           <height>31</height>
@@ -899,14 +1588,355 @@ color: rgb(186, 189, 182);</string>
        </widget>
       </widget>
      </widget>
-     <widget class="QWidget" name="tbForwarderProfile_2">
+     <widget class="QWidget" name="tbConsigneeProfile">
       <attribute name="title">
        <string>Profile</string>
       </attribute>
      </widget>
     </widget>
    </widget>
-   <widget class="QWidget" name="CourierPage"/>
+   <widget class="QWidget" name="CourierPage">
+    <widget class="QLabel" name="label_17">
+     <property name="geometry">
+      <rect>
+       <x>0</x>
+       <y>10</y>
+       <width>231</width>
+       <height>61</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">color: rgb(186, 189, 182); 
+font-size: 28px</string>
+     </property>
+     <property name="text">
+      <string>Courier</string>
+     </property>
+    </widget>
+    <widget class="QTabWidget" name="tbForwarder_2">
+     <property name="geometry">
+      <rect>
+       <x>0</x>
+       <y>90</y>
+       <width>981</width>
+       <height>601</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">background-color: rgb(54, 54, 54);
+font: 16px;
+color: rgb(186, 189, 182);</string>
+     </property>
+     <property name="currentIndex">
+      <number>0</number>
+     </property>
+     <widget class="QWidget" name="tbFBids_2">
+      <attribute name="title">
+       <string>Auctions</string>
+      </attribute>
+      <widget class="QLabel" name="lblCourierCreateAuctionInfo">
+       <property name="geometry">
+        <rect>
+         <x>20</x>
+         <y>240</y>
+         <width>311</width>
+         <height>81</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">color: rgb(186, 189, 182); 
+font-size: 16px</string>
+       </property>
+       <property name="text">
+        <string/>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignCenter</set>
+       </property>
+       <property name="wordWrap">
+        <bool>true</bool>
+       </property>
+      </widget>
+      <widget class="QPushButton" name="btnDriverBidsBid_2">
+       <property name="geometry">
+        <rect>
+         <x>850</x>
+         <y>460</y>
+         <width>91</width>
+         <height>31</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">background-color: rgb(54, 54, 54);
+font: 16px;
+color: rgb(186, 189, 182);</string>
+       </property>
+       <property name="text">
+        <string>Bid</string>
+       </property>
+      </widget>
+      <widget class="QSpinBox" name="sbxDriverBidsAmountBid_2">
+       <property name="geometry">
+        <rect>
+         <x>680</x>
+         <y>460</y>
+         <width>91</width>
+         <height>31</height>
+        </rect>
+       </property>
+       <property name="minimum">
+        <number>10</number>
+       </property>
+       <property name="maximum">
+        <number>2000</number>
+       </property>
+      </widget>
+      <widget class="QLabel" name="label_21">
+       <property name="geometry">
+        <rect>
+         <x>650</x>
+         <y>10</y>
+         <width>171</width>
+         <height>31</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">color: rgb(186, 189, 182); 
+font-size: 20px</string>
+       </property>
+       <property name="text">
+        <string>On-going auctions</string>
+       </property>
+      </widget>
+      <widget class="QPushButton" name="btnDriverBidsRefresh_2">
+       <property name="geometry">
+        <rect>
+         <x>440</x>
+         <y>50</y>
+         <width>91</width>
+         <height>31</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">background-color: rgb(54, 54, 54);
+font: 16px;
+color: rgb(186, 189, 182);</string>
+       </property>
+       <property name="text">
+        <string>Refresh</string>
+       </property>
+      </widget>
+      <widget class="QListWidget" name="lwDriverBidsAuctionsOngoing_2">
+       <property name="geometry">
+        <rect>
+         <x>540</x>
+         <y>50</y>
+         <width>401</width>
+         <height>391</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">color: rgb(186, 189, 182); 
+font-size: 18px</string>
+       </property>
+      </widget>
+      <widget class="QLabel" name="label_22">
+       <property name="geometry">
+        <rect>
+         <x>540</x>
+         <y>460</y>
+         <width>141</width>
+         <height>31</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">color: rgb(186, 189, 182); 
+font-size: 20px</string>
+       </property>
+       <property name="text">
+        <string>Bid increase: £</string>
+       </property>
+      </widget>
+      <widget class="QLabel" name="lblDriverBidInfo_2">
+       <property name="geometry">
+        <rect>
+         <x>540</x>
+         <y>500</y>
+         <width>401</width>
+         <height>61</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">color: rgb(186, 189, 182); 
+font-size: 16px</string>
+       </property>
+       <property name="text">
+        <string/>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignCenter</set>
+       </property>
+       <property name="wordWrap">
+        <bool>true</bool>
+       </property>
+      </widget>
+     </widget>
+     <widget class="QWidget" name="tbFOrders_2">
+      <attribute name="title">
+       <string>Orders</string>
+      </attribute>
+      <widget class="QLabel" name="lblConsigneeOrders_7">
+       <property name="geometry">
+        <rect>
+         <x>160</x>
+         <y>10</y>
+         <width>111</width>
+         <height>31</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">color: rgb(186, 189, 182); 
+font-size: 20px</string>
+       </property>
+       <property name="text">
+        <string>All Orders</string>
+       </property>
+      </widget>
+      <widget class="QListWidget" name="lwFOrders_2">
+       <property name="geometry">
+        <rect>
+         <x>30</x>
+         <y>50</y>
+         <width>401</width>
+         <height>391</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">color: rgb(186, 189, 182); 
+font-size: 18px</string>
+       </property>
+      </widget>
+      <widget class="QLabel" name="lblFOrderInfo_2">
+       <property name="geometry">
+        <rect>
+         <x>30</x>
+         <y>450</y>
+         <width>401</width>
+         <height>61</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">color: rgb(186, 189, 182); 
+font-size: 16px</string>
+       </property>
+       <property name="text">
+        <string/>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignCenter</set>
+       </property>
+       <property name="wordWrap">
+        <bool>true</bool>
+       </property>
+      </widget>
+      <widget class="QPushButton" name="btnFOrdersRefresh_2">
+       <property name="geometry">
+        <rect>
+         <x>440</x>
+         <y>50</y>
+         <width>91</width>
+         <height>31</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">background-color: rgb(54, 54, 54);
+font: 16px;
+color: rgb(186, 189, 182);</string>
+       </property>
+       <property name="text">
+        <string>Refresh</string>
+       </property>
+      </widget>
+      <widget class="QPushButton" name="btnFOrdersTakeOrder_2">
+       <property name="geometry">
+        <rect>
+         <x>440</x>
+         <y>410</y>
+         <width>91</width>
+         <height>31</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">background-color: rgb(54, 54, 54);
+font: 16px;
+color: rgb(186, 189, 182);</string>
+       </property>
+       <property name="text">
+        <string>Take</string>
+       </property>
+      </widget>
+      <widget class="QListWidget" name="lwFTakenOrders_2">
+       <property name="geometry">
+        <rect>
+         <x>540</x>
+         <y>50</y>
+         <width>401</width>
+         <height>391</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">color: rgb(186, 189, 182); 
+font-size: 18px</string>
+       </property>
+      </widget>
+      <widget class="QLabel" name="lblFTakenOrderInfo_2">
+       <property name="geometry">
+        <rect>
+         <x>540</x>
+         <y>450</y>
+         <width>401</width>
+         <height>61</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">color: rgb(186, 189, 182); 
+font-size: 16px</string>
+       </property>
+       <property name="text">
+        <string/>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignCenter</set>
+       </property>
+       <property name="wordWrap">
+        <bool>true</bool>
+       </property>
+      </widget>
+      <widget class="QLabel" name="lblConsigneePastOrders_3">
+       <property name="geometry">
+        <rect>
+         <x>680</x>
+         <y>10</y>
+         <width>141</width>
+         <height>31</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">color: rgb(186, 189, 182); 
+font-size: 20px</string>
+       </property>
+       <property name="text">
+        <string>Taken Orders</string>
+       </property>
+      </widget>
+     </widget>
+     <widget class="QWidget" name="tbFProfile_2">
+      <attribute name="title">
+       <string>Profile</string>
+      </attribute>
+     </widget>
+    </widget>
+   </widget>
   </widget>
   <widget class="QPushButton" name="btnCOLogout">
    <property name="geometry">
