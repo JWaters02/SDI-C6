@@ -1,0 +1,279 @@
+commit a54d30c7a77790d54ded477d8a1994583820fd41
+Author: JWaters02 <watersjoshua2002@gmail.com>
+Date:   Thu May 5 15:08:03 2022 -0700
+
+    Generated website and ref man docs
+
+commit 1eb642dedbab46a93eaa2079bcbb04fb5f078c1d
+Author: JWaters02 <watersjoshua2002@gmail.com>
+Date:   Thu May 5 14:38:47 2022 -0700
+
+    Added comments and removed unused classes
+
+commit 02491f817226b15f6264cf4ac0bbb65ef7c98c5f
+Author: JWaters02 <watersjoshua2002@gmail.com>
+Date:   Wed May 4 23:31:57 2022 -0700
+
+    Finished the system
+
+commit 343767588ccf4770ef9af390cece51c2d766fed1
+Author: JWaters02 <watersjoshua2002@gmail.com>
+Date:   Wed May 4 23:07:26 2022 -0700
+
+    Finished courier system
+
+commit c904224d332535632accfff5c01ad364daffd0dc
+Author: JWaters02 <watersjoshua2002@gmail.com>
+Date:   Wed May 4 21:54:18 2022 -0700
+
+    Finished driver create auction system
+
+commit d8b0bc3c67e5c49aadbfdaa4e5df90808c284c2b
+Author: JWaters02 <watersjoshua2002@gmail.com>
+Date:   Wed May 4 20:14:57 2022 -0700
+
+    Fixed login/logout bug and worked on driver auction
+
+commit f41ca8dfe05f4064d8d506e2bba5549c7c884b80
+Author: JWaters02 <watersjoshua2002@gmail.com>
+Date:   Wed May 4 13:56:12 2022 -0700
+
+    Finished cargo owner auction system
+
+commit b917ef1b34332b4746e06b6d6eecab1dce85a6db
+Author: JWaters02 <watersjoshua2002@gmail.com>
+Date:   Wed May 4 10:41:24 2022 -0700
+
+    Cargo owner auction system work
+
+commit 2dbd6e6e76a33803092a14e9ccefc6084006f05d
+Author: JWaters02 <watersjoshua2002@gmail.com>
+Date:   Tue May 3 18:50:00 2022 -0700
+
+    Started CO auction intergration
+
+commit 5a1a1200d6a1fcbf607dc0f81bf99404a831c361
+Author: JWaters02 <watersjoshua2002@gmail.com>
+Date:   Tue May 3 18:24:18 2022 -0700
+
+    Worked on bidding GUIs
+
+commit 29537edd2c2c88189f44f7b6c46b16cbea4dd163
+Author: JWaters02 <watersjoshua2002@gmail.com>
+Date:   Tue May 3 14:58:55 2022 -0700
+
+    Forwarder now takes orders
+
+commit 01040e19b978e2451bdfb62450d3db6225597cb7
+Author: JWaters02 <watersjoshua2002@gmail.com>
+Date:   Tue May 3 13:41:11 2022 -0700
+
+    Working on ordering system
+
+commit 0a49c7330987fd67d8d7083c27360762486faf69
+Author: JWaters02 <watersjoshua2002@gmail.com>
+Date:   Thu Apr 21 11:01:32 2022 -0700
+
+    Fixed registration check and start boost testing
+
+commit fda63419414317bfbeb0aeedf5e616e726128673
+Author: JWaters02 <watersjoshua2002@gmail.com>
+Date:   Sun Apr 17 21:44:28 2022 -0700
+
+    Added lorry registration info to drivers signup
+
+commit 3da8eef7283e0b428d759367a16c6d33fec9247f
+Author: JWaters02 <watersjoshua2002@gmail.com>
+Date:   Sun Apr 17 21:20:25 2022 -0700
+
+    Added reg check requirement
+
+commit 133e9cd5cd9bcff94c7edc5672faeb3537336787
+Author: JWaters02 <watersjoshua2002@gmail.com>
+Date:   Sun Apr 17 19:53:04 2022 -0700
+
+    Added new submodules
+
+commit 165d0fcad07711c93b6663c92e5f29aee77f788b
+Author: JWaters02 <watersjoshua2002@gmail.com>
+Date:   Sun Apr 17 15:13:38 2022 -0700
+
+    Finally got program running on new VM
+
+commit f2c395ae1d19f9c89fd026b18ab04ef9843b5b22
+Author: JWaters02 <watersjoshua2002@gmail.com>
+Date:   Sun Apr 17 18:15:49 2022 +0100
+
+    Re added submodules hopefully works now
+
+commit a5c9c5ca2cd1711c5426221cea86e24fb6e73843
+Author: JWaters02 <watersjoshua2002@gmail.com>
+Date:   Sun Apr 17 18:03:10 2022 +0100
+
+    Auto stash before revert of "Add submodules"
+
+commit d21b53a6b667f738eaa945180b2e6cb8106d3f18
+Author: JWaters02 <watersjoshua2002@gmail.com>
+Date:   Sun Apr 17 03:24:50 2022 +0100
+
+    Revert "Add submodules"
+    
+    This reverts commit 41c8fcdc97d2aba1b107a8f808a853bad9bf85fd.
+
+commit 41c8fcdc97d2aba1b107a8f808a853bad9bf85fd
+Author: JWaters02 <watersjoshua2002@gmail.com>
+Date:   Sun Apr 17 03:24:50 2022 +0100
+
+    Add submodules
+
+commit 9e885bfc68dac26183a01b9a834c3f370f282e41
+Author: JWaters02 <watersjoshua2002@gmail.com>
+Date:   Fri Feb 18 23:04:28 2022 +0000
+
+    Changed price to total price
+
+commit 3792f181cd2c5618b3d6d4513e0c8eb7d15271ab
+Author: JWaters02 <watersjoshua2002@gmail.com>
+Date:   Fri Feb 18 22:41:54 2022 +0000
+
+    Consignee GUI+DB intergration mostly fleshed out
+
+commit 7d4d67ffcde887ec71b945f5715e6ebf0740bbd5
+Author: JWaters02 <watersjoshua2002@gmail.com>
+Date:   Thu Feb 17 22:51:04 2022 +0000
+
+    Started on home GUI window
+
+commit 8913bdefd71509694f011618b0da1b5d169367f1
+Author: JWaters02 <watersjoshua2002@gmail.com>
+Date:   Thu Feb 17 18:43:23 2022 +0000
+
+    Finished login system
+
+commit 5d94cd9896d5b5ab314fca109ac5f7fc5a583aef
+Author: JWaters02 <watersjoshua2002@gmail.com>
+Date:   Wed Feb 16 22:57:46 2022 +0000
+
+    Login intergration with DB along other fixes and changes
+
+commit 9102243dc6f5169477c956d538f5ef98e5091165
+Author: JWaters02 <watersjoshua2002@gmail.com>
+Date:   Wed Feb 16 19:16:29 2022 +0000
+
+    Login system for all user types initial implementation, working on DB intergration next
+
+commit 4cdef68c7b7a3c7a74a5323f0684e52ce760a60b
+Author: JWaters02 <watersjoshua2002@gmail.com>
+Date:   Wed Feb 16 16:21:36 2022 +0000
+
+    Login system progress
+
+commit 69fd6ff007dc822e7ba5c8e7f746cf0ed6aa09a9
+Merge: 8db39df 6f348bb
+Author: JWaters02 <watersjoshua2002@gmail.com>
+Date:   Wed Feb 16 16:18:04 2022 +0000
+
+    Merge branch 'main' of https://github.com/JWaters02/SDI-C6 into main
+    Check merge
+
+commit 8db39df720863b2ecb9121e248633d9928735261
+Author: JWaters02 <watersjoshua2002@gmail.com>
+Date:   Wed Feb 16 16:15:41 2022 +0000
+
+    Login pages for rest of users
+
+commit 6f348bbb3be9373da0dc19da3973592638237267
+Author: Joshua Waters <watersjoshua2002@gmail.com>
+Date:   Mon Feb 7 19:20:43 2022 +0000
+
+    Delete _config.yml
+
+commit 550e3babccbc8cfc7c38c32e4813d92bf16cc13b
+Author: Joshua Waters <watersjoshua2002@gmail.com>
+Date:   Mon Feb 7 19:20:33 2022 +0000
+
+    Update README.md
+
+commit 8207990484cf65957e0ec272080780cb3ffde7ef
+Author: JWaters02 <watersjoshua2002@gmail.com>
+Date:   Mon Feb 7 19:15:00 2022 +0000
+
+    Updated CMakeLists.txt to actually allow the required libraries to be built with
+
+commit 023f5e3fbdb7288d786a3516b641ee10d343324d
+Author: Joshua Waters <watersjoshua2002@gmail.com>
+Date:   Wed Jan 26 09:23:16 2022 +0000
+
+    Create README.md
+
+commit 4c697da833b3766870e2bbe633eaaf4ad878965c
+Author: Joshua Waters <watersjoshua2002@gmail.com>
+Date:   Wed Jan 26 09:23:03 2022 +0000
+
+    Set theme jekyll-theme-slate
+
+commit 298e9eb2f8759c6df5fe8029628e54bcdc4cfa95
+Author: Joshua Waters <watersjoahu2002@gmail.com>
+Date:   Sun Jan 9 01:51:53 2022 +0000
+
+    Worked on login system
+
+commit c145c4bb4728d46994e854c33f692c530d46b27e
+Author: N0916167 <N0916167@my.ntu.ac.uk>
+Date:   Sat Jan 8 11:22:42 2022 +0000
+
+    Worked on login system
+
+commit 22b2687c9e351b6b5c2ca3d0bcc655fb6260de68
+Author: N0916167 <N0916167@my.ntu.ac.uk>
+Date:   Sat Jan 8 08:21:21 2022 +0000
+
+    Refactored classes
+
+commit ef6ddd5da656a441209ee09a392e3107bd7061a8
+Author: N0916167 <N0916167@my.ntu.ac.uk>
+Date:   Sat Jan 8 08:20:58 2022 +0000
+
+    First PostgreSQL DB query
+
+commit 133b71992c384a8a883ea1e439bbd68d416487c8
+Author: N0916167 <N0916167@my.ntu.ac.uk>
+Date:   Sat Jan 8 08:20:30 2022 +0000
+
+    Added login/signup menus
+
+commit c4baecf4ccd3a8a6c4c3ad2283681f476af904c3
+Author: N0916167 <N0916167@my.ntu.ac.uk>
+Date:   Sat Dec 18 02:24:29 2021 +0000
+
+    Fixed User.cpp issue
+
+commit bd42510566c9a76a92cf3c335477ef59e7ec1b9f
+Author: JWaters02 <watersjoshua2002@gmail.com>
+Date:   Sat Dec 18 02:20:09 2021 +0000
+
+    Updated User.cpp and User.h
+
+commit 3309feb98ef4f6e9ebdcbb520f5e6dcab7d56aa4
+Author: Joshua Waters <watersjoshua2002@gmail.com>
+Date:   Sat Dec 18 00:21:19 2021 +0000
+
+    Delete build-ETM-Desktop_Qt_5_15_2_GCC_64bit-Debug directory
+
+commit c0714e3f6325ffab23239992d06c38ef94d3c434
+Author: N0916167 <N0916167@my.ntu.ac.uk>
+Date:   Sat Dec 18 00:20:51 2021 +0000
+
+    Ignoring Qt build folder
+
+commit df5f5f4105984ddbe276896e2ba7d71b891ee7c0
+Author: N0916167 <N0916167@my.ntu.ac.uk>
+Date:   Sat Dec 18 00:18:00 2021 +0000
+
+    Setup project
+
+commit 65b84415ad55bfa395cb18099056026affb3c55c
+Author: Joshua Waters <watersjoshua2002@gmail.com>
+Date:   Fri Dec 17 23:50:24 2021 +0000
+
+    Initial commit
