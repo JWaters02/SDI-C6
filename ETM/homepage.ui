@@ -29,7 +29,7 @@
     <string notr="true">background-color: rgb(54, 54, 54);</string>
    </property>
    <property name="currentIndex">
-    <number>1</number>
+    <number>2</number>
    </property>
    <widget class="QWidget" name="AdminPage">
     <widget class="QLabel" name="label_2">
@@ -660,7 +660,7 @@ font: 16px;
 color: rgb(186, 189, 182);</string>
      </property>
      <property name="currentIndex">
-      <number>0</number>
+      <number>1</number>
      </property>
      <widget class="QWidget" name="tbDriverBids">
       <attribute name="title">
@@ -669,7 +669,7 @@ color: rgb(186, 189, 182);</string>
       <widget class="QLabel" name="label_36">
        <property name="geometry">
         <rect>
-         <x>140</x>
+         <x>160</x>
          <y>10</y>
          <width>141</width>
          <height>31</height>
@@ -683,30 +683,7 @@ font-size: 20px</string>
         <string>Create Auction</string>
        </property>
       </widget>
-      <widget class="QLabel" name="lblDriverCreateAuctionInfo">
-       <property name="geometry">
-        <rect>
-         <x>30</x>
-         <y>500</y>
-         <width>401</width>
-         <height>61</height>
-        </rect>
-       </property>
-       <property name="styleSheet">
-        <string notr="true">color: rgb(186, 189, 182); 
-font-size: 16px</string>
-       </property>
-       <property name="text">
-        <string/>
-       </property>
-       <property name="alignment">
-        <set>Qt::AlignCenter</set>
-       </property>
-       <property name="wordWrap">
-        <bool>true</bool>
-       </property>
-      </widget>
-      <widget class="QPushButton" name="btnDriverBidsRefresh">
+      <widget class="QPushButton" name="btnDriverAuctionsRefresh">
        <property name="geometry">
         <rect>
          <x>440</x>
@@ -730,7 +707,7 @@ color: rgb(186, 189, 182);</string>
          <x>30</x>
          <y>50</y>
          <width>401</width>
-         <height>391</height>
+         <height>311</height>
         </rect>
        </property>
        <property name="frameShape">
@@ -776,7 +753,7 @@ font-size: 20px</string>
        <widget class="QLabel" name="label_40">
         <property name="geometry">
          <rect>
-          <x>130</x>
+          <x>150</x>
           <y>20</y>
           <width>101</width>
           <height>31</height>
@@ -945,8 +922,8 @@ font-size: 20px</string>
        <widget class="QPushButton" name="btnDriverBidsCreate">
         <property name="geometry">
          <rect>
-          <x>130</x>
-          <y>350</y>
+          <x>150</x>
+          <y>270</y>
           <width>91</width>
           <height>31</height>
          </rect>
@@ -994,44 +971,10 @@ font-size: 20px</string>
         </property>
        </widget>
       </widget>
-      <widget class="QSpinBox" name="sbxDriverBidsAmountBid">
-       <property name="geometry">
-        <rect>
-         <x>680</x>
-         <y>460</y>
-         <width>91</width>
-         <height>31</height>
-        </rect>
-       </property>
-       <property name="minimum">
-        <number>10</number>
-       </property>
-       <property name="maximum">
-        <number>2000</number>
-       </property>
-      </widget>
-      <widget class="QPushButton" name="btnDriverBidsBid">
-       <property name="geometry">
-        <rect>
-         <x>850</x>
-         <y>460</y>
-         <width>91</width>
-         <height>31</height>
-        </rect>
-       </property>
-       <property name="styleSheet">
-        <string notr="true">background-color: rgb(54, 54, 54);
-font: 16px;
-color: rgb(186, 189, 182);</string>
-       </property>
-       <property name="text">
-        <string>Bid</string>
-       </property>
-      </widget>
       <widget class="QLabel" name="label_20">
        <property name="geometry">
         <rect>
-         <x>650</x>
+         <x>680</x>
          <y>10</y>
          <width>171</width>
          <height>31</height>
@@ -1042,16 +985,16 @@ color: rgb(186, 189, 182);</string>
 font-size: 20px</string>
        </property>
        <property name="text">
-        <string>On-going auctions</string>
+        <string>Taken Orders</string>
        </property>
       </widget>
-      <widget class="QListWidget" name="lwDriverBidsAuctionsOngoing">
+      <widget class="QListWidget" name="lwDriverTakenOrders">
        <property name="geometry">
         <rect>
          <x>540</x>
          <y>50</y>
          <width>401</width>
-         <height>391</height>
+         <height>261</height>
         </rect>
        </property>
        <property name="styleSheet">
@@ -1059,30 +1002,13 @@ font-size: 20px</string>
 font-size: 18px</string>
        </property>
       </widget>
-      <widget class="QLabel" name="label_19">
+      <widget class="QLabel" name="lblDriverAuctionInfo">
        <property name="geometry">
         <rect>
          <x>540</x>
-         <y>460</y>
-         <width>141</width>
-         <height>31</height>
-        </rect>
-       </property>
-       <property name="styleSheet">
-        <string notr="true">color: rgb(186, 189, 182); 
-font-size: 20px</string>
-       </property>
-       <property name="text">
-        <string>Bid increase: £</string>
-       </property>
-      </widget>
-      <widget class="QLabel" name="lblDriverBidInfo">
-       <property name="geometry">
-        <rect>
-         <x>540</x>
-         <y>500</y>
+         <y>320</y>
          <width>401</width>
-         <height>61</height>
+         <height>41</height>
         </rect>
        </property>
        <property name="styleSheet">
@@ -1115,6 +1041,258 @@ color: rgb(186, 189, 182);</string>
        </property>
        <property name="text">
         <string>Copy Price</string>
+       </property>
+      </widget>
+      <widget class="QListWidget" name="lwDriverRunningAuctions">
+       <property name="geometry">
+        <rect>
+         <x>30</x>
+         <y>410</y>
+         <width>911</width>
+         <height>141</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">color: rgb(186, 189, 182); 
+font-size: 18px</string>
+       </property>
+      </widget>
+      <widget class="QPushButton" name="btnDriverRefreshRunningAuction">
+       <property name="geometry">
+        <rect>
+         <x>30</x>
+         <y>370</y>
+         <width>91</width>
+         <height>31</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">background-color: rgb(54, 54, 54);
+font: 16px;
+color: rgb(186, 189, 182);</string>
+       </property>
+       <property name="text">
+        <string>Refresh</string>
+       </property>
+      </widget>
+      <widget class="QPushButton" name="btnDriverEndRunningAuction">
+       <property name="geometry">
+        <rect>
+         <x>850</x>
+         <y>370</y>
+         <width>91</width>
+         <height>31</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">background-color: rgb(54, 54, 54);
+font: 16px;
+color: rgb(186, 189, 182);</string>
+       </property>
+       <property name="text">
+        <string>End</string>
+       </property>
+      </widget>
+      <widget class="QLabel" name="label_58">
+       <property name="geometry">
+        <rect>
+         <x>380</x>
+         <y>370</y>
+         <width>211</width>
+         <height>31</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">color: rgb(186, 189, 182); 
+font-size: 20px</string>
+       </property>
+       <property name="text">
+        <string>Your Running Auctions</string>
+       </property>
+      </widget>
+     </widget>
+     <widget class="QWidget" name="tbDriverOrders">
+      <attribute name="title">
+       <string>Bidding</string>
+      </attribute>
+      <widget class="QListWidget" name="lwDriverOngoingAuctions">
+       <property name="geometry">
+        <rect>
+         <x>30</x>
+         <y>50</y>
+         <width>401</width>
+         <height>391</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">color: rgb(186, 189, 182); 
+font-size: 18px</string>
+       </property>
+      </widget>
+      <widget class="QLabel" name="lblDriverOngoingAuctionsInfo">
+       <property name="geometry">
+        <rect>
+         <x>30</x>
+         <y>500</y>
+         <width>401</width>
+         <height>61</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">color: rgb(186, 189, 182); 
+font-size: 16px</string>
+       </property>
+       <property name="text">
+        <string/>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignCenter</set>
+       </property>
+       <property name="wordWrap">
+        <bool>true</bool>
+       </property>
+      </widget>
+      <widget class="QLabel" name="label_21">
+       <property name="geometry">
+        <rect>
+         <x>30</x>
+         <y>460</y>
+         <width>141</width>
+         <height>31</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">color: rgb(186, 189, 182); 
+font-size: 20px</string>
+       </property>
+       <property name="text">
+        <string>Bid increase: £</string>
+       </property>
+      </widget>
+      <widget class="QPushButton" name="btnDriverBiddingRefresh">
+       <property name="geometry">
+        <rect>
+         <x>440</x>
+         <y>50</y>
+         <width>91</width>
+         <height>31</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">background-color: rgb(54, 54, 54);
+font: 16px;
+color: rgb(186, 189, 182);</string>
+       </property>
+       <property name="text">
+        <string>Refresh</string>
+       </property>
+      </widget>
+      <widget class="QPushButton" name="btnDriverBid">
+       <property name="geometry">
+        <rect>
+         <x>340</x>
+         <y>460</y>
+         <width>91</width>
+         <height>31</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">background-color: rgb(54, 54, 54);
+font: 16px;
+color: rgb(186, 189, 182);</string>
+       </property>
+       <property name="text">
+        <string>Bid</string>
+       </property>
+      </widget>
+      <widget class="QLabel" name="label_22">
+       <property name="geometry">
+        <rect>
+         <x>140</x>
+         <y>10</y>
+         <width>171</width>
+         <height>31</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">color: rgb(186, 189, 182); 
+font-size: 20px</string>
+       </property>
+       <property name="text">
+        <string>On-going auctions</string>
+       </property>
+      </widget>
+      <widget class="QDoubleSpinBox" name="dsbxDriverBidAmount">
+       <property name="geometry">
+        <rect>
+         <x>170</x>
+         <y>460</y>
+         <width>91</width>
+         <height>31</height>
+        </rect>
+       </property>
+       <property name="minimum">
+        <double>1.000000000000000</double>
+       </property>
+       <property name="maximum">
+        <double>99999.000000000000000</double>
+       </property>
+       <property name="value">
+        <double>10.000000000000000</double>
+       </property>
+      </widget>
+      <widget class="QListWidget" name="lwDriverWonAuctions">
+       <property name="geometry">
+        <rect>
+         <x>540</x>
+         <y>50</y>
+         <width>401</width>
+         <height>441</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">color: rgb(186, 189, 182); 
+font-size: 18px</string>
+       </property>
+      </widget>
+      <widget class="QLabel" name="label_59">
+       <property name="geometry">
+        <rect>
+         <x>680</x>
+         <y>10</y>
+         <width>131</width>
+         <height>31</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">color: rgb(186, 189, 182); 
+font-size: 20px</string>
+       </property>
+       <property name="text">
+        <string>Won Auctions</string>
+       </property>
+      </widget>
+      <widget class="QLabel" name="lblDriverWonAuctionsInfo">
+       <property name="geometry">
+        <rect>
+         <x>540</x>
+         <y>500</y>
+         <width>401</width>
+         <height>61</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">color: rgb(186, 189, 182); 
+font-size: 16px</string>
+       </property>
+       <property name="text">
+        <string/>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignCenter</set>
+       </property>
+       <property name="wordWrap">
+        <bool>true</bool>
        </property>
       </widget>
      </widget>
@@ -1499,7 +1677,7 @@ font-size: 16px</string>
        <widget class="QLabel" name="label_49">
         <property name="geometry">
          <rect>
-          <x>480</x>
+          <x>510</x>
           <y>20</y>
           <width>161</width>
           <height>31</height>
@@ -1708,129 +1886,6 @@ color: rgb(186, 189, 182);</string>
          <y>240</y>
          <width>311</width>
          <height>81</height>
-        </rect>
-       </property>
-       <property name="styleSheet">
-        <string notr="true">color: rgb(186, 189, 182); 
-font-size: 16px</string>
-       </property>
-       <property name="text">
-        <string/>
-       </property>
-       <property name="alignment">
-        <set>Qt::AlignCenter</set>
-       </property>
-       <property name="wordWrap">
-        <bool>true</bool>
-       </property>
-      </widget>
-      <widget class="QPushButton" name="btnDriverBidsBid_2">
-       <property name="geometry">
-        <rect>
-         <x>850</x>
-         <y>460</y>
-         <width>91</width>
-         <height>31</height>
-        </rect>
-       </property>
-       <property name="styleSheet">
-        <string notr="true">background-color: rgb(54, 54, 54);
-font: 16px;
-color: rgb(186, 189, 182);</string>
-       </property>
-       <property name="text">
-        <string>Bid</string>
-       </property>
-      </widget>
-      <widget class="QSpinBox" name="sbxDriverBidsAmountBid_2">
-       <property name="geometry">
-        <rect>
-         <x>680</x>
-         <y>460</y>
-         <width>91</width>
-         <height>31</height>
-        </rect>
-       </property>
-       <property name="minimum">
-        <number>10</number>
-       </property>
-       <property name="maximum">
-        <number>2000</number>
-       </property>
-      </widget>
-      <widget class="QLabel" name="label_21">
-       <property name="geometry">
-        <rect>
-         <x>650</x>
-         <y>10</y>
-         <width>171</width>
-         <height>31</height>
-        </rect>
-       </property>
-       <property name="styleSheet">
-        <string notr="true">color: rgb(186, 189, 182); 
-font-size: 20px</string>
-       </property>
-       <property name="text">
-        <string>On-going auctions</string>
-       </property>
-      </widget>
-      <widget class="QPushButton" name="btnDriverBidsRefresh_2">
-       <property name="geometry">
-        <rect>
-         <x>440</x>
-         <y>50</y>
-         <width>91</width>
-         <height>31</height>
-        </rect>
-       </property>
-       <property name="styleSheet">
-        <string notr="true">background-color: rgb(54, 54, 54);
-font: 16px;
-color: rgb(186, 189, 182);</string>
-       </property>
-       <property name="text">
-        <string>Refresh</string>
-       </property>
-      </widget>
-      <widget class="QListWidget" name="lwDriverBidsAuctionsOngoing_2">
-       <property name="geometry">
-        <rect>
-         <x>540</x>
-         <y>50</y>
-         <width>401</width>
-         <height>391</height>
-        </rect>
-       </property>
-       <property name="styleSheet">
-        <string notr="true">color: rgb(186, 189, 182); 
-font-size: 18px</string>
-       </property>
-      </widget>
-      <widget class="QLabel" name="label_22">
-       <property name="geometry">
-        <rect>
-         <x>540</x>
-         <y>460</y>
-         <width>141</width>
-         <height>31</height>
-        </rect>
-       </property>
-       <property name="styleSheet">
-        <string notr="true">color: rgb(186, 189, 182); 
-font-size: 20px</string>
-       </property>
-       <property name="text">
-        <string>Bid increase: £</string>
-       </property>
-      </widget>
-      <widget class="QLabel" name="lblDriverBidInfo_2">
-       <property name="geometry">
-        <rect>
-         <x>540</x>
-         <y>500</y>
-         <width>401</width>
-         <height>61</height>
         </rect>
        </property>
        <property name="styleSheet">

@@ -50,18 +50,42 @@ struct COAuctionInfo {
     std::string bidder;
 };
 
+struct DriverAuctionInfo {
+    std::string auctionId;
+    std::string orderId;
+    std::string username;
+    double startPrice;
+    double bidPrice;
+    double commission;
+    double costPerMile;
+    double distance;
+    std::string startDate;
+    std::string startTime;
+    int length; // In hours
+    std::string status;
+    std::string bidder;
+};
+
 class Auction {
 private:
-    static std::vector<COAuctionInfo> parseAuctionInfo(const std::vector<std::vector<std::string>>& auctionInfo);
+    static std::vector<COAuctionInfo> parseCOAuctionInfo(const std::vector<std::vector<std::string>>& auctionInfo);
+    static std::vector<DriverAuctionInfo> parseDriverAuctionInfo(const std::vector<std::vector<std::string>>& auctionInfo);
     static std::string getTable(const EUserTypes& userType);
     static std::string currentDate();
     static std::string currentTime();
 
 public:
     static std::vector<COAuctionInfo> getRunningAuctions(const EUserTypes& userType, const std::string& username);
-    static void makeCOAuction(const std::string& username, const std::string& orderId, const double& startPrice, const double& commission, const int& length);
+    static std::vector<COAuctionInfo> getRunningCOAuctions(const EUserTypes& userType);
+    static std::vector<DriverAuctionInfo> getRunningDriverAuctions(const EUserTypes& userType, const std::string& username);
+    static std::vector<COAuctionInfo> getWonCOAuctions(const std::string& username);
     static std::vector<std::string> getAuctionIDs(const EUserTypes& userType);
-    static bool hasBidder(const std::string& auctionID);
+    static bool hasBidder(const EUserTypes& userType, const std::string& auctionID);
+
+    static void setBidAmount(const EUserTypes& userType, const std::string& auctionID, const double& newBid);
+    static void setBidderName(const EUserTypes& userType, const std::string& auctionID, const std::string& username);
+    static void makeCOAuction(const std::string& username, const std::string& orderId, const double& startPrice, const double& commission, const int& length);
+    static void makeDriverAuction(const std::string& username, const std::string& orderId, const double& startPrice, const double& commission, const double& cpm, const double& distance, const int& length);
     static void endAuction(const EUserTypes& userType, const std::string& auctionID);
 };
 

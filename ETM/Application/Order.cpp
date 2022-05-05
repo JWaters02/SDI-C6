@@ -6,8 +6,7 @@ std::vector<OrderInfo> Order::getPastOrders(const std::string& username) {
     query   << "SELECT * FROM OrderGoods WHERE username = '"
             << username
             << "' AND (orderStatus = 'Delivered' OR orderStatus = 'Cancelled')";
-    std::vector<std::vector<std::string>> pastOrders = DBHandler::getResult2DVector(query.str());
-    return parseOrderInfo(pastOrders);
+    return parseOrderInfo(DBHandler::getResult2DVector(query.str()));
 }
 
 std::vector<OrderInfo> Order::getCurrentOrders(const std::string& username) {
@@ -16,15 +15,13 @@ std::vector<OrderInfo> Order::getCurrentOrders(const std::string& username) {
     query   << "SELECT * FROM OrderGoods WHERE username = '"
             << username
             << "' AND orderStatus = 'Pending'";
-    std::vector<std::vector<std::string>> currentOrders = DBHandler::getResult2DVector(query.str());
-    return parseOrderInfo(currentOrders);
+    return parseOrderInfo(DBHandler::getResult2DVector(query.str()));
 }
 
 std::vector<OrderInfo> Order::getAllCurrentOrders() {
     std::stringstream query;
     query   << "SELECT * FROM OrderGoods WHERE orderStatus = 'Pending'";
-    std::vector<std::vector<std::string>> allCurrentOrders = DBHandler::getResult2DVector(query.str());
-    return parseOrderInfo(allCurrentOrders);
+    return parseOrderInfo(DBHandler::getResult2DVector(query.str()));
 }
 
 std::vector<OrderInfo> Order::getTakenOrders(const EUserTypes& userType, const std::string& username) {
@@ -36,8 +33,7 @@ std::vector<OrderInfo> Order::getTakenOrders(const EUserTypes& userType, const s
             << " = '"
             << username
             << "' AND orderStatus = 'Pending'";
-    std::vector<std::vector<std::string>> takenOrders = DBHandler::getResult2DVector(query.str());
-    return parseOrderInfo(takenOrders);
+    return parseOrderInfo(DBHandler::getResult2DVector(query.str()));
 }
 
 std::vector<OrderInfo> Order::getAllTakenOrders(const EUserTypes& userType) {
@@ -47,8 +43,7 @@ std::vector<OrderInfo> Order::getAllTakenOrders(const EUserTypes& userType) {
     query   << "SELECT * FROM OrderGoods WHERE "
             << type
             << " != 'NONE' AND orderStatus = 'Pending'";
-    std::vector<std::vector<std::string>> allTakenOrders = DBHandler::getResult2DVector(query.str());
-    return parseOrderInfo(allTakenOrders);
+    return parseOrderInfo(DBHandler::getResult2DVector(query.str()));
 }
 
 std::vector<OrderInfo> Order::parseOrderInfo(const std::vector<std::vector<std::string>>& orderInfo) {
@@ -110,15 +105,14 @@ void Order::takeOrder(const EUserTypes& userType, const std::string& username, c
             << username
             << "' WHERE orderID = '"
             << orderID
-            << "';";
+            << "'";
     DBHandler::writeFields(query.str());
 }
 
 std::vector<std::string> Order::getOrderIDs() {
     std::stringstream query;
     query   << "SELECT orderID FROM OrderGoods";
-    std::vector<std::string> IDs = DBHandler::getResultVector(query.str());
-    return IDs;
+    return DBHandler::getResultVector(query.str());
 }
 
 std::string Order::getType(const EUserTypes& userType) {

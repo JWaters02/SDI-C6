@@ -97,11 +97,9 @@ void MainWindow::on_btnLogin_clicked() {
         EUserTypes userType = Login::getUserType(getLoginInfo());
         if (userType == EUserTypes::NONE) return; // TODO: Probably need to return a DB error since no user type was found
 
+        w->setUsername(submittedLoginInfo.username);
         // Show the correct menu depending on type
         w->showCorrectPage(userType);
-
-        // Store username in DB before we delete this object
-        Login::storeUsername(getLoginInfo().username);
 
         // Close login menu and show main window
         w->show();

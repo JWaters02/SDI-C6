@@ -27,7 +27,7 @@ struct UserTypes {
 };
 
 struct LoginInfo {
-    std::string username;
+    std::string username = "";
     std::string password;
 };
 

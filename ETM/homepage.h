@@ -18,9 +18,9 @@ class HomePage : public QWidget {
 public:
     explicit HomePage(QWidget *parent = nullptr);
     ~HomePage();
-    std::string username; // Use this to get data from DB
+    std::string username = ""; // Use this to get data from DB
 
-    void setUsername();
+    void setUsername(std::string _username);
     void showCorrectPage(EUserTypes userType);
 
 private slots:
@@ -43,6 +43,11 @@ private slots:
     void on_btnCOBidsCreate_clicked();
     void on_btnCOEndRunningAuction_clicked();
     void on_lwCORunningAuctions_itemClicked(QListWidgetItem *item);
+    void on_btnDriverBiddingRefresh_clicked();
+    void on_btnDriverBid_clicked();
+    void on_lwDriverOngoingAuctions_itemClicked(QListWidgetItem *item);
+    void on_btnCORefreshRunningAuction_clicked();
+    void on_lwDriverWonAuctions_itemClicked(QListWidgetItem *item);
 
 private:
     Ui::HomePage *ui;
@@ -53,9 +58,16 @@ private:
     std::vector<OrderInfo> COTakenOrderInfo;
     std::vector<OrderInfo> COFOrderInfo;
     std::vector<COAuctionInfo> coAuctionInfo;
+    std::vector<COAuctionInfo> driverOngoingAuctionInfo;
+    std::vector<COAuctionInfo> driverWonAuctionInfo;
+    std::vector<DriverAuctionInfo> driverRunningAuctionInfo;
+    std::vector<OrderInfo> driverTakenOrderInfo;
     std::string selectedOrderID;
     double selectedOrderPrice;
     std::string selectedRunningAuctionID;
+    std::string selectedRunningAuctionBidder;
+    std::string selectedRunningOrderID;
+    std::string selectedOngoingAuctionID;
 
     void loadConsigneeCurrentOrders();
     void loadConsigneePastOrders();
@@ -64,6 +76,10 @@ private:
     void loadCOFOrders();
     void loadCOTakenOrders();
     void loadCOAuctions();
+    void loadDriverOngoingAuctions();
+    void loadDriverWonAuctions();
+    void loadDriverTakenOrders();
+    void loadDriverRunningAuctions();
 
     template <typename T>
     std::string to_string_with_precision(const T in, const int n = 2) {

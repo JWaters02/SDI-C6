@@ -1,6 +1,6 @@
 #include "Auction.h"
 
-std::vector<COAuctionInfo> Auction::parseAuctionInfo(const std::vector<std::vector<std::string>>& auctionInfo) {
+std::vector<COAuctionInfo> Auction::parseCOAuctionInfo(const std::vector<std::vector<std::string>>& auctionInfo) {
     std::vector<COAuctionInfo> parsedAuctionInfo;
     for (const auto& auction : auctionInfo) {
         COAuctionInfo parsedAuction;
@@ -20,6 +20,27 @@ std::vector<COAuctionInfo> Auction::parseAuctionInfo(const std::vector<std::vect
     return parsedAuctionInfo;
 }
 
+std::vector<DriverAuctionInfo> Auction::parseDriverAuctionInfo(const std::vector<std::vector<std::string>>& auctionInfo) {
+    std::vector<DriverAuctionInfo> parsedAuctionInfo;
+    for (const auto& auction : auctionInfo) {
+        DriverAuctionInfo parsedAuction;
+        parsedAuction.auctionId = auction[0];
+        parsedAuction.orderId = auction[1];
+        parsedAuction.username = auction[2];
+        parsedAuction.startPrice = std::stod(auction[3]);
+        parsedAuction.bidPrice = std::stod(auction[4]);
+        parsedAuction.commission = std::stod(auction[5]);
+        parsedAuction.costPerMile = std::stod(auction[6]);
+        parsedAuction.distance = std::stod(auction[7]);
+        parsedAuction.startDate = auction[8];
+        parsedAuction.startTime = auction[9];
+        parsedAuction.length = std::stoi(auction[10]);
+        parsedAuction.status = auction[11];
+        parsedAuction.bidder = auction[12];
+        parsedAuctionInfo.push_back(parsedAuction);
+    }
+    return parsedAuctionInfo;
+}
 
 std::vector<COAuctionInfo> Auction::getRunningAuctions(const EUserTypes& userType, const std::string& username) {
     std::stringstream query;
@@ -28,8 +49,33 @@ std::vector<COAuctionInfo> Auction::getRunningAuctions(const EUserTypes& userTyp
             << " WHERE username = '"
             << username
             << "' AND auctionStatus = 'Running'";
-    std::vector<std::vector<std::string>> runningAuctions = DBHandler::getResult2DVector(query.str());
-    return parseAuctionInfo(runningAuctions);
+    return parseCOAuctionInfo(DBHandler::getResult2DVector(query.str()));
+}
+
+std::vector<COAuctionInfo> Auction::getRunningCOAuctions(const EUserTypes& userType) {
+    std::stringstream query;
+    query   << "SELECT * FROM "
+            << getTable(userType)
+            << " WHERE auctionStatus = 'Running'";
+    return parseCOAuctionInfo(DBHandler::getResult2DVector(query.str()));
+}
+
+std::vector<DriverAuctionInfo> Auction::getRunningDriverAuctions(const EUserTypes& userType, const std::string& username) {
+    std::stringstream query;
+    query   << "SELECT * FROM "
+            << getTable(userType)
+            << " WHERE username = '"
+            << username
+            << "' AND auctionStatus = 'Running'";
+    return parseDriverAuctionInfo(DBHandler::getResult2DVector(query.str()));
+}
+
+std::vector<COAuctionInfo> Auction::getWonCOAuctions(const std::string& username) {
+    std::stringstream query;
+    query   << "SELECT * FROM COAuction WHERE auctionBidder = '"
+            << username
+            << "' AND auctionStatus = 'Finished'";
+    return parseCOAuctionInfo(DBHandler::getResult2DVector(query.str()));
 }
 
 std::vector<std::string> Auction::getAuctionIDs(const EUserTypes& userType) {
@@ -40,7 +86,8 @@ std::vector<std::string> Auction::getAuctionIDs(const EUserTypes& userType) {
     return IDs;
 }
 
-void Auction::makeCOAuction(const std::string& username, const std::string& orderId, const double& startPrice, const double& commission, const int& length) {
+void Auction::makeCOAuction(const std::string& username, const std::string& orderId, const double& startPrice,
+                            const double& commission, const int& length) {
     // Get existing auctionIDs
     std::vector<std::string> IDs = getAuctionIDs(EUserTypes::CARGO_OWNER);
     // Loop through IDs to find the first that isn't used
@@ -77,6 +124,48 @@ void Auction::makeCOAuction(const std::string& username, const std::string& orde
     DBHandler::writeFields(query.str());
 }
 
+void Auction::makeDriverAuction(const std::string& username, const std::string& orderId, const double& startPrice,
+                                const double& commission, const double& cpm, const double& distance, const int& length) {
+    // Get existing auctionIDs
+    std::vector<std::string> IDs = getAuctionIDs(EUserTypes::DRIVER);
+    // Loop through IDs to find the first that isn't used
+    int previous = 0;
+    for (std::string id : IDs) {
+        if (std::stoi(id) > previous) previous = std::stoi(id);
+    }
+    std::string unused = std::to_string(previous + 1);
+
+    const std::string status = "Running";
+
+    std::stringstream query;
+    query   << "INSERT INTO COAuction VALUES ('"
+            << unused
+            << "', '"
+            << orderId
+            << "', '"
+            << username
+            << "', '"
+            << std::to_string(startPrice)
+            << "', '"
+            << std::to_string(startPrice)
+            << "', '"
+            << std::to_string(commission)
+            << "', '"
+            << std::to_string(cpm)
+            << "', '"
+            << std::to_string(distance)
+            << "', '"
+            << currentDate()
+            << "', '"
+            << currentTime()
+            << "', '"
+            << std::to_string(length)
+            << "', '"
+            << status
+            << "');";
+    DBHandler::writeFields(query.str());
+}
+
 void Auction::endAuction(const EUserTypes& userType, const std::string& auctionID) {
     std::stringstream query;
     query   << "UPDATE "
@@ -87,13 +176,38 @@ void Auction::endAuction(const EUserTypes& userType, const std::string& auctionI
     DBHandler::writeFields(query.str());
 }
 
-bool Auction::hasBidder(const std::string& auctionID) {
+void Auction::setBidAmount(const EUserTypes& userType, const std::string& auctionID, const double& newBid) {
     std::stringstream query;
-    query   << "SELECT auctionBidder FROM COAuction WHERE auctionID = '"
+    query   << "UPDATE "
+            << getTable(userType)
+            << " SET auctionBidPrice = '"
+            << std::to_string(newBid)
+            << "' WHERE auctionID = '"
             << auctionID
             << "';";
-    std::string ret = DBHandler::getResult(query.str());
-    if (ret != "NONE") return true;
+    DBHandler::writeFields(query.str());
+}
+
+void Auction::setBidderName(const EUserTypes& userType, const std::string& auctionID, const std::string& username) {
+    std::stringstream query;
+    query   << "UPDATE "
+            << getTable(userType)
+            << " SET auctionBidder = '"
+            << username
+            << "' WHERE auctionID = '"
+            << auctionID
+            << "';";
+    DBHandler::writeFields(query.str());
+}
+
+bool Auction::hasBidder(const EUserTypes& userType, const std::string& auctionID) {
+    std::stringstream query;
+    query   << "SELECT auctionBidder FROM "
+            << getTable(userType)
+            << " WHERE auctionID = '"
+            << auctionID
+            << "';";
+    if (DBHandler::getResult(query.str()) != "NONE") return true;
     return false;
 }
 

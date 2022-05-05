@@ -149,16 +149,3 @@ EUserTypes Login::getUserType(const LoginInfo& loginInfo) {
     if (type == userTypes.Courier) return EUserTypes::COURIER;
     return EUserTypes::NONE;
 }
-
-void Login::storeUsername(const std::string& username) {
-    // Remove any current rows
-    DBHandler::writeFields("DELETE FROM CurrentUsername;");
-    std::stringstream query;
-    query   << "INSERT INTO CurrentUsername VALUES ('"
-            << username << "');";
-    DBHandler::writeFields(query.str());
-}
-
-std::string Login::getUsername() {
-    return DBHandler::getResult("SELECT username FROM CurrentUsername;");
-}
