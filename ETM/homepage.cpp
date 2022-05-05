@@ -172,11 +172,15 @@ void HomePage::on_lwConsigneeOrders_itemClicked(QListWidgetItem *item) {
     QString orderID = item->text().split(" ")[1];
     for (const OrderInfo& orderInfo : currentOrderInfo) {
         if (orderInfo.id == orderID.toStdString()) {
-            ui->lblConsigneeOrderInfo->setText(QString::fromStdString(
-                    "ID: " + orderInfo.id + " | Name: " + orderInfo.itemName +
-                    " | Date: " + orderInfo.date + " | Time: " + orderInfo.time +
-                    " | Status: " + orderInfo.status + " | Total Price: " +
-                    to_string_with_precision(orderInfo.unitPrice * orderInfo.quantity)));
+            QString orderInfoString = (QString::fromStdString(
+                    "ID: " + orderInfo.id +
+                    " | User: " + orderInfo.username +
+                    " | Name: " + orderInfo.itemName +
+                    " | Date: " + orderInfo.date +
+                    " | Time: " + orderInfo.time +
+                    " | Status: " + orderInfo.status +
+                    " | Total Price: "  + to_string_with_precision(orderInfo.unitPrice * orderInfo.quantity + orderInfo.fees)));
+            ui->lblConsigneeOrderInfo->setText(orderInfoString);
             break;
         }
     }
@@ -187,11 +191,15 @@ void HomePage::on_lwConsigneePastOrders_itemClicked(QListWidgetItem *item) {
     QString orderID = item->text().split(" ")[1];
     for (const OrderInfo& orderInfo : pastOrderInfo) {
         if (orderInfo.id == orderID.toStdString()) {
-            ui->lblConsigneePastOrderInfo->setText(QString::fromStdString(
-                    "ID: " + orderInfo.id + " | Name: " + orderInfo.itemName +
-                    " | Date: " + orderInfo.date + " | Time: " + orderInfo.time +
-                    " | Status: " + orderInfo.status + " | Total Price: "  +
-                    to_string_with_precision(orderInfo.unitPrice * orderInfo.quantity)));
+            QString orderInfoString = (QString::fromStdString(
+                    "ID: " + orderInfo.id +
+                    " | User: " + orderInfo.username +
+                    " | Name: " + orderInfo.itemName +
+                    " | Date: " + orderInfo.date +
+                    " | Time: " + orderInfo.time +
+                    " | Status: " + orderInfo.status +
+                    " | Total Price: "  + to_string_with_precision(orderInfo.unitPrice * orderInfo.quantity + orderInfo.fees)));
+            ui->lblConsigneePastOrderInfo->setText(orderInfoString);
             break;
         }
     }
@@ -230,12 +238,15 @@ void HomePage::on_lwFOrders_itemClicked(QListWidgetItem *item) {
     QString orderID = item->text().split(" ")[1];
     for (const OrderInfo& orderInfo : allCurrentOrderInfo) {
         if (orderInfo.id == orderID.toStdString()) {
-            ui->lblFOrderInfo->setText(QString::fromStdString(
-                    "ID: " + orderInfo.id + " | User: " + orderInfo.username +
+            QString orderInfoString = (QString::fromStdString(
+                    "ID: " + orderInfo.id +
+                    " | User: " + orderInfo.username +
                     " | Name: " + orderInfo.itemName +
-                    " | Date: " + orderInfo.date + " | Time: " + orderInfo.time +
-                    " | Status: " + orderInfo.status + " | Total Price: "  +
-                    to_string_with_precision(orderInfo.unitPrice * orderInfo.quantity)));
+                    " | Date: " + orderInfo.date +
+                    " | Time: " + orderInfo.time +
+                    " | Status: " + orderInfo.status +
+                    " | Total Price: "  + to_string_with_precision(orderInfo.unitPrice * orderInfo.quantity + orderInfo.fees)));
+            ui->lblFOrderInfo->setText(orderInfoString);
             this->selectedOrderID = orderInfo.id;
             break;
         }
@@ -263,13 +274,16 @@ void HomePage::on_lwFTakenOrders_itemClicked(QListWidgetItem *item) {
     QString orderID = item->text().split(" ")[1];
     for (const OrderInfo& orderInfo : fTakenOrdersInfo) {
         if (orderInfo.id == orderID.toStdString()) {
-            ui->lblFTakenOrderInfo->setText(QString::fromStdString(
-                    "ID: " + orderInfo.id + " | User: " + orderInfo.username +
+            QString orderInfoString = (QString::fromStdString(
+                    "ID: " + orderInfo.id +
+                    " | User: " + orderInfo.username +
                     " | Name: " + orderInfo.itemName +
-                    " | Date: " + orderInfo.date + " | Time: " + orderInfo.time +
-                    " | Status: " + orderInfo.status + " | Total Price: "  +
-                    to_string_with_precision(orderInfo.unitPrice * orderInfo.quantity) +
+                    " | Date: " + orderInfo.date +
+                    " | Time: " + orderInfo.time +
+                    " | Status: " + orderInfo.status +
+                    " | Total Price: "  + to_string_with_precision(orderInfo.unitPrice * orderInfo.quantity + orderInfo.fees) +
                     " | Taken Order"));
+            ui->lblFTakenOrderInfo->setText(orderInfoString);
             break;
         }
     }
@@ -304,13 +318,16 @@ void HomePage::on_lwCOTakenOrders_itemClicked(QListWidgetItem *item) {
     QString orderID = item->text().split(" ")[1];
     for (const OrderInfo& orderInfo : COTakenOrderInfo) {
         if (orderInfo.id == orderID.toStdString()) {
-            ui->lblCOTakenOrderInfo->setText(QString::fromStdString(
-                    "ID: " + orderInfo.id + " | User: " + orderInfo.username +
+            QString orderInfoString = (QString::fromStdString(
+                    "ID: " + orderInfo.id +
+                    " | User: " + orderInfo.username +
                     " | Name: " + orderInfo.itemName +
-                    " | Date: " + orderInfo.date + " | Time: " + orderInfo.time +
-                    " | Status: " + orderInfo.status + " | Total Price: "  +
-                    to_string_with_precision(orderInfo.unitPrice * orderInfo.quantity) +
+                    " | Date: " + orderInfo.date +
+                    " | Time: " + orderInfo.time +
+                    " | Status: " + orderInfo.status +
+                    " | Total Price: "  + to_string_with_precision(orderInfo.unitPrice * orderInfo.quantity + orderInfo.fees) +
                     " | Taken Order"));
+            ui->lblCOTakenOrderInfo->setText(orderInfoString);
             break;
         }
     }
@@ -320,12 +337,15 @@ void HomePage::on_lwCOOrders_itemClicked(QListWidgetItem *item) {
     QString orderID = item->text().split(" ")[1];
     for (const OrderInfo& orderInfo : COFOrderInfo) {
         if (orderInfo.id == orderID.toStdString()) {
-            ui->lblCOOrderInfo->setText(QString::fromStdString(
-                    "ID: " + orderInfo.id + " | User: " + orderInfo.username +
+            QString orderInfoString = (QString::fromStdString(
+                    "ID: " + orderInfo.id +
+                    " | User: " + orderInfo.username +
                     " | Name: " + orderInfo.itemName +
-                    " | Date: " + orderInfo.date + " | Time: " + orderInfo.time +
-                    " | Status: " + orderInfo.status + " | Total Price: "  +
-                    to_string_with_precision(orderInfo.unitPrice * orderInfo.quantity)));
+                    " | Date: " + orderInfo.date +
+                    " | Time: " + orderInfo.time +
+                    " | Status: " + orderInfo.status +
+                    " | Total Price: "  + to_string_with_precision(orderInfo.unitPrice * orderInfo.quantity + orderInfo.fees)));
+            ui->lblCOOrderInfo->setText(orderInfoString);
             this->selectedOrderID = orderInfo.id;
             break;
         }
@@ -353,13 +373,16 @@ void HomePage::on_lwCOTakenOrdersBids_itemClicked(QListWidgetItem *item) {
     QString orderID = item->text().split(" ")[1];
     for (const OrderInfo& orderInfo : COTakenOrderInfo) {
         if (orderInfo.id == orderID.toStdString()) {
-            ui->lblCOTakenOrderInfoBids->setText(QString::fromStdString(
-                    "ID: " + orderInfo.id + " | User: " + orderInfo.username +
+            QString orderInfoString = (QString::fromStdString(
+                    "ID: " + orderInfo.id +
+                    " | User: " + orderInfo.username +
                     " | Name: " + orderInfo.itemName +
-                    " | Date: " + orderInfo.date + " | Time: " + orderInfo.time +
-                    " | Status: " + orderInfo.status + " | Total Price: "  +
-                    to_string_with_precision(orderInfo.unitPrice * orderInfo.quantity) +
+                    " | Date: " + orderInfo.date +
+                    " | Time: " + orderInfo.time +
+                    " | Status: " + orderInfo.status +
+                    " | Total Price: "  + to_string_with_precision(orderInfo.unitPrice * orderInfo.quantity + orderInfo.fees) +
                     " | Taken Order"));
+            ui->lblCOTakenOrderInfoBids->setText(orderInfoString);
             this->selectedOrderPrice = orderInfo.unitPrice * orderInfo.quantity;
             this->selectedOrderID = orderInfo.id;
             break;
@@ -377,9 +400,7 @@ void HomePage::on_btnCOBidsCreate_clicked() {
             ui->lblCOCreateAuctionInfo->setText("Your starting price must be more than or equal to the order total price!");
         } else {
             // Check if auction for orderID is already running
-            // TODO: Maybe this needs to check for username as well?
-            std::vector<std::string> runningAuctionOrders = Auction::getAuctionIDs(EUserTypes::CARGO_OWNER);
-            // TODO: Possible optimisation: use std::find() instead
+            std::vector<std::string> runningAuctionOrders = Auction::getOrderIDs(EUserTypes::CARGO_OWNER);
             if (std::count(runningAuctionOrders.begin(), runningAuctionOrders.end(), this->selectedOrderID)) {
                 ui->lblCOCreateAuctionInfo->setText("Order is already in an auction by you or another cargo owner!");
             } else {
@@ -413,6 +434,16 @@ void HomePage::on_btnCOEndRunningAuction_clicked() {
             // Send order ID to bidder, username needs to be bidder's username
             Order::takeOrder(EUserTypes::DRIVER, this->selectedRunningAuctionBidder, this->selectedRunningOrderID);
             Auction::endAuction(EUserTypes::CARGO_OWNER, this->selectedRunningAuctionID);
+
+            // Increase the total price of the order ID by the income
+            double income = 0.0;
+            for (const COAuctionInfo& auctionInfo : coAuctionInfo) {
+                if (auctionInfo.auctionId == this->selectedRunningAuctionID) {
+                    income = auctionInfo.bidPrice + auctionInfo.commission;
+                }
+            }
+            Order::increaseTotalPrice(this->selectedRunningOrderID, income);
+
             ui->lblCOCreateAuctionInfo->setText("Ended auction and sent order to the bidder!");
             ui->lwCORunningAuctions->clear();
             loadCOAuctions();
@@ -475,6 +506,7 @@ void HomePage::on_lwDriverOngoingAuctions_itemClicked(QListWidgetItem *item) {
                         " | Bid Price: £" + to_string_with_precision(auctionInfo.bidPrice) +
                         " | Commission: £" + to_string_with_precision(auctionInfo.commission));
             ui->lblDriverOngoingAuctionsInfo->setText(auctionInfoString);
+            break;
         }
     }
     this->selectedOngoingAuctionID = item->text().split(" ")[2].toStdString();
@@ -491,6 +523,113 @@ void HomePage::on_lwDriverWonAuctions_itemClicked(QListWidgetItem *item) {
                         " | Commission: £" + to_string_with_precision(auctionInfo.commission) +
                         " | Paid: £" + to_string_with_precision(auctionInfo.bidPrice + auctionInfo.commission));
             ui->lblDriverWonAuctionsInfo->setText(auctionInfoString);
+            break;
+        }
+    }
+}
+
+void HomePage::on_lwDriverTakenOrders_itemClicked(QListWidgetItem *item) {
+    QString orderID = item->text().split(" ")[1];
+    for (const OrderInfo& orderInfo : driverTakenOrderInfo) {
+        if (orderInfo.id == orderID.toStdString()) {
+            QString auctionInfoString = (QString::fromStdString(
+                    "ID: " + orderInfo.id +
+                    " | User: " + orderInfo.username +
+                    " | Name: " + orderInfo.itemName +
+                    " | Status: " + orderInfo.status +
+                    " | Price: " + to_string_with_precision(orderInfo.unitPrice * orderInfo.quantity) +
+                    " | Total Price w/ Fees: " + to_string_with_precision(orderInfo.unitPrice * orderInfo.quantity + orderInfo.fees) +
+                    " | Taken Order"));
+            ui->lblDriverAuctionInfo->setText(auctionInfoString);
+            this->selectedOrderPrice = orderInfo.unitPrice * orderInfo.quantity;
+            this->selectedOrderID = orderInfo.id;
+            break;
+        }
+    }
+}
+
+void HomePage::on_btnDriverAuctionsRefresh_clicked() {
+    ui->lblDriverAuctionInfo->clear();
+    ui->lwDriverTakenOrders->clear();
+    loadDriverTakenOrders();
+}
+
+void HomePage::on_btnDriverBidsCopyOrderPrice_clicked() {
+    if (ui->lwDriverTakenOrders->selectedItems().empty()) {
+        ui->lblDriverAuctionInfo->setText("Select an order to copy from!");
+    } else {
+        ui->dsbxDriverBidsStartingPrice->setValue(this->selectedOrderPrice);
+        ui->lblDriverAuctionInfo->setText("Copied price across!");
+    }
+}
+
+
+void HomePage::on_btnDriverBidsCreate_clicked() {
+    // Check that an order is selected
+    if (ui->lwDriverTakenOrders->selectedItems().empty()) {
+        ui->lblDriverAuctionInfo->setText("Select an order to create an auction on!");
+    } else {
+        // Check that starting price is not less than selectedOrderPrice
+        if (ui->dsbxDriverBidsStartingPrice->value() < this->selectedOrderPrice) {
+            ui->lblDriverAuctionInfo->setText("Your starting price must be more than or equal to the order total price!");
+        } else {
+            // Check if auction for orderID is already running
+            std::vector<std::string> runningAuctionOrders = Auction::getOrderIDs(EUserTypes::DRIVER);
+            if (std::count(runningAuctionOrders.begin(), runningAuctionOrders.end(), this->selectedOrderID)) {
+                ui->lblDriverAuctionInfo->setText("Order is already in an auction by you or another cargo owner!");
+            } else {
+                // Create the auction in the DB
+                Auction::makeDriverAuction(this->username, this->selectedOrderID, ui->dsbxDriverBidsStartingPrice->value(),
+                                     ui->dsbxDriverBidsCommissionPrice->value(), ui->dsbxDriverBidsCostPMile->value(),
+                                     ui->dsbxDriverBidsDistance->value(), ui->sbxCOBidsLength->value());
+                ui->lblDriverAuctionInfo->setText("Created auction!");
+
+                // Refresh the running auctions
+                ui->lwDriverRunningAuctions->clear();
+                loadDriverRunningAuctions();
+            }
+        }
+    }
+}
+
+void HomePage::on_btnDriverRefreshRunningAuction_clicked() {
+    ui->lblDriverAuctionInfo->clear();
+    ui->lwDriverRunningAuctions->clear();
+    loadDriverRunningAuctions();
+}
+
+void HomePage::on_lwDriverRunningAuctions_itemClicked(QListWidgetItem *item) {
+    this->selectedRunningAuctionID = item->text().split(" ")[2].toStdString();
+    this->selectedRunningOrderID = item->text().split(" ")[6].toStdString();
+    this->selectedRunningAuctionBidder = item->text().split(" ")[9].toStdString();
+    ui->lblDriverAuctionInfo->clear();
+}
+
+void HomePage::on_btnDriverEndRunningAuction_clicked() {
+    // Check that an auction is selected
+    if (ui->lwDriverRunningAuctions->selectedItems().empty()) {
+        ui->lblDriverAuctionInfo->setText("Please select an auction to end!");
+    } else {
+        // Check that an auction has a bidder
+        if (!Auction::hasBidder(EUserTypes::DRIVER, this->selectedRunningAuctionID)) {
+            ui->lblDriverAuctionInfo->setText("Auction does not have a bidder yet! Please wait longer!");
+        } else {
+            // Send order ID to bidder, username needs to be bidder's username
+            Order::takeOrder(EUserTypes::COURIER, this->selectedRunningAuctionBidder, this->selectedRunningOrderID);
+            Auction::endAuction(EUserTypes::DRIVER, this->selectedRunningAuctionID);
+
+            // Increase the total price of the order ID by the income
+            double income = 0.0;
+            for (const COAuctionInfo& auctionInfo : coAuctionInfo) {
+                if (auctionInfo.auctionId == this->selectedRunningAuctionID) {
+                    income = auctionInfo.bidPrice + auctionInfo.commission;
+                }
+            }
+            Order::increaseTotalPrice(this->selectedRunningOrderID, income);
+
+            ui->lblDriverAuctionInfo->setText("Ended auction and sent order to the bidder!");
+            ui->lwDriverRunningAuctions->clear();
+            loadDriverRunningAuctions();
         }
     }
 }

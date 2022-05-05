@@ -660,7 +660,7 @@ font: 16px;
 color: rgb(186, 189, 182);</string>
      </property>
      <property name="currentIndex">
-      <number>1</number>
+      <number>0</number>
      </property>
      <widget class="QWidget" name="tbDriverBids">
       <attribute name="title">
@@ -899,7 +899,7 @@ font-size: 20px</string>
          <double>9999.000000000000000</double>
         </property>
         <property name="value">
-         <double>100.000000000000000</double>
+         <double>10.000000000000000</double>
         </property>
        </widget>
        <widget class="QLabel" name="label_39">
@@ -994,7 +994,7 @@ font-size: 20px</string>
          <x>540</x>
          <y>50</y>
          <width>401</width>
-         <height>261</height>
+         <height>241</height>
         </rect>
        </property>
        <property name="styleSheet">
@@ -1006,9 +1006,9 @@ font-size: 18px</string>
        <property name="geometry">
         <rect>
          <x>540</x>
-         <y>320</y>
+         <y>300</y>
          <width>401</width>
-         <height>41</height>
+         <height>61</height>
         </rect>
        </property>
        <property name="styleSheet">

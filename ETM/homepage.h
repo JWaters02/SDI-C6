@@ -48,6 +48,13 @@ private slots:
     void on_lwDriverOngoingAuctions_itemClicked(QListWidgetItem *item);
     void on_btnCORefreshRunningAuction_clicked();
     void on_lwDriverWonAuctions_itemClicked(QListWidgetItem *item);
+    void on_lwDriverTakenOrders_itemClicked(QListWidgetItem *item);
+    void on_btnDriverAuctionsRefresh_clicked();
+    void on_btnDriverBidsCopyOrderPrice_clicked();
+    void on_btnDriverBidsCreate_clicked();
+    void on_btnDriverRefreshRunningAuction_clicked();
+    void on_lwDriverRunningAuctions_itemClicked(QListWidgetItem *item);
+    void on_btnDriverEndRunningAuction_clicked();
 
 private:
     Ui::HomePage *ui;

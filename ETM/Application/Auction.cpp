@@ -86,6 +86,14 @@ std::vector<std::string> Auction::getAuctionIDs(const EUserTypes& userType) {
     return IDs;
 }
 
+std::vector<std::string> Auction::getOrderIDs(const EUserTypes& userType) {
+    std::stringstream query;
+    query   << "SELECT orderID FROM "
+            << getTable(userType);
+    std::vector<std::string> IDs = DBHandler::getResultVector(query.str());
+    return IDs;
+}
+
 void Auction::makeCOAuction(const std::string& username, const std::string& orderId, const double& startPrice,
                             const double& commission, const int& length) {
     // Get existing auctionIDs
@@ -138,7 +146,7 @@ void Auction::makeDriverAuction(const std::string& username, const std::string& 
     const std::string status = "Running";
 
     std::stringstream query;
-    query   << "INSERT INTO COAuction VALUES ('"
+    query   << "INSERT INTO DriverAuction VALUES ('"
             << unused
             << "', '"
             << orderId

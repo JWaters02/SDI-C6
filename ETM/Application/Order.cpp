@@ -58,9 +58,20 @@ std::vector<OrderInfo> Order::parseOrderInfo(const std::vector<std::vector<std::
         parsedOrder.itemName = order[5];
         parsedOrder.unitPrice = std::stod(order[6]);
         parsedOrder.quantity = std::stoi(order[7]);
+        parsedOrder.fees = std::stod(order[12]);
         parsedOrderInfo.push_back(parsedOrder);
     }
     return parsedOrderInfo;
+}
+
+void Order::increaseTotalPrice(const std::string& orderID, const double& income) {
+    std::stringstream query;
+    query   << "UPDATE OrderGoods SET orderFees = orderFees + '"
+            << std::to_string(income)
+            << "' WHERE orderID = '"
+            << orderID
+            << "';";
+    DBHandler::writeFields(query.str());
 }
 
 void Order::makeOrder(const std::string& username, const std::string& itemName, const int& quantity, const double& unitPrice) {

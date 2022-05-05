@@ -21,6 +21,7 @@ CREATE TABLE IF NOT EXISTS OrderGoods (
       orderCourierName varchar(20) DEFAULT 'NONE',
       orderDriverName varchar(20) DEFAULT 'NONE',
       orderCargoOwnerName varchar(20) DEFAULT 'NONE',
+      orderFees double precision DEFAULT 0.0,
       FOREIGN KEY (username) REFERENCES Users(username),
       CONSTRAINT order_pk PRIMARY KEY (orderID)
 );
@@ -44,9 +45,10 @@ struct OrderInfo {
     std::string date;
     std::string time;
     std::string status;
+    std::string itemName;
     double unitPrice;
     int quantity;
-    std::string itemName;
+    double fees;
 };
 
 class Order {
@@ -63,6 +65,8 @@ public:
     static std::vector<OrderInfo> getAllCurrentOrders();
     static std::vector<OrderInfo> getTakenOrders(const EUserTypes& userType, const std::string& username);
     static std::vector<OrderInfo> getAllTakenOrders(const EUserTypes& userType);
+
+    static void increaseTotalPrice(const std::string& orderID, const double& income);
     static void makeOrder(const std::string& username, const std::string& itemName, const int& quantity, const double& unitPrice);
     static void takeOrder(const EUserTypes& userType, const std::string& username, const std::string& orderID);
 };
