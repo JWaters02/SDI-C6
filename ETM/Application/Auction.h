@@ -96,9 +96,11 @@ private:
 
 public:
     static std::vector<COAuctionInfo> getRunningAuctions(const EUserTypes& userType, const std::string& username);
-    static std::vector<COAuctionInfo> getRunningCOAuctions(const EUserTypes& userType);
+    static std::vector<COAuctionInfo> getOngoingCOAuctions(const EUserTypes& userType);
     static std::vector<DriverAuctionInfo> getRunningDriverAuctions(const EUserTypes& userType, const std::string& username);
     static std::vector<COAuctionInfo> getWonCOAuctions(const std::string& username);
+    static std::vector<DriverAuctionInfo> getOngoingDriverAuctions(const EUserTypes& userType);
+    static std::vector<DriverAuctionInfo> getWonDriverAuctions(const std::string& username);
     static std::vector<std::string> getOrderIDs(const EUserTypes& userType);
     static bool hasBidder(const EUserTypes& userType, const std::string& auctionID);
 

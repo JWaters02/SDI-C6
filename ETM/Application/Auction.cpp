@@ -52,7 +52,7 @@ std::vector<COAuctionInfo> Auction::getRunningAuctions(const EUserTypes& userTyp
     return parseCOAuctionInfo(DBHandler::getResult2DVector(query.str()));
 }
 
-std::vector<COAuctionInfo> Auction::getRunningCOAuctions(const EUserTypes& userType) {
+std::vector<COAuctionInfo> Auction::getOngoingCOAuctions(const EUserTypes& userType) {
     std::stringstream query;
     query   << "SELECT * FROM "
             << getTable(userType)
@@ -76,6 +76,22 @@ std::vector<COAuctionInfo> Auction::getWonCOAuctions(const std::string& username
             << username
             << "' AND auctionStatus = 'Finished'";
     return parseCOAuctionInfo(DBHandler::getResult2DVector(query.str()));
+}
+
+std::vector<DriverAuctionInfo> Auction::getOngoingDriverAuctions(const EUserTypes& userType) {
+    std::stringstream query;
+    query   << "SELECT * FROM "
+            << getTable(userType)
+            << " WHERE auctionStatus = 'Running'";
+    return parseDriverAuctionInfo(DBHandler::getResult2DVector(query.str()));
+}
+
+std::vector<DriverAuctionInfo> Auction::getWonDriverAuctions(const std::string& username) {
+    std::stringstream query;
+    query   << "SELECT * FROM DriverAuction WHERE auctionBidder = '"
+            << username
+            << "' AND auctionStatus = 'Finished'";
+    return parseDriverAuctionInfo(DBHandler::getResult2DVector(query.str()));
 }
 
 std::vector<std::string> Auction::getAuctionIDs(const EUserTypes& userType) {

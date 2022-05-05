@@ -120,6 +120,14 @@ void Order::takeOrder(const EUserTypes& userType, const std::string& username, c
     DBHandler::writeFields(query.str());
 }
 
+void Order::deliverOrder(const std::string& orderID) {
+    std::stringstream query;
+    query   << "UPDATE OrderGoods SET orderStatus = 'Finished' WHERE orderID = '"
+            << orderID
+            << "';";
+    DBHandler::writeFields(query.str());
+}
+
 std::vector<std::string> Order::getOrderIDs() {
     std::stringstream query;
     query   << "SELECT orderID FROM OrderGoods";

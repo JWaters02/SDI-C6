@@ -69,6 +69,7 @@ public:
     static void increaseTotalPrice(const std::string& orderID, const double& income);
     static void makeOrder(const std::string& username, const std::string& itemName, const int& quantity, const double& unitPrice);
     static void takeOrder(const EUserTypes& userType, const std::string& username, const std::string& orderID);
+    static void deliverOrder(const std::string& orderID);
 };
 
 

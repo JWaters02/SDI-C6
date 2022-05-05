@@ -45,6 +45,8 @@ void HomePage::showCorrectPage(EUserTypes userType) {
         loadConsigneePastOrders();
         ui->Home->setCurrentIndex(4);
     } else if (userType == EUserTypes::COURIER) {
+        loadCourierOngoingAuctions();
+        loadCourierWonAuctions();
         ui->Home->setCurrentIndex(5);
     }
 }
@@ -123,12 +125,12 @@ void HomePage::loadCOAuctions() {
 }
 
 void HomePage::loadDriverOngoingAuctions() {
-    driverOngoingAuctionInfo = Auction::getRunningCOAuctions(EUserTypes::CARGO_OWNER);
+    driverOngoingAuctionInfo = Auction::getOngoingCOAuctions(EUserTypes::CARGO_OWNER);
     for (const COAuctionInfo& auctionInfo : driverOngoingAuctionInfo) {
         QString auctionInfoString = QString::fromStdString(
                     "Auction ID: " + auctionInfo.auctionId +
                     " | Order ID: " + auctionInfo.orderId +
-                    " | Bidder: " + auctionInfo.bidder);
+                    " | Bid Price: £" + to_string_with_precision(auctionInfo.bidPrice));
         ui->lwDriverOngoingAuctions->addItem(auctionInfoString);
     }
 }
@@ -166,6 +168,30 @@ void HomePage::loadDriverRunningAuctions() {
         ui->lwDriverRunningAuctions->addItem(auctionInfoString);
     }
 }
+
+void HomePage::loadCourierOngoingAuctions() {
+    courierOngoingAuctionInfo = Auction::getOngoingDriverAuctions(EUserTypes::DRIVER);
+    for (const DriverAuctionInfo& auctionInfo : courierOngoingAuctionInfo) {
+        QString auctionInfoString = QString::fromStdString(
+                    "Auction ID: " + auctionInfo.auctionId +
+                    " | Order ID: " + auctionInfo.orderId +
+                    " | Bid Price: £" + to_string_with_precision(auctionInfo.bidPrice));
+        ui->lwCourierOngoingAuctions->addItem(auctionInfoString);
+    }
+}
+
+void HomePage::loadCourierWonAuctions() {
+    courierWonAuctionInfo = Auction::getWonDriverAuctions(this->username);
+    for (const DriverAuctionInfo& auctionInfo : courierWonAuctionInfo) {
+        QString auctionInfoString = QString::fromStdString(
+                    "Auction ID: " + auctionInfo.auctionId +
+                    " | Order ID: " + auctionInfo.orderId +
+                    " | Paid: £" + to_string_with_precision(auctionInfo.bidPrice + auctionInfo.commission +
+                                                            (auctionInfo.costPerMile * auctionInfo.distance)));
+        ui->lwCourierWonAuctions->addItem(auctionInfoString);
+    }
+}
+
 
 void HomePage::on_lwConsigneeOrders_itemClicked(QListWidgetItem *item) {
     // Get the order ID from the clicked item
@@ -620,9 +646,10 @@ void HomePage::on_btnDriverEndRunningAuction_clicked() {
 
             // Increase the total price of the order ID by the income
             double income = 0.0;
-            for (const COAuctionInfo& auctionInfo : coAuctionInfo) {
+            for (const DriverAuctionInfo& auctionInfo : driverRunningAuctionInfo) {
                 if (auctionInfo.auctionId == this->selectedRunningAuctionID) {
-                    income = auctionInfo.bidPrice + auctionInfo.commission;
+                    income = auctionInfo.bidPrice + auctionInfo.commission +
+                            (auctionInfo.distance * auctionInfo.costPerMile);
                 }
             }
             Order::increaseTotalPrice(this->selectedRunningOrderID, income);
@@ -631,6 +658,93 @@ void HomePage::on_btnDriverEndRunningAuction_clicked() {
             ui->lwDriverRunningAuctions->clear();
             loadDriverRunningAuctions();
         }
+    }
+}
+
+void HomePage::on_btnCourierBiddingRefresh_clicked() {
+    ui->lwCourierOngoingAuctions->clear();
+    ui->lblCourierOngoingAuctionsInfo->clear();
+    ui->lwCourierWonAuctions->clear();
+    ui->lblCourierWonAuctionsInfo->clear();
+    loadCourierOngoingAuctions();
+    loadCourierWonAuctions();
+}
+
+void HomePage::on_lwCourierOngoingAuctions_itemClicked(QListWidgetItem *item) {
+    QString auctionID = item->text().split(" ")[2];
+    for (const DriverAuctionInfo& auctionInfo : courierOngoingAuctionInfo) {
+        if (auctionInfo.auctionId == auctionID.toStdString()) {
+            QString auctionInfoString = QString::fromStdString(
+                        "Auction ID: " + auctionInfo.auctionId +
+                        " | Order ID: " + auctionInfo.orderId +
+                        " | Bidder: " + auctionInfo.bidder +
+                        " | Bid Price: £" + to_string_with_precision(auctionInfo.bidPrice) +
+                        " | Commission: £" + to_string_with_precision(auctionInfo.commission) +
+                        " | Cost Per Mile: £" + to_string_with_precision(auctionInfo.costPerMile) +
+                        " | Distance: " + to_string_with_precision(auctionInfo.distance) + " miles");
+            ui->lblCourierOngoingAuctionsInfo->setText(auctionInfoString);
+            break;
+        }
+    }
+    this->selectedOngoingAuctionID = item->text().split(" ")[2].toStdString();
+}
+
+void HomePage::on_btnCourierBid_clicked() {
+    // Check that an auction is selected
+    if (ui->lwCourierOngoingAuctions->selectedItems().empty()) {
+        ui->lblCourierOngoingAuctionsInfo->setText("Please select an auction to bid on!");
+    } else {
+        // Get the current bid amount and orderID from selected auctionID
+        double currentBid = 0.0;
+        std::string orderID;
+        for (const DriverAuctionInfo& auctionInfo : courierOngoingAuctionInfo) {
+            if (auctionInfo.auctionId == this->selectedOngoingAuctionID) {
+                currentBid = auctionInfo.bidPrice;
+                orderID = auctionInfo.auctionId;
+            }
+        }
+
+        // Add the value from bid increase to bid amount
+        double newBid = ui->dsbxCourierBidAmount->value() + currentBid;
+        Auction::setBidAmount(EUserTypes::DRIVER, this->selectedOngoingAuctionID, newBid);
+
+        // Change the bidder name to this.username
+        Auction::setBidderName(EUserTypes::DRIVER, this->selectedOngoingAuctionID, this->username);
+
+        ui->lblCourierOngoingAuctionsInfo->setText("Bid on the selected auction!");
+        ui->lwCourierOngoingAuctions->clear();
+        loadCourierOngoingAuctions();
+    }
+}
+
+void HomePage::on_lwCourierWonAuctions_itemClicked(QListWidgetItem *item) {
+    QString auctionID = item->text().split(" ")[2];
+    for (const DriverAuctionInfo& auctionInfo : courierWonAuctionInfo) {
+        if (auctionInfo.auctionId == auctionID.toStdString()) {
+            QString auctionInfoString = QString::fromStdString(
+                        "Auction ID: " + auctionInfo.auctionId +
+                        " | Order ID: " + auctionInfo.orderId +
+                        " | Bid Price: £" + to_string_with_precision(auctionInfo.bidPrice) +
+                        " | Commission: £" + to_string_with_precision(auctionInfo.commission) +
+                        " | Cost Per Mile: £" + to_string_with_precision(auctionInfo.costPerMile) +
+                        " | Distance: " + to_string_with_precision(auctionInfo.distance) + " miles" +
+                        " | Paid: £" + to_string_with_precision(auctionInfo.bidPrice + auctionInfo.commission +
+                                                                (auctionInfo.costPerMile * auctionInfo.distance)));
+            ui->lblCourierWonAuctionsInfo->setText(auctionInfoString);
+            this->selectedWonOrderID = auctionInfo.orderId;
+            break;
+        }
+    }
+}
+
+void HomePage::on_btnCourierDeliverWonOrder_clicked() {
+    // Check that a won auction is selected
+    if (ui->lwCourierWonAuctions->selectedItems().empty()) {
+        ui->lblCourierWonAuctionsInfo->setText("Please select an order to deliver!");
+    } else {
+        // Update the orderID to delivered
+        Order::deliverOrder(this->selectedWonOrderID);
+        ui->lblCourierWonAuctionsInfo->setText("Delivered order to customer!");
     }
 }
 

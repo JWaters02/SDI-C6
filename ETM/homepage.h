@@ -55,6 +55,11 @@ private slots:
     void on_btnDriverRefreshRunningAuction_clicked();
     void on_lwDriverRunningAuctions_itemClicked(QListWidgetItem *item);
     void on_btnDriverEndRunningAuction_clicked();
+    void on_btnCourierBiddingRefresh_clicked();
+    void on_lwCourierOngoingAuctions_itemClicked(QListWidgetItem *item);
+    void on_btnCourierBid_clicked();
+    void on_lwCourierWonAuctions_itemClicked(QListWidgetItem *item);
+    void on_btnCourierDeliverWonOrder_clicked();
 
 private:
     Ui::HomePage *ui;
@@ -69,12 +74,15 @@ private:
     std::vector<COAuctionInfo> driverWonAuctionInfo;
     std::vector<DriverAuctionInfo> driverRunningAuctionInfo;
     std::vector<OrderInfo> driverTakenOrderInfo;
+    std::vector<DriverAuctionInfo> courierOngoingAuctionInfo;
+    std::vector<DriverAuctionInfo> courierWonAuctionInfo;
     std::string selectedOrderID;
     double selectedOrderPrice;
     std::string selectedRunningAuctionID;
     std::string selectedRunningAuctionBidder;
     std::string selectedRunningOrderID;
     std::string selectedOngoingAuctionID;
+    std::string selectedWonOrderID;
 
     void loadConsigneeCurrentOrders();
     void loadConsigneePastOrders();
@@ -87,6 +95,8 @@ private:
     void loadDriverWonAuctions();
     void loadDriverTakenOrders();
     void loadDriverRunningAuctions();
+    void loadCourierOngoingAuctions();
+    void loadCourierWonAuctions();
 
     template <typename T>
     std::string to_string_with_precision(const T in, const int n = 2) {
