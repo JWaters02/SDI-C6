@@ -1,0 +1,22 @@
+var searchData=
+[
+  ['getallcurrentorders_11',['getAllCurrentOrders',['../classOrder.html#a8cc7602fbbd89d774c44550d4d508354',1,'Order']]],
+  ['getalltakenorders_12',['getAllTakenOrders',['../classOrder.html#a041fe811b68c8a3b60ca7202ec585b30',1,'Order']]],
+  ['getapikey_13',['getAPIKey',['../classSecrets.html#ab5f667756cfd4f5e30499bb780f734a2',1,'Secrets']]],
+  ['getcurrentorders_14',['getCurrentOrders',['../classOrder.html#a6a2038e50701ae8cebcf09a88cb319bb',1,'Order']]],
+  ['getdbcredentials_15',['getDBCredentials',['../classSecrets.html#a11c95a6be06a5bca6ebaeb24e8e43e0b',1,'Secrets']]],
+  ['getongoingcoauctions_16',['getOngoingCOAuctions',['../classAuction.html#a4ab858d2df1311ee3b51bdcc1e046e12',1,'Auction']]],
+  ['getongoingdriverauctions_17',['getOngoingDriverAuctions',['../classAuction.html#ac58a7fae6677ee9324d5b29d6601f60e',1,'Auction']]],
+  ['getorderids_18',['getOrderIDs',['../classAuction.html#a63e202e174f04c2f08e97a7ec47defa1',1,'Auction']]],
+  ['getpastorders_19',['getPastOrders',['../classOrder.html#a3875540508490268f62d680b278dd109',1,'Order']]],
+  ['getresponse_20',['getResponse',['../classRegistrationCheck.html#a5e90bd0b7076b6a900bce9732f3658a5',1,'RegistrationCheck']]],
+  ['getresult_21',['getResult',['../classDBHandler.html#a1f7a888ef45453e8b002d6cf2249c27f',1,'DBHandler']]],
+  ['getresult2dvector_22',['getResult2DVector',['../classDBHandler.html#a7a809fddff143474f682b15123a0c81d',1,'DBHandler']]],
+  ['getresultvector_23',['getResultVector',['../classDBHandler.html#abb85721abbaa27db4b42e83b53e8e313',1,'DBHandler']]],
+  ['getrunningauctions_24',['getRunningAuctions',['../classAuction.html#ac5fc7b691c01c81ddc75d4f5df5d1af2',1,'Auction']]],
+  ['getrunningdriverauctions_25',['getRunningDriverAuctions',['../classAuction.html#a9f1140f253e366316d8311f252dec23b',1,'Auction']]],
+  ['gettakenorders_26',['getTakenOrders',['../classOrder.html#aed8a4482cb9072b86583d5f55a36ba72',1,'Order']]],
+  ['getusertype_27',['getUserType',['../classLogin.html#a93a6a8cce9fca574e3fda721795af2d2',1,'Login']]],
+  ['getwoncoauctions_28',['getWonCOAuctions',['../classAuction.html#adc79874603e3c9c6a4ac5e1324791a88',1,'Auction']]],
+  ['getwondriverauctions_29',['getWonDriverAuctions',['../classAuction.html#ab6eb7a550ae3496acc6f00712506f421',1,'Auction']]]
+];

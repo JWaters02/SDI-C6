@@ -1,0 +1,4 @@
+var searchData=
+[
+  ['writefields_136',['writeFields',['../classDBHandler.html#ae2c7ed0c94c1d4814c838bbd2fd97b88',1,'DBHandler']]]
+];
