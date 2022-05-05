@@ -122,7 +122,20 @@ void Order::takeOrder(const EUserTypes& userType, const std::string& username, c
 
 void Order::deliverOrder(const std::string& orderID) {
     std::stringstream query;
-    query   << "UPDATE OrderGoods SET orderStatus = 'Finished' WHERE orderID = '"
+    query   << "UPDATE OrderGoods SET orderStatus = 'Delivered' WHERE orderID = '"
+            << orderID
+            << "';";
+    DBHandler::writeFields(query.str());
+    deleteAuctions(orderID);
+}
+
+void Order::deleteAuctions(const std::string& orderID) {
+    // Go through the auction tables and delete the orders
+    std::stringstream query;
+    query   << "DELETE FROM DriverAuction WHERE orderID = '"
+            << orderID
+            << "';"
+            << "DELETE FROM COAuction WHERE orderID = '"
             << orderID
             << "';";
     DBHandler::writeFields(query.str());

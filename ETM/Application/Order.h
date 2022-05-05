@@ -59,6 +59,8 @@ private:
     static std::string currentDate();
     static std::string currentTime();
 
+    static void deleteAuctions(const std::string& orderID);
+
 public:
     static std::vector<OrderInfo> getPastOrders(const std::string& username);
     static std::vector<OrderInfo> getCurrentOrders(const std::string& username);

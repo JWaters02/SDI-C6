@@ -59,7 +59,9 @@ void HomePage::loadConsigneeCurrentOrders() {
     currentOrderInfo = Order::getCurrentOrders(username);
     for (const OrderInfo& orderInfo : currentOrderInfo) {
         QString orderInfoString = QString::fromStdString(
-                "ID: " + orderInfo.id + " | Name: " + orderInfo.itemName + " | Date: " + orderInfo.date);
+                "ID: " + orderInfo.id +
+                " | Name: " + orderInfo.itemName +
+                " | Price: £" + to_string_with_precision(orderInfo.unitPrice * orderInfo.quantity));
         ui->lwConsigneeOrders->addItem(orderInfoString);
     }
 }
@@ -68,7 +70,9 @@ void HomePage::loadConsigneePastOrders() {
     pastOrderInfo = Order::getPastOrders(username);
     for (const OrderInfo& orderInfo : pastOrderInfo) {
         QString orderInfoString = QString::fromStdString(
-                "ID: " + orderInfo.id + " | Name: " + orderInfo.itemName + " | Date: " + orderInfo.date);
+                "ID: " + orderInfo.id +
+                " | Name: " + orderInfo.itemName +
+                " | Price + Fees: £" + to_string_with_precision(orderInfo.fees + (orderInfo.unitPrice * orderInfo.quantity)));
         ui->lwConsigneePastOrders->addItem(orderInfoString);
     }
 }
@@ -205,7 +209,7 @@ void HomePage::on_lwConsigneeOrders_itemClicked(QListWidgetItem *item) {
                     " | Date: " + orderInfo.date +
                     " | Time: " + orderInfo.time +
                     " | Status: " + orderInfo.status +
-                    " | Total Price: "  + to_string_with_precision(orderInfo.unitPrice * orderInfo.quantity + orderInfo.fees)));
+                    " | Total Price: £"  + to_string_with_precision((orderInfo.unitPrice * orderInfo.quantity) + orderInfo.fees)));
             ui->lblConsigneeOrderInfo->setText(orderInfoString);
             break;
         }
@@ -224,7 +228,7 @@ void HomePage::on_lwConsigneePastOrders_itemClicked(QListWidgetItem *item) {
                     " | Date: " + orderInfo.date +
                     " | Time: " + orderInfo.time +
                     " | Status: " + orderInfo.status +
-                    " | Total Price: "  + to_string_with_precision(orderInfo.unitPrice * orderInfo.quantity + orderInfo.fees)));
+                    " | Total Price: £"  + to_string_with_precision((orderInfo.unitPrice * orderInfo.quantity) + orderInfo.fees)));
             ui->lblConsigneePastOrderInfo->setText(orderInfoString);
             break;
         }
@@ -271,7 +275,7 @@ void HomePage::on_lwFOrders_itemClicked(QListWidgetItem *item) {
                     " | Date: " + orderInfo.date +
                     " | Time: " + orderInfo.time +
                     " | Status: " + orderInfo.status +
-                    " | Total Price: "  + to_string_with_precision(orderInfo.unitPrice * orderInfo.quantity + orderInfo.fees)));
+                    " | Total Price: £"  + to_string_with_precision((orderInfo.unitPrice * orderInfo.quantity) + orderInfo.fees)));
             ui->lblFOrderInfo->setText(orderInfoString);
             this->selectedOrderID = orderInfo.id;
             break;
@@ -307,7 +311,7 @@ void HomePage::on_lwFTakenOrders_itemClicked(QListWidgetItem *item) {
                     " | Date: " + orderInfo.date +
                     " | Time: " + orderInfo.time +
                     " | Status: " + orderInfo.status +
-                    " | Total Price: "  + to_string_with_precision(orderInfo.unitPrice * orderInfo.quantity + orderInfo.fees) +
+                    " | Total Price: £"  + to_string_with_precision((orderInfo.unitPrice * orderInfo.quantity) + orderInfo.fees) +
                     " | Taken Order"));
             ui->lblFTakenOrderInfo->setText(orderInfoString);
             break;
@@ -351,7 +355,7 @@ void HomePage::on_lwCOTakenOrders_itemClicked(QListWidgetItem *item) {
                     " | Date: " + orderInfo.date +
                     " | Time: " + orderInfo.time +
                     " | Status: " + orderInfo.status +
-                    " | Total Price: "  + to_string_with_precision(orderInfo.unitPrice * orderInfo.quantity + orderInfo.fees) +
+                    " | Total Price: £"  + to_string_with_precision((orderInfo.unitPrice * orderInfo.quantity) + orderInfo.fees) +
                     " | Taken Order"));
             ui->lblCOTakenOrderInfo->setText(orderInfoString);
             break;
@@ -370,7 +374,7 @@ void HomePage::on_lwCOOrders_itemClicked(QListWidgetItem *item) {
                     " | Date: " + orderInfo.date +
                     " | Time: " + orderInfo.time +
                     " | Status: " + orderInfo.status +
-                    " | Total Price: "  + to_string_with_precision(orderInfo.unitPrice * orderInfo.quantity + orderInfo.fees)));
+                    " | Total Price: £"  + to_string_with_precision((orderInfo.unitPrice * orderInfo.quantity) + orderInfo.fees)));
             ui->lblCOOrderInfo->setText(orderInfoString);
             this->selectedOrderID = orderInfo.id;
             break;
@@ -406,7 +410,7 @@ void HomePage::on_lwCOTakenOrdersBids_itemClicked(QListWidgetItem *item) {
                     " | Date: " + orderInfo.date +
                     " | Time: " + orderInfo.time +
                     " | Status: " + orderInfo.status +
-                    " | Total Price: "  + to_string_with_precision(orderInfo.unitPrice * orderInfo.quantity + orderInfo.fees) +
+                    " | Total Price: £"  + to_string_with_precision((orderInfo.unitPrice * orderInfo.quantity) + orderInfo.fees) +
                     " | Taken Order"));
             ui->lblCOTakenOrderInfoBids->setText(orderInfoString);
             this->selectedOrderPrice = orderInfo.unitPrice * orderInfo.quantity;
