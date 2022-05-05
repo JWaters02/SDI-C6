@@ -8,6 +8,10 @@ CargoOwnerSignupInfo submittedCargoOwnerSignupInfo;
 CourierSignupInfo submittedCourierSignupInfo;
 ForwarderSignupInfo submittedForwarderSignupInfo;
 
+/**
+ * Constructor for the main window.
+ * @param parent
+ */
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
     , ui(new Ui::MainWindow) {
@@ -15,10 +19,17 @@ MainWindow::MainWindow(QWidget *parent)
     ui->swLoginPages->setCurrentIndex(PAGES.LOGIN);
 }
 
+/**
+ * Destructor for the main window.
+ */
 MainWindow::~MainWindow() {
     delete ui;
 }
 
+/**
+ * Set the login info label to the right message based on the given errorType.
+ * @param errorType The error type to set the label to.
+ */
 void MainWindow::setInvalidLoginFeedback(ErrorTypes errorType) {
     switch (errorType) {
         case ErrorTypes::INVALID_LOGIN:
@@ -44,6 +55,10 @@ void MainWindow::setInvalidLoginFeedback(ErrorTypes errorType) {
     }
 }
 
+/**
+ * Set the login info label to the right message based on the given errorType.
+ * @param errorType The error type to set the label to.
+ */
 void MainWindow::setInvalidSignupFeedback(ErrorTypes errorType) {
     switch (errorType) {
         case ErrorTypes::USERNAME_ALREADY_EXISTS:
@@ -66,22 +81,37 @@ void MainWindow::setInvalidSignupFeedback(ErrorTypes errorType) {
     }
 }
 
+/**
+ * Set the invalid fields feedback to the drivers signup label.
+ */
 void MainWindow::setInvalidDriversSignupFeedback() {
     ui->lblDriversSignupIncorrect->setText(QString::fromStdString("Please fill all fields with valid info!"));
 }
 
+/**
+ * Set the invalid fields feedback to the cargo owners signup label.
+ */
 void MainWindow::setInvalidCargoOwnerSignupFeedback() {
     ui->lblCargoOwnerSignupIncorrect->setText(QString::fromStdString("Please fill all fields with valid info!"));
 }
 
+/**
+ * Set the invalid fields feedback to the forwarder signup label.
+ */
 void MainWindow::setInvalidForwarderSignupFeedback() {
     ui->lblForwarderSignupIncorrect->setText(QString::fromStdString("Please fill all fields with valid info!"));
 }
 
+/**
+ * Set the invalid fields feedback to the courier signup label.
+ */
 void MainWindow::setInvalidCourierSignupFeedback() {
     ui->lblCourierSignupIncorrect->setText(QString::fromStdString("Please fill all fields with valid info!"));
 }
 
+/**
+ * On the login button clicked.
+ */
 void MainWindow::on_btnLogin_clicked() {
     submittedLoginInfo.username = ui->txtLoginUsername->text().toStdString();
     submittedLoginInfo.password = ui->txtLoginPassword->text().toStdString();
@@ -107,6 +137,9 @@ void MainWindow::on_btnLogin_clicked() {
     }
 }
 
+/**
+ * On the confirm signup button clicked.
+ */
 void MainWindow::on_btnSignup_clicked() {
     submittedSignupInfo.username = ui->txtSignupUsername->text().toStdString();
     submittedSignupInfo.password = ui->txtSignupPassword->text().toStdString(); // We don't want to hash it yet
@@ -152,6 +185,9 @@ void MainWindow::on_btnSignup_clicked() {
     }
 }
 
+/**
+ * On the signup button on the login page clicked.
+ */
 void MainWindow::on_btnLoginSignup_clicked() {
     ui->swLoginPages->setCurrentIndex(PAGES.SIGNUP);
 }
@@ -160,6 +196,9 @@ void MainWindow::on_btnSignupBack_clicked() {
     ui->swLoginPages->setCurrentIndex(PAGES.LOGIN);
 }
 
+/**
+ * On the drivers confirm signup button clicked.
+ */
 void MainWindow::on_btnDriversSignup_clicked() {
     submittedDriverSignupInfo.NINumber = ui->txtDriversSignupNI->text().toStdString();
     submittedDriverSignupInfo.drivingLicenceID = ui->txtDriversSignupDL->text().toStdString();
@@ -185,6 +224,9 @@ void MainWindow::on_btnForwarderSignupBack_clicked() {
     ui->swLoginPages->setCurrentIndex(PAGES.SIGNUP);
 }
 
+/**
+ * On the forwarders confirm signup button clicked.
+ */
 void MainWindow::on_btnForwarderSignup_clicked() {
     submittedForwarderSignupInfo.companyCity = ui->txtForwarderSignupCompanyCity->text().toStdString();
     submittedForwarderSignupInfo.companyName = ui->txtForwarderSignupCompanyName->text().toStdString();
@@ -204,6 +246,9 @@ void MainWindow::on_btnCourierSignupBack_clicked() {
     ui->swLoginPages->setCurrentIndex(PAGES.SIGNUP);
 }
 
+/**
+ * On the couriers confirm signup button clicked.
+ */
 void MainWindow::on_btnCourierSignup_clicked() {
     submittedCourierSignupInfo.companyCity = ui->txtCourierSignupCompanyCity->text().toStdString();
     submittedCourierSignupInfo.companyName = ui->txtCourierSignupCompanyName->text().toStdString();
@@ -223,6 +268,9 @@ void MainWindow::on_btnCargoOwnerSignupBack_clicked() {
     ui->swLoginPages->setCurrentIndex(PAGES.SIGNUP);
 }
 
+/**
+ * On the cargo owners confirm signup button clicked.
+ */
 void MainWindow::on_btnCargoOwnerSignup_clicked() {
     submittedCargoOwnerSignupInfo.goodsCategory = ui->txtCargoOwnerSignupCategory->text().toStdString();
 

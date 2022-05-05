@@ -2,11 +2,19 @@
 
 #include <utility>
 
+/**
+ * Constructor for the RegistrationCheck class.
+ * @param _registrationNumber
+ */
 RegistrationCheck::RegistrationCheck(std::string _registrationNumber) {
     this->registrationNumber = std::move(_registrationNumber);
     sendRequest();
 }
 
+/**
+ * Send the request to the API with the given registration number,
+ * and if the response returns a 200 (valid), set the isValid variable to true.
+ */
 void RegistrationCheck::sendRequest() {
     CURL* curl = curl_easy_init();
     const std::string jsonInfo = R"({"registrationNumber": ")" + this->registrationNumber + R"("})";
@@ -33,6 +41,10 @@ void RegistrationCheck::sendRequest() {
     }
 }
 
+/**
+ * Getter for the isValid variable.
+ * @return isValid
+ */
 bool RegistrationCheck::getResponse() const {
     return this->isValid;
 }

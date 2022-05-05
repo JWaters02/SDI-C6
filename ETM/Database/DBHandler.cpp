@@ -4,6 +4,11 @@
 
 #include "DBHandler.h"
 
+/**
+ * Query the database for the given query and return the result.
+ * @param query The query to execute.
+ * @return The result of the query.
+ */
 pqxx::result DBHandler::queryText(const std::string& query) {
     pqxx::connection c(Secrets::getDBCredentials());
     pqxx::work txn{c};
@@ -12,6 +17,11 @@ pqxx::result DBHandler::queryText(const std::string& query) {
     return r;
 }
 
+/**
+ * Query the database for the given query and expect a single string result.
+ * @param query The query to execute.
+ * @return The result of the query.
+ */
 std::string DBHandler::getResult(const std::string &query) {
     std::string ret;
     try {
@@ -32,6 +42,11 @@ std::string DBHandler::getResult(const std::string &query) {
     return ret;
 }
 
+/**
+ * Query the database for the given query and expect a row result.
+ * @param query The query to execute.
+ * @return The row of results.
+ */
 std::vector<std::string> DBHandler::getResultVector(const std::string& query) {
     std::vector<std::string> ret;
     try {
@@ -52,6 +67,11 @@ std::vector<std::string> DBHandler::getResultVector(const std::string& query) {
     return ret;
 }
 
+/**
+ * Query the database for the given query and expect a whole table.
+ * @param query The query to execute.
+ * @return The table of results.
+ */
 std::vector<std::vector<std::string>> DBHandler::getResult2DVector(const std::string &query) {
     std::vector<std::vector<std::string>> ret;
     try {
@@ -74,6 +94,10 @@ std::vector<std::vector<std::string>> DBHandler::getResult2DVector(const std::st
     return ret;
 }
 
+/**
+ * Write data to the database given the query.
+ * @param query The query to execute.
+ */
 void DBHandler::writeFields(const std::string& query) {
     try {
         pqxx::connection c(Secrets::getDBCredentials());

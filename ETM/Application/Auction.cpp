@@ -1,5 +1,10 @@
 #include "Auction.h"
 
+/**
+ * Parse the database result into cargo owner auction info data.
+ * @param auctionInfo The database result.
+ * @return The list of parsed cargo owner auction info rows.
+ */
 std::vector<COAuctionInfo> Auction::parseCOAuctionInfo(const std::vector<std::vector<std::string>>& auctionInfo) {
     std::vector<COAuctionInfo> parsedAuctionInfo;
     for (const auto& auction : auctionInfo) {
@@ -20,6 +25,11 @@ std::vector<COAuctionInfo> Auction::parseCOAuctionInfo(const std::vector<std::ve
     return parsedAuctionInfo;
 }
 
+/**
+ * Parse the database result into driver auction info data.
+ * @param auctionInfo The database result.
+ * @return The list of parsed driver auction info rows.
+ */
 std::vector<DriverAuctionInfo> Auction::parseDriverAuctionInfo(const std::vector<std::vector<std::string>>& auctionInfo) {
     std::vector<DriverAuctionInfo> parsedAuctionInfo;
     for (const auto& auction : auctionInfo) {
@@ -42,6 +52,12 @@ std::vector<DriverAuctionInfo> Auction::parseDriverAuctionInfo(const std::vector
     return parsedAuctionInfo;
 }
 
+/**
+ * Get a list of running auctions for the user type and username specified from the database.
+ * @param userType The user type.
+ * @param username The username.
+ * @return The list of running cargo owner auctions.
+ */
 std::vector<COAuctionInfo> Auction::getRunningAuctions(const EUserTypes& userType, const std::string& username) {
     std::stringstream query;
     query   << "SELECT * FROM "
@@ -52,6 +68,11 @@ std::vector<COAuctionInfo> Auction::getRunningAuctions(const EUserTypes& userTyp
     return parseCOAuctionInfo(DBHandler::getResult2DVector(query.str()));
 }
 
+/**
+ * Get a list of ongoing cargo owner auctions from the database.
+ * @param userType The user type.
+ * @return The list of ongoing cargo owner auctions.
+ */
 std::vector<COAuctionInfo> Auction::getOngoingCOAuctions(const EUserTypes& userType) {
     std::stringstream query;
     query   << "SELECT * FROM "
@@ -60,6 +81,12 @@ std::vector<COAuctionInfo> Auction::getOngoingCOAuctions(const EUserTypes& userT
     return parseCOAuctionInfo(DBHandler::getResult2DVector(query.str()));
 }
 
+/**
+ * Get a list of running driver auctions for the user type and username specified from the database.
+ * @param userType The user type.
+ * @param username The username.
+ * @return The list of running driver auctions.
+ */
 std::vector<DriverAuctionInfo> Auction::getRunningDriverAuctions(const EUserTypes& userType, const std::string& username) {
     std::stringstream query;
     query   << "SELECT * FROM "
@@ -70,6 +97,11 @@ std::vector<DriverAuctionInfo> Auction::getRunningDriverAuctions(const EUserType
     return parseDriverAuctionInfo(DBHandler::getResult2DVector(query.str()));
 }
 
+/**
+ * Get a list of won cargo owner auctions from the database.
+ * @param username The username of the bidder.
+ * @return The list of won cargo owner auctions.
+ */
 std::vector<COAuctionInfo> Auction::getWonCOAuctions(const std::string& username) {
     std::stringstream query;
     query   << "SELECT * FROM COAuction WHERE auctionBidder = '"
@@ -78,6 +110,11 @@ std::vector<COAuctionInfo> Auction::getWonCOAuctions(const std::string& username
     return parseCOAuctionInfo(DBHandler::getResult2DVector(query.str()));
 }
 
+/**
+ * Get a list of ongoing driver auctions from the database.
+ * @param userType The user type.
+ * @return The list of ongoing driver auctions.
+ */
 std::vector<DriverAuctionInfo> Auction::getOngoingDriverAuctions(const EUserTypes& userType) {
     std::stringstream query;
     query   << "SELECT * FROM "
@@ -86,6 +123,11 @@ std::vector<DriverAuctionInfo> Auction::getOngoingDriverAuctions(const EUserType
     return parseDriverAuctionInfo(DBHandler::getResult2DVector(query.str()));
 }
 
+/**
+ * Get a list of won driver auctions from the database.
+ * @param username The username of the bidder.
+ * @return The list of won driver auctions.
+ */
 std::vector<DriverAuctionInfo> Auction::getWonDriverAuctions(const std::string& username) {
     std::stringstream query;
     query   << "SELECT * FROM DriverAuction WHERE auctionBidder = '"
@@ -94,6 +136,11 @@ std::vector<DriverAuctionInfo> Auction::getWonDriverAuctions(const std::string& 
     return parseDriverAuctionInfo(DBHandler::getResult2DVector(query.str()));
 }
 
+/**
+ * Get a list of all the auctionIDs from the specified table.
+ * @param userType The table type.
+ * @return The list of auctionIDs.
+ */
 std::vector<std::string> Auction::getAuctionIDs(const EUserTypes& userType) {
     std::stringstream query;
     query   << "SELECT auctionID FROM "
@@ -102,6 +149,11 @@ std::vector<std::string> Auction::getAuctionIDs(const EUserTypes& userType) {
     return IDs;
 }
 
+/**
+ * Get a list of all the orderIDs from the specified auction table.
+ * @param userType The table type.
+ * @return The list of orderIDs.
+ */
 std::vector<std::string> Auction::getOrderIDs(const EUserTypes& userType) {
     std::stringstream query;
     query   << "SELECT orderID FROM "
@@ -110,6 +162,14 @@ std::vector<std::string> Auction::getOrderIDs(const EUserTypes& userType) {
     return IDs;
 }
 
+/**
+ * Create a new auction on the COAuction table in the database.
+ * @param username The name of the auction owner.
+ * @param orderId The orderID of the cargo.
+ * @param startPrice The start price of the auction.
+ * @param commission The commission of the auction.
+ * @param length The length of the auction in hours.
+ */
 void Auction::makeCOAuction(const std::string& username, const std::string& orderId, const double& startPrice,
                             const double& commission, const int& length) {
     // Get existing auctionIDs
@@ -148,6 +208,16 @@ void Auction::makeCOAuction(const std::string& username, const std::string& orde
     DBHandler::writeFields(query.str());
 }
 
+/**
+ * Create a new auction on the DriverAuction table in the database.
+ * @param username The name of the auction owner.
+ * @param orderId The orderID of the cargo.
+ * @param startPrice The start price of the auction.
+ * @param commission The commission of the auction.
+ * @param cpm The cost per mile of the auction.
+ * @param distance The distance of the auction in miles.
+ * @param length The length of the auction in hours.
+ */
 void Auction::makeDriverAuction(const std::string& username, const std::string& orderId, const double& startPrice,
                                 const double& commission, const double& cpm, const double& distance, const int& length) {
     // Get existing auctionIDs
@@ -190,6 +260,11 @@ void Auction::makeDriverAuction(const std::string& username, const std::string& 
     DBHandler::writeFields(query.str());
 }
 
+/**
+ * Set the auctionStatus of the selected auction table to 'Finished' based on the specified auctionID.
+ * @param userType The type of auction table.
+ * @param auctionID The auctionID of the auction to be finished.
+ */
 void Auction::endAuction(const EUserTypes& userType, const std::string& auctionID) {
     std::stringstream query;
     query   << "UPDATE "
@@ -200,6 +275,12 @@ void Auction::endAuction(const EUserTypes& userType, const std::string& auctionI
     DBHandler::writeFields(query.str());
 }
 
+/**
+ * Update the bid amount of the selected auction table based on the specified auctionID.
+ * @param userType The type of auction table.
+ * @param auctionID The auctionID of the auction to be updated.
+ * @param newBid The new bid amount.
+ */
 void Auction::setBidAmount(const EUserTypes& userType, const std::string& auctionID, const double& newBid) {
     std::stringstream query;
     query   << "UPDATE "
@@ -212,6 +293,12 @@ void Auction::setBidAmount(const EUserTypes& userType, const std::string& auctio
     DBHandler::writeFields(query.str());
 }
 
+/**
+ * Set the bidderName of the selected auction table based on the specified auctionID.
+ * @param userType The type of auction table.
+ * @param auctionID The auctionID of the auction to be updated.
+ * @param username The username of the bidder.
+ */
 void Auction::setBidderName(const EUserTypes& userType, const std::string& auctionID, const std::string& username) {
     std::stringstream query;
     query   << "UPDATE "
@@ -224,6 +311,12 @@ void Auction::setBidderName(const EUserTypes& userType, const std::string& aucti
     DBHandler::writeFields(query.str());
 }
 
+/**
+ * Check if the specified auctionID has a bidder.
+ * @param userType The type of auction table.
+ * @param auctionID The auctionID of the auction to be checked.
+ * @return True if the auction has a bidder, false otherwise.
+ */
 bool Auction::hasBidder(const EUserTypes& userType, const std::string& auctionID) {
     std::stringstream query;
     query   << "SELECT auctionBidder FROM "
@@ -235,6 +328,11 @@ bool Auction::hasBidder(const EUserTypes& userType, const std::string& auctionID
     return false;
 }
 
+/**
+ * Get the table name based on the specified userType.
+ * @param userType The type of user.
+ * @return The table name.
+ */
 std::string Auction::getTable(const EUserTypes& userType) {
     if (userType == EUserTypes::CARGO_OWNER) {
         return "COAuction";
@@ -244,6 +342,10 @@ std::string Auction::getTable(const EUserTypes& userType) {
     return "";
 }
 
+/**
+ * Get the current date.
+ * @return The current date in format 'dd-mm-yyyy'.
+ */
 std::string Auction::currentDate() {
     time_t now = time(0);
     struct tm tstruct;
@@ -253,6 +355,10 @@ std::string Auction::currentDate() {
     return buf;
 }
 
+/**
+ * Get the current time.
+ * @return The current time in format 'hh:mm:ss'.
+ */
 std::string Auction::currentTime() {
     time_t now = time(0);
     struct tm tstruct;

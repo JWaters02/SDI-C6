@@ -29,7 +29,7 @@
     <string notr="true">background-color: rgb(54, 54, 54);</string>
    </property>
    <property name="currentIndex">
-    <number>4</number>
+    <number>2</number>
    </property>
    <widget class="QWidget" name="AdminPage">
     <widget class="QLabel" name="label_2">
@@ -51,23 +51,6 @@ font-size: 28px</string>
     </widget>
    </widget>
    <widget class="QWidget" name="CargoOwnerPage">
-    <widget class="QLabel" name="label_3">
-     <property name="geometry">
-      <rect>
-       <x>0</x>
-       <y>10</y>
-       <width>231</width>
-       <height>61</height>
-      </rect>
-     </property>
-     <property name="styleSheet">
-      <string notr="true">color: rgb(186, 189, 182); 
-font-size: 28px</string>
-     </property>
-     <property name="text">
-      <string>Cargo Owner</string>
-     </property>
-    </widget>
     <widget class="QTabWidget" name="tbCO">
      <property name="geometry">
       <rect>
@@ -254,7 +237,7 @@ font-size: 20px</string>
          </rect>
         </property>
         <property name="maximum">
-         <double>9999.000000000000000</double>
+         <double>99999999.000000000000000</double>
         </property>
         <property name="value">
          <double>100.000000000000000</double>
@@ -626,14 +609,12 @@ font-size: 20px</string>
       </attribute>
      </widget>
     </widget>
-   </widget>
-   <widget class="QWidget" name="DriverPage">
-    <widget class="QLabel" name="label_18">
+    <widget class="QLabel" name="label_64">
      <property name="geometry">
       <rect>
        <x>0</x>
        <y>10</y>
-       <width>231</width>
+       <width>131</width>
        <height>61</height>
       </rect>
      </property>
@@ -642,9 +623,28 @@ font-size: 20px</string>
 font-size: 28px</string>
      </property>
      <property name="text">
-      <string>Driver</string>
+      <string>Welcome:</string>
      </property>
     </widget>
+    <widget class="QLabel" name="lblCOUsername">
+     <property name="geometry">
+      <rect>
+       <x>140</x>
+       <y>10</y>
+       <width>401</width>
+       <height>61</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">color: rgb(186, 189, 182); 
+font-size: 28px</string>
+     </property>
+     <property name="text">
+      <string>user</string>
+     </property>
+    </widget>
+   </widget>
+   <widget class="QWidget" name="DriverPage">
     <widget class="QTabWidget" name="tbDriver">
      <property name="geometry">
       <rect>
@@ -896,7 +896,7 @@ font-size: 20px</string>
          </rect>
         </property>
         <property name="maximum">
-         <double>9999.000000000000000</double>
+         <double>9999999.000000000000000</double>
         </property>
         <property name="value">
          <double>10.000000000000000</double>
@@ -1302,6 +1302,40 @@ font-size: 16px</string>
       </attribute>
      </widget>
     </widget>
+    <widget class="QLabel" name="label_62">
+     <property name="geometry">
+      <rect>
+       <x>0</x>
+       <y>10</y>
+       <width>131</width>
+       <height>61</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">color: rgb(186, 189, 182); 
+font-size: 28px</string>
+     </property>
+     <property name="text">
+      <string>Welcome:</string>
+     </property>
+    </widget>
+    <widget class="QLabel" name="lblDriverUsername">
+     <property name="geometry">
+      <rect>
+       <x>140</x>
+       <y>10</y>
+       <width>401</width>
+       <height>61</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">color: rgb(186, 189, 182); 
+font-size: 28px</string>
+     </property>
+     <property name="text">
+      <string>user</string>
+     </property>
+    </widget>
    </widget>
    <widget class="QWidget" name="ForwarderPage">
     <widget class="QTabWidget" name="tbForwarder">
@@ -1476,12 +1510,12 @@ font-size: 20px</string>
       </attribute>
      </widget>
     </widget>
-    <widget class="QLabel" name="label_4">
+    <widget class="QLabel" name="label_63">
      <property name="geometry">
       <rect>
        <x>0</x>
        <y>10</y>
-       <width>231</width>
+       <width>131</width>
        <height>61</height>
       </rect>
      </property>
@@ -1490,7 +1524,24 @@ font-size: 20px</string>
 font-size: 28px</string>
      </property>
      <property name="text">
-      <string>Forwarder</string>
+      <string>Welcome:</string>
+     </property>
+    </widget>
+    <widget class="QLabel" name="lblFUsername">
+     <property name="geometry">
+      <rect>
+       <x>140</x>
+       <y>10</y>
+       <width>401</width>
+       <height>61</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">color: rgb(186, 189, 182); 
+font-size: 28px</string>
+     </property>
+     <property name="text">
+      <string>user</string>
      </property>
     </widget>
    </widget>
@@ -1500,7 +1551,7 @@ font-size: 28px</string>
       <rect>
        <x>0</x>
        <y>10</y>
-       <width>231</width>
+       <width>131</width>
        <height>61</height>
       </rect>
      </property>
@@ -1509,7 +1560,7 @@ font-size: 28px</string>
 font-size: 28px</string>
      </property>
      <property name="text">
-      <string>Consignee</string>
+      <string>Welcome:</string>
      </property>
     </widget>
     <widget class="QTabWidget" name="tbConsignee">
@@ -1839,14 +1890,12 @@ color: rgb(186, 189, 182);</string>
       </attribute>
      </widget>
     </widget>
-   </widget>
-   <widget class="QWidget" name="CourierPage">
-    <widget class="QLabel" name="label_17">
+    <widget class="QLabel" name="lblConsigneeUsername">
      <property name="geometry">
       <rect>
-       <x>0</x>
+       <x>140</x>
        <y>10</y>
-       <width>231</width>
+       <width>401</width>
        <height>61</height>
       </rect>
      </property>
@@ -1855,9 +1904,11 @@ color: rgb(186, 189, 182);</string>
 font-size: 28px</string>
      </property>
      <property name="text">
-      <string>Courier</string>
+      <string>user</string>
      </property>
     </widget>
+   </widget>
+   <widget class="QWidget" name="CourierPage">
     <widget class="QTabWidget" name="tbCourierBidding">
      <property name="geometry">
       <rect>
@@ -2083,6 +2134,40 @@ color: rgb(186, 189, 182);</string>
        <string>Profile</string>
       </attribute>
      </widget>
+    </widget>
+    <widget class="QLabel" name="label_61">
+     <property name="geometry">
+      <rect>
+       <x>0</x>
+       <y>10</y>
+       <width>131</width>
+       <height>61</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">color: rgb(186, 189, 182); 
+font-size: 28px</string>
+     </property>
+     <property name="text">
+      <string>Welcome:</string>
+     </property>
+    </widget>
+    <widget class="QLabel" name="lblCourierUsername">
+     <property name="geometry">
+      <rect>
+       <x>140</x>
+       <y>10</y>
+       <width>401</width>
+       <height>61</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">color: rgb(186, 189, 182); 
+font-size: 28px</string>
+     </property>
+     <property name="text">
+      <string>user</string>
+     </property>
     </widget>
    </widget>
   </widget>

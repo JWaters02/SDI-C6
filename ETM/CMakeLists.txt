@@ -19,25 +19,12 @@ set(PROJECT_SOURCES
         homepage.cpp
         homepage.h
         homepage.ui
-        Users/User.h
-        Users/User.cpp
-        Users/CargoOwner.h
-        Users/CargoOwner.cpp
-        Users/Drivers.h
-        Users/Drivers.cpp
         Application/Login.cpp
         Application/Login.h
         Database/DBHandler.cpp
         Database/DBHandler.h
         Users/UserUtils.h
-        Users/UserUtils.cpp
-        Users/Forwarder.cpp
-        Users/Forwarder.h
-        Users/Courier.cpp
-        Users/Courier.h
-        Users/Consignee.cpp
-        Users/Consignee.h
-        Application/Order.cpp 
+        Application/Order.cpp
         Application/Order.h
         Application/RegistrationCheck.cpp
         Application/RegistrationCheck.h

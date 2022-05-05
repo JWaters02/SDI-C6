@@ -6,6 +6,11 @@
 
 InfoMinLengths Login::MINS;
 
+/**
+ * Check if the provided username and password are valid.
+ * @param loginInfo The login information to check.
+ * @return The type of error result (if none, return SUCCESS).
+ */
 ErrorTypes Login::isValidLogin(const LoginInfo &loginInfo) {
     if (loginInfo.username.empty()) {
         return ErrorTypes::EMPTY_USERNAME;
@@ -23,6 +28,11 @@ ErrorTypes Login::isValidLogin(const LoginInfo &loginInfo) {
     return ErrorTypes::NOT_ALL_FIELDS_FILLED;
 }
 
+/**
+ * Check if the provided signup info is valid.
+ * @param signupInfo The signup information to check.
+ * @return The type of error result (if none, return SUCCESS).
+ */
 ErrorTypes Login::isValidSignup(const SignupInfo &signupInfo) {
     // Check if username already exists in users table (as it is pk)
     if (!DBHandler::getResult("SELECT * FROM Users WHERE username = '" + signupInfo.username + "'").empty()) {
@@ -43,6 +53,11 @@ ErrorTypes Login::isValidSignup(const SignupInfo &signupInfo) {
     return ErrorTypes::NOT_ALL_FIELDS_FILLED;
 }
 
+/**
+ * Check if the provided driver-specific signup info is valid.
+ * @param signupInfo The signup information to check.
+ * @return True if the information is valid, false otherwise.
+ */
 bool Login::isValidDriverSignup(const DriverSignupInfo &signupInfo) {
     if (signupInfo.NINumber.length() > MINS.NI_NUMBER &&
         signupInfo.drivingLicenceID.length() > MINS.DRIVING_LICENCE_ID &&
@@ -56,6 +71,11 @@ bool Login::isValidDriverSignup(const DriverSignupInfo &signupInfo) {
     return false;
 }
 
+/**
+ * Check if the provided courier-specific signup info is valid.
+ * @param signupInfo The signup information to check.
+ * @return True if the information is valid, false otherwise.
+ */
 bool Login::isValidCourierSignup(const CourierSignupInfo &signupInfo) {
     if (signupInfo.companyName.length() > MINS.COMPANY_NAME &&
         signupInfo.companyPhone.length() > MINS.COMPANY_PHONE &&
@@ -65,6 +85,11 @@ bool Login::isValidCourierSignup(const CourierSignupInfo &signupInfo) {
     return false;
 }
 
+/**
+ * Check if the provided forwarder-specific signup info is valid.
+ * @param signupInfo The signup information to check.
+ * @return True if the information is valid, false otherwise.
+ */
 bool Login::isValidForwarderSignup(const ForwarderSignupInfo &signupInfo) {
     if (signupInfo.companyName.length() > MINS.COMPANY_NAME &&
         signupInfo.companyPhone.length() > MINS.COMPANY_PHONE &&
@@ -74,11 +99,20 @@ bool Login::isValidForwarderSignup(const ForwarderSignupInfo &signupInfo) {
     return false;
 }
 
+/**
+ * Check if the provided cargo owner-specific signup info is valid.
+ * @param signupInfo The signup information to check.
+ * @return True if the information is valid, false otherwise.
+ */
 bool Login::isValidCargoOwnerSignup(const CargoOwnerSignupInfo &signupInfo) {
     if (signupInfo.goodsCategory.length() > MINS.GOODS_CATEGORY) return true;
     return false;
 }
 
+/**
+ * Store the signup info into the database.
+ * @param signupInfo The signup information to store.
+ */
 void Login::storeSignupDetails(const SignupInfo &signupInfo) {
     std::stringstream query;
     query   << "INSERT INTO Users VALUES ('"
@@ -95,6 +129,11 @@ void Login::storeSignupDetails(const SignupInfo &signupInfo) {
     DBHandler::writeFields(query.str());
 }
 
+/**
+ * Store the driver signup info into the database.
+ * @param username The username of the driver.
+ * @param signupInfo The signup information to store.
+ */
 void Login::storeDriverSignupDetails(const SignupInfo& username, const DriverSignupInfo &signupInfo) {
     std::stringstream query;
     query   << "INSERT INTO Drivers VALUES ('"
@@ -108,6 +147,11 @@ void Login::storeDriverSignupDetails(const SignupInfo& username, const DriverSig
     DBHandler::writeFields(query.str());
 }
 
+/**
+ * Store the courier signup info into the database.
+ * @param username The username of the courier.
+ * @param signupInfo The signup information to store.
+ */
 void Login::storeCourierSignupDetails(const SignupInfo& username, const CourierSignupInfo &signupInfo) {
     std::stringstream query;
     query   << "INSERT INTO Couriers VALUES ('"
@@ -119,6 +163,11 @@ void Login::storeCourierSignupDetails(const SignupInfo& username, const CourierS
     DBHandler::writeFields(query.str());
 }
 
+/**
+ * Store the forwarder signup info into the database.
+ * @param username The username of the forwarder.
+ * @param signupInfo The signup information to store.
+ */
 void Login::storeForwarderSignupDetails(const SignupInfo& username, const ForwarderSignupInfo &signupInfo) {
     std::stringstream query;
     query   << "INSERT INTO Forwarders VALUES ('"
@@ -130,6 +179,11 @@ void Login::storeForwarderSignupDetails(const SignupInfo& username, const Forwar
     DBHandler::writeFields(query.str());
 }
 
+/**
+ * Store the cargo owner signup info into the database.
+ * @param username The username of the cargo owner.
+ * @param signupInfo The signup information to store.
+ */
 void Login::storeCargoOwnerSignupDetails(const SignupInfo& username, const CargoOwnerSignupInfo &signupInfo) {
     std::stringstream query;
     query   << "INSERT INTO CargoOwners VALUES ('"
@@ -138,6 +192,11 @@ void Login::storeCargoOwnerSignupDetails(const SignupInfo& username, const Cargo
     DBHandler::writeFields(query.str());
 }
 
+/**
+ * Get the type of the user from the provided login info from the database.
+ * @param loginInfo The login information to get the type of the user from.
+ * @return The type of the user.
+ */
 EUserTypes Login::getUserType(const LoginInfo& loginInfo) {
     std::string type = DBHandler::getResult("SELECT type FROM Users WHERE username = '" + loginInfo.username + "';");
     UserTypes userTypes;

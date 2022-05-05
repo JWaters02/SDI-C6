@@ -4,12 +4,19 @@
 #include "ui_homepage.h"
 #include "mainwindow.h"
 
+/**
+ * Constructor for the homepage.
+ * @param parent QWidget
+ */
 HomePage::HomePage(QWidget *parent) :
     QWidget(parent),
     ui(new Ui::HomePage) {
     ui->setupUi(this);
 }
 
+/**
+ * Destructor for the homepage.
+ */
 HomePage::~HomePage() {
     delete ui;
 }
@@ -22,6 +29,10 @@ void HomePage::on_btnCOLogout_clicked() {
     this->close();
 }
 
+/**
+ * Loads the correct page depending on the user's role.
+ * @param userType The user type
+ */
 void HomePage::showCorrectPage(EUserTypes userType) {
     if (userType == EUserTypes::ADMIN) {
         ui->Home->setCurrentIndex(0);
@@ -29,32 +40,44 @@ void HomePage::showCorrectPage(EUserTypes userType) {
         loadCOTakenOrders();
         loadCOFOrders();
         loadCOAuctions();
+        ui->lblCOUsername->setText(QString::fromStdString(this->username));
         ui->Home->setCurrentIndex(1);
     } else if (userType == EUserTypes::DRIVER) {
         loadDriverOngoingAuctions();
         loadDriverWonAuctions();
         loadDriverRunningAuctions();
         loadDriverTakenOrders();
+        ui->lblDriverUsername->setText(QString::fromStdString(this->username));
         ui->Home->setCurrentIndex(2);
     } else if (userType == EUserTypes::FORWARDER) {
         loadAllCurrentOrders();
         loadFTakenOrders();
+        ui->lblFUsername->setText(QString::fromStdString(this->username));
         ui->Home->setCurrentIndex(3);
     } else if (userType == EUserTypes::CONSIGNEE) {
         loadConsigneeCurrentOrders();
         loadConsigneePastOrders();
+        ui->lblConsigneeUsername->setText(QString::fromStdString(this->username));
         ui->Home->setCurrentIndex(4);
     } else if (userType == EUserTypes::COURIER) {
         loadCourierOngoingAuctions();
         loadCourierWonAuctions();
+        ui->lblCourierUsername->setText(QString::fromStdString(this->username));
         ui->Home->setCurrentIndex(5);
     }
 }
 
+/**
+ * Sets the local username variable.
+ * @param _username The username passed from the login page
+ */
 void HomePage::setUsername(std::string _username) {
     this->username = _username;
 }
 
+/**
+ * Load the pending orders for the consignee.
+ */
 void HomePage::loadConsigneeCurrentOrders() {
     currentOrderInfo = Order::getCurrentOrders(username);
     for (const OrderInfo& orderInfo : currentOrderInfo) {
@@ -66,6 +89,9 @@ void HomePage::loadConsigneeCurrentOrders() {
     }
 }
 
+/**
+ * Load the delivered or cancelled orders for the consignee.
+ */
 void HomePage::loadConsigneePastOrders() {
     pastOrderInfo = Order::getPastOrders(username);
     for (const OrderInfo& orderInfo : pastOrderInfo) {
@@ -77,6 +103,9 @@ void HomePage::loadConsigneePastOrders() {
     }
 }
 
+/**
+ * Load the pending orders for the forwarder.
+ */
 void HomePage::loadAllCurrentOrders() {
     allCurrentOrderInfo = Order::getAllCurrentOrders();
     for (const OrderInfo& orderInfo : allCurrentOrderInfo) {
@@ -86,6 +115,9 @@ void HomePage::loadAllCurrentOrders() {
     }
 }
 
+/**
+ * Load the taken orders for the forwarder.
+ */
 void HomePage::loadFTakenOrders() {
     fTakenOrdersInfo = Order::getTakenOrders(EUserTypes::FORWARDER, this->username);
     for (const OrderInfo& orderInfo : fTakenOrdersInfo) {
@@ -95,6 +127,9 @@ void HomePage::loadFTakenOrders() {
     }
 }
 
+/**
+ * Load the taken orders for the forwarder in the cargo owner page.
+ */
 void HomePage::loadCOFOrders() {
     COFOrderInfo = Order::getAllTakenOrders(EUserTypes::FORWARDER);
     for (const OrderInfo& orderInfo : COFOrderInfo) {
@@ -104,6 +139,9 @@ void HomePage::loadCOFOrders() {
     }
 }
 
+/**
+ * Load the taken orders for the forwarder in the cargo owner page.
+ */
 void HomePage::loadCOTakenOrders() {
     COTakenOrderInfo = Order::getTakenOrders(EUserTypes::CARGO_OWNER, this->username);
     for (const OrderInfo& orderInfo : COTakenOrderInfo) {
@@ -114,6 +152,9 @@ void HomePage::loadCOTakenOrders() {
     }
 }
 
+/**
+ * Load the running cargo owner auctions on the cargo owner page.
+ */
 void HomePage::loadCOAuctions() {
     coAuctionInfo = Auction::getRunningAuctions(EUserTypes::CARGO_OWNER, this->username);
     for (const COAuctionInfo& auctionInfo : coAuctionInfo) {
@@ -128,6 +169,9 @@ void HomePage::loadCOAuctions() {
     }
 }
 
+/**
+ * Load the ongoing cargo owner auctions on the driver page.
+ */
 void HomePage::loadDriverOngoingAuctions() {
     driverOngoingAuctionInfo = Auction::getOngoingCOAuctions(EUserTypes::CARGO_OWNER);
     for (const COAuctionInfo& auctionInfo : driverOngoingAuctionInfo) {
@@ -139,6 +183,9 @@ void HomePage::loadDriverOngoingAuctions() {
     }
 }
 
+/**
+ * Load the won driver auctions on the driver page.
+ */
 void HomePage::loadDriverWonAuctions() {
     driverWonAuctionInfo = Auction::getWonCOAuctions(this->username);
     for (const COAuctionInfo& auctionInfo : driverWonAuctionInfo) {
@@ -150,6 +197,9 @@ void HomePage::loadDriverWonAuctions() {
     }
 }
 
+/**
+ * Load the taken driver orders.
+ */
 void HomePage::loadDriverTakenOrders() {
     driverTakenOrderInfo = Order::getTakenOrders(EUserTypes::DRIVER, this->username);
     for (const OrderInfo& orderInfo : driverTakenOrderInfo) {
@@ -159,6 +209,9 @@ void HomePage::loadDriverTakenOrders() {
     }
 }
 
+/**
+ * Load the running driver auctions on the driver page.
+ */
 void HomePage::loadDriverRunningAuctions() {
     driverRunningAuctionInfo = Auction::getRunningDriverAuctions(EUserTypes::DRIVER, this->username);
     for (const DriverAuctionInfo& auctionInfo : driverRunningAuctionInfo) {
@@ -173,6 +226,9 @@ void HomePage::loadDriverRunningAuctions() {
     }
 }
 
+/**
+ * Load the ongoing driver auctions on the courier page.
+ */
 void HomePage::loadCourierOngoingAuctions() {
     courierOngoingAuctionInfo = Auction::getOngoingDriverAuctions(EUserTypes::DRIVER);
     for (const DriverAuctionInfo& auctionInfo : courierOngoingAuctionInfo) {
@@ -184,6 +240,9 @@ void HomePage::loadCourierOngoingAuctions() {
     }
 }
 
+/**
+ * Load the won courier auctions on the courier page.
+ */
 void HomePage::loadCourierWonAuctions() {
     courierWonAuctionInfo = Auction::getWonDriverAuctions(this->username);
     for (const DriverAuctionInfo& auctionInfo : courierWonAuctionInfo) {
